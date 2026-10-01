@@ -1,0 +1,302 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────
+
+enum Gender {
+  WOMEN
+  MEN
+  UNISEX
+}
+
+enum ProductStatus {
+  DRAFT
+  PENDING
+  PUBLISHED
+  ARCHIVED
+}
+
+enum TrendStatus {
+  DISCOVERED
+  IN_REVIEW
+  APPROVED
+  FEATURED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+}
+
+enum DataSource {
+  VERIFIED
+  MERCHANT_SUPPLIED
+  EDITORIAL
+  AI_SUGGESTED
+  UNAVAILABLE
+}
+
+enum ArticleType {
+  ARTICLE
+  BUYING_GUIDE
+  REVIEW
+  COMPARISON
+  ROUNDUP
+  TREND
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// ─── Taxonomy ────────────────────────────────────────────────────────────
+
+model Category {
+  id             String     @id @default(cuid())
+  slug           String     @unique
+  name           String
+  tagline        String?
+  description    String?
+  image          String?
+  gender         Gender
+  parentId       String?
+  parent         Category?  @relation("CategoryChildren", fields: [parentId], references: [id], onDelete: Cascade)
+  children       Category[] @relation("CategoryChildren")
+  sortOrder      Int        @default(0)
+  showInNav      Boolean    @default(false)
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  products Product[]
+  articles Article[]
+
+  @@index([slug])
+}
+
+// ─── Merchants ───────────────────────────────────────────────────────────
+
+model Merchant {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  name           String
+  logo           String?
+  website        String
+  affiliateNetwork String?
+  trackingConfig Json?
+  status         String   @default("ACTIVE")
+  priority       Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  products   Product[]
+  clickEvents ClickEvent[]
+}
+
+// ─── Products ────────────────────────────────────────────────────────────
+
+model Product {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  title            String
+  shortDescription String?
+  description      String?
+  categoryId       String?
+  category         Category?     @relation(fields: [categoryId], references: [id])
+  gender           Gender?
+  fitnessGoal      String?
+  productType      String?
+  price            Decimal?
+  originalPrice    Decimal?
+  currency         String?       @default("USD")
+  rating           Float?
+  reviewCount      Int?
+  merchantId       String?
+  merchant         Merchant?     @relation(fields: [merchantId], references: [id])
+  affiliateUrl     String?
+  originalUrl      String?
+  status           ProductStatus @default(DRAFT)
+  isFeatured       Boolean       @default(false)
+  trendStatus      TrendStatus   @default(DISCOVERED)
+  trendScore       Float         @default(0)
+  dataSource       DataSource    @default(UNAVAILABLE)
+  specifications   Json?
+  seoTitle         String?
+  seoDescription   String?
+  seoKeywords      String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  images      ProductImage[]
+  attributes  ProductAttribute[]
+  tags        ProductTag[]
+  reviews     Review[]
+  trendSignals TrendSignal[]
+  clickEvents ClickEvent[]
+  analyticsEvents AnalyticsEvent[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([categoryId])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  sortOrder Int     @default(0)
+}
+
+model ProductAttribute {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  key       String
+  value     String
+}
+
+model ProductTag {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tag       String
+}
+
+// ─── Content ─────────────────────────────────────────────────────────────
+
+model Author {
+  id        String   @id @default(cuid())
+  name      String
+  bio       String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+}
+
+model Article {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  excerpt        String?
+  featuredImage  String?
+  content        String
+  type           ArticleType   @default(ARTICLE)
+  status         ArticleStatus @default(DRAFT)
+  authorId       String?
+  author         Author?       @relation(fields: [authorId], references: [id])
+  categoryId     String?
+  category       Category?     @relation(fields: [categoryId], references: [id])
+  tags           String[]      @default([])
+  seoTitle       String?
+  seoDescription String?
+  canonicalUrl   String?
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  analyticsEvents AnalyticsEvent[]
+
+  @@index([slug])
+  @@index([status])
+}
+
+model Comparison {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  description    String?
+  productIds     String[]      @default([])
+  status         ArticleStatus @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  authorName String
+  rating     Int
+  title      String?
+  body       String
+  status     String   @default("PENDING")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ─── Signals & analytics ─────────────────────────────────────────────────
+
+model TrendSignal {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  signal     String
+  value      Float
+  recordedAt DateTime @default(now())
+}
+
+model ClickEvent {
+  id        String    @id @default(cuid())
+  productId String?
+  product   Product?  @relation(fields: [productId], references: [id])
+  merchantId String?
+  merchant  Merchant? @relation(fields: [merchantId], references: [id])
+  page      String?
+  referrer  String?
+  campaign  String?
+  userAgent String?
+  createdAt DateTime  @default(now())
+
+  @@index([createdAt])
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  type      String
+  page      String?
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id])
+  articleId String?
+  article   Article? @relation(fields: [articleId], references: [id])
+  referrer  String?
+  createdAt DateTime @default(now())
+}
+
+// ─── Newsletter & admin ──────────────────────────────────────────────────
+
+model NewsletterSubscriber {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  confirmedAt DateTime?
+  createdAt   DateTime  @default(now())
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+}
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
