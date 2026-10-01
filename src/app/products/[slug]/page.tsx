@@ -213,13 +213,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
         ])}
       />
 
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
           {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
               <li>
-                <Link href="/" className="hover:text-golddeep">
+                <Link href="/" className="hover:text-gold">
                   Home
                 </Link>
               </li>
@@ -227,7 +227,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <>
                   <li aria-hidden="true">/</li>
                   <li>
-                    <Link href={`/c/${product.category.parent.slug}`} className="hover:text-golddeep">
+                    <Link href={`/c/${product.category.parent.slug}`} className="hover:text-gold">
                       {product.category.parent.name}
                     </Link>
                   </li>
@@ -237,14 +237,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <>
                   <li aria-hidden="true">/</li>
                   <li>
-                    <Link href={`/c/${product.category.slug}`} className="hover:text-golddeep">
+                    <Link href={`/c/${product.category.slug}`} className="hover:text-gold">
                       {product.category.name}
                     </Link>
                   </li>
                 </>
               )}
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="max-w-[40ch] truncate text-ink">
+              <li aria-current="page" className="max-w-[40ch] truncate text-cream">
                 {product.title}
               </li>
             </ol>
@@ -253,7 +253,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Gallery */}
             <div>
-              <div className="relative aspect-square overflow-hidden rounded-3xl bg-stone-100">
+              <div className="relative aspect-square overflow-hidden rounded-3xl bg-coal">
                 {product.images.length > 0 ? (
                   <Image
                     src={product.images[0].url}
@@ -282,7 +282,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <div
                       key={img.url}
                       role="listitem"
-                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-stone-100"
+                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-coal"
                     >
                       <Image
                         src={img.url}
@@ -301,25 +301,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {/* Details */}
             <div>
               {merchantName && (
-                <p className="mb-2 text-[11px] font-sans font-semibold uppercase tracking-[0.24em] text-golddeep">
+                <p className="mb-2 text-[11px] font-sans font-semibold uppercase tracking-[0.24em] text-gold">
                   {merchantName}
                 </p>
               )}
-              <h1 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
+              <h1 className="font-display text-3xl font-semibold tracking-tight text-cream md:text-5xl">
                 {product.title}
               </h1>
 
               {product.rating !== null && (
-                <p className="mt-4 font-sans text-sm text-ink/70" aria-label={`Rated ${product.rating} out of 5`}>
-                  <span aria-hidden="true" className="text-lg text-golddeep">
+                <p className="mt-4 font-sans text-sm text-cream/70" aria-label={`Rated ${product.rating} out of 5`}>
+                  <span aria-hidden="true" className="text-lg text-gold">
                     {"★".repeat(Math.max(0, Math.min(5, Math.round(product.rating))))}
-                    <span className="text-ink/20">
+                    <span className="text-cream/20">
                       {"★".repeat(5 - Math.max(0, Math.min(5, Math.round(product.rating))))}
                     </span>
                   </span>{" "}
-                  <span className="font-semibold text-ink">{product.rating.toFixed(1)}</span>
+                  <span className="font-semibold text-cream">{product.rating.toFixed(1)}</span>
                   {product.reviewCount !== null && product.reviewCount > 0 && (
-                    <span className="text-ink/55">
+                    <span className="text-cream/55">
                       {" "}
                       · {product.reviewCount.toLocaleString("en-US")} reviews
                     </span>
@@ -330,25 +330,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="mt-6 flex flex-wrap items-baseline gap-3">
                 {price !== null ? (
                   <>
-                    <p className="font-sans text-3xl font-semibold text-ink">
+                    <p className="font-sans text-3xl font-semibold text-cream">
                       {formatPrice(price, currency)}
                     </p>
                     {originalPrice !== null && originalPrice > price && (
-                      <p className="font-sans text-lg text-ink/45 line-through">
+                      <p className="font-sans text-lg text-cream/45 line-through">
                         {formatPrice(originalPrice, currency)}
                       </p>
                     )}
                     {discount > 0 && <Badge tone="gold">Save {discount}%</Badge>}
                   </>
                 ) : (
-                  <p className="font-sans text-base italic text-ink/60">
+                  <p className="font-sans text-base italic text-cream/60">
                     Price unavailable — check merchant
                   </p>
                 )}
               </div>
 
               {product.shortDescription && (
-                <p className="mt-6 font-sans text-base leading-relaxed text-ink/75">
+                <p className="mt-6 font-sans text-base leading-relaxed text-cream/75">
                   {product.shortDescription}
                 </p>
               )}
@@ -366,7 +366,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <button
                     type="button"
                     disabled
-                    className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-sand px-8 py-4 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink/50"
+                    className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cream/10 px-8 py-4 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-cream/50"
                   >
                     Not available
                   </button>
@@ -374,29 +374,29 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <SaveButton id={product.id} slug={product.slug} title={product.title} image={product.images[0]?.url} />
               </div>
               {product.affiliateUrl ? (
-                <p className="mt-4 max-w-md font-sans text-xs leading-relaxed text-ink/55">
+                <p className="mt-4 max-w-md font-sans text-xs leading-relaxed text-cream/55">
                   You&apos;ll leave VÉLORA for {merchantName ?? "the merchant"} — we may earn a
                   commission.{" "}
-                  <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-golddeep">
+                  <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
                     Learn more
                   </Link>
                 </p>
               ) : (
-                <p className="mt-4 max-w-md font-sans text-xs leading-relaxed text-ink/55">
+                <p className="mt-4 max-w-md font-sans text-xs leading-relaxed text-cream/55">
                   This product isn&apos;t currently available through our partners.
                 </p>
               )}
 
               {whoFor.length > 0 && (
-                <div className="mt-8 border-t border-sand pt-6">
-                  <h2 className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-ink/60">
+                <div className="mt-8 border-t border-cream/10 pt-6">
+                  <h2 className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/60">
                     Who it&apos;s for
                   </h2>
                   <div className="flex flex-wrap gap-2">
                     {whoFor.map((v) => (
                       <span
                         key={v}
-                        className="rounded-full bg-stone-100 px-4 py-2 font-sans text-xs font-medium text-ink/75"
+                        className="rounded-full bg-coal px-4 py-2 font-sans text-xs font-medium text-cream/75"
                       >
                         {v}
                       </span>
@@ -409,29 +409,29 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           {/* Specifications */}
           <section className="mt-14 md:mt-20" aria-labelledby="specs-heading">
-            <h2 id="specs-heading" className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+            <h2 id="specs-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
               Specifications
             </h2>
             {specs.length > 0 ? (
-              <div className="overflow-hidden rounded-2xl border border-sand">
-                <table className="w-full bg-white/60 font-sans text-sm">
+              <div className="overflow-hidden rounded-2xl border border-cream/10">
+                <table className="w-full bg-coal font-sans text-sm">
                   <tbody>
                     {specs.map((row, i) => (
-                      <tr key={`${row.key}-${i}`} className={i % 2 === 1 ? "bg-stone-50/70" : undefined}>
+                      <tr key={`${row.key}-${i}`} className={i % 2 === 1 ? "bg-coal/70" : undefined}>
                         <th
                           scope="row"
-                          className="w-1/3 px-5 py-3.5 text-left align-top text-xs font-semibold uppercase tracking-[0.12em] text-ink/55"
+                          className="w-1/3 px-5 py-3.5 text-left align-top text-xs font-semibold uppercase tracking-[0.12em] text-cream/55"
                         >
                           {row.key}
                         </th>
-                        <td className="px-5 py-3.5 text-ink/85">{row.value || "—"}</td>
+                        <td className="px-5 py-3.5 text-cream/85">{row.value || "—"}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
             ) : (
-              <p className="font-sans text-sm italic text-ink/55">
+              <p className="font-sans text-sm italic text-cream/55">
                 Detailed specifications haven&apos;t been provided for this product yet — check the
                 merchant page for the latest details.
               </p>
@@ -441,12 +441,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Editorial notes */}
           {product.description && (
             <section className="mt-14 md:mt-20" aria-labelledby="notes-heading">
-              <h2 id="notes-heading" className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+              <h2 id="notes-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
                 Editorial Notes
               </h2>
               <div className="max-w-3xl space-y-4">
                 {product.description.split(/\n\s*\n/).map((para, i) => (
-                  <p key={i} className="whitespace-pre-line font-sans text-base leading-relaxed text-ink/80">
+                  <p key={i} className="whitespace-pre-line font-sans text-base leading-relaxed text-cream/80">
                     {para.trim()}
                   </p>
                 ))}
@@ -457,7 +457,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Related products */}
           {related.length > 0 && (
             <section className="mt-14 md:mt-20" aria-labelledby="related-heading">
-              <h2 id="related-heading" className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+              <h2 id="related-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
                 You May Also Like
               </h2>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -471,7 +471,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Related guides */}
           {relatedGuides.length > 0 && (
             <section className="mt-14 md:mt-20" aria-labelledby="related-guides-heading">
-              <h2 id="related-guides-heading" className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+              <h2 id="related-guides-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
                 Related Guides
               </h2>
               <div className="grid gap-6 md:grid-cols-3">
@@ -479,15 +479,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <Link
                     key={g.slug}
                     href={`/guides/${g.slug}`}
-                    className="group rounded-2xl border border-sand bg-white/70 p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
+                    className="group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
                   >
-                    <h3 className="font-display text-xl font-semibold text-ink group-hover:text-golddeep">
+                    <h3 className="font-display text-xl font-semibold text-cream group-hover:text-gold">
                       {g.title}
                     </h3>
                     {g.excerpt && (
-                      <p className="mt-2 line-clamp-2 font-sans text-sm text-ink/65">{g.excerpt}</p>
+                      <p className="mt-2 line-clamp-2 font-sans text-sm text-cream/65">{g.excerpt}</p>
                     )}
-                    <span className="mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em] text-golddeep">
+                    <span className="mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold">
                       Read guide &rarr;
                     </span>
                   </Link>

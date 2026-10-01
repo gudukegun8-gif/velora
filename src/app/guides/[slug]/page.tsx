@@ -113,18 +113,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <Header />
       <TrackView type="guide_view" articleId={article.id} page={`/guides/${article.slug}`} />
       <JsonLd data={articleJsonLdData} />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:py-16">
           <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
               <li>
-                <Link href="/" className="hover:text-golddeep">
+                <Link href="/" className="hover:text-gold">
                   Home
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/guides" className="hover:text-golddeep">
+                <Link href="/guides" className="hover:text-gold">
                   Guides
                 </Link>
               </li>
@@ -132,7 +132,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <>
                   <li aria-hidden="true">/</li>
                   <li>
-                    <Link href={`/c/${article.category.slug}`} className="hover:text-golddeep">
+                    <Link href={`/c/${article.category.slug}`} className="hover:text-gold">
                       {article.category.name}
                     </Link>
                   </li>
@@ -146,22 +146,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {article.tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-stone-100 px-3 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/60"
+                className="rounded-full bg-coal px-3 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-cream/60"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h1 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight text-cream md:text-5xl">
             {article.title}
           </h1>
           {article.excerpt && (
-            <p className="mt-4 font-sans text-lg leading-relaxed text-ink/70">{article.excerpt}</p>
+            <p className="mt-4 font-sans text-lg leading-relaxed text-cream/70">{article.excerpt}</p>
           )}
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-sand py-4 font-sans text-xs uppercase tracking-[0.14em] text-ink/55">
-            <span className="font-semibold text-ink/75">{article.author?.name ?? "VÉLORA Editorial"}</span>
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-cream/10 py-4 font-sans text-xs uppercase tracking-[0.14em] text-cream/55">
+            <span className="font-semibold text-cream/75">{article.author?.name ?? "VÉLORA Editorial"}</span>
             <span aria-hidden="true">·</span>
             <time dateTime={publishedAt.toISOString()}>
               {publishedAt.toLocaleDateString("en-US", {
@@ -170,7 +170,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 year: "numeric",
               })}
             </time>
-            {article.author?.bio && <span className="w-full normal-case tracking-normal text-ink/55">{article.author.bio}</span>}
+            {article.author?.bio && <span className="w-full normal-case tracking-normal text-cream/55">{article.author.bio}</span>}
           </div>
 
           {article.featuredImage && (
@@ -192,14 +192,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             dangerouslySetInnerHTML={{ __html: html }}
           />
 
-          <footer className="mt-12 rounded-2xl border border-sand bg-white/60 p-6">
-            <p className="font-sans text-xs leading-relaxed text-ink/60">
-              <span className="font-semibold uppercase tracking-[0.16em] text-ink/75">
+          <footer className="mt-12 rounded-2xl border border-cream/10 bg-coal p-6">
+            <p className="font-sans text-xs leading-relaxed text-cream/60">
+              <span className="font-semibold uppercase tracking-[0.16em] text-cream/75">
                 Our editorial promise —{" "}
               </span>
               VÉLORA&apos;s guides are written independently. Product links may earn us a
               commission at no extra cost to you, which keeps our curation free and unbiased.{" "}
-              <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-golddeep">
+              <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
                 Read the full affiliate disclosure
               </Link>
               .
@@ -208,9 +208,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </article>
 
         {relatedProducts.length > 0 && (
-          <section className="border-t border-sand bg-stone-50/60" aria-labelledby="related-products">
+          <section className="border-t border-cream/10 bg-coal/60" aria-labelledby="related-products">
             <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-              <h2 id="related-products" className="mb-8 font-display text-2xl font-semibold text-ink md:text-3xl">
+              <h2 id="related-products" className="mb-8 font-display text-2xl font-semibold text-cream md:text-3xl">
                 Featured in This Guide
               </h2>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

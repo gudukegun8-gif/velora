@@ -215,12 +215,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         {/* Breadcrumbs */}
         <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-          <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+          <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
             <li>
-              <Link href="/" className="hover:text-golddeep">
+              <Link href="/" className="hover:text-gold">
                 Home
               </Link>
             </li>
@@ -228,14 +228,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <>
                 <li aria-hidden="true">/</li>
                 <li>
-                  <Link href={`/c/${category.parent.slug}`} className="hover:text-golddeep">
+                  <Link href={`/c/${category.parent.slug}`} className="hover:text-gold">
                     {category.parent.name}
                   </Link>
                 </li>
               </>
             )}
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-ink">
+            <li aria-current="page" className="text-cream">
               {category.name}
             </li>
           </ol>
@@ -245,18 +245,18 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8">
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.4fr]">
             <div>
-              <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+              <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
                 Collection
               </p>
-              <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+              <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
                 {category.name}
               </h1>
               {(category.description || category.tagline) && (
-                <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-ink/70 md:text-base">
+                <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
                   {category.description || category.tagline}
                 </p>
               )}
-              <p className="mt-4 font-sans text-xs uppercase tracking-[0.18em] text-ink/50">
+              <p className="mt-4 font-sans text-xs uppercase tracking-[0.18em] text-cream/50">
                 {totalCount} {totalCount === 1 ? "product" : "products"} curated
               </p>
             </div>
@@ -285,8 +285,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   className={cx(
                     "rounded-full border px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors",
                     sub.slug === category.slug
-                      ? "border-ink bg-ink text-cream"
-                      : "border-ink/20 bg-white/60 text-ink hover:border-golddeep hover:text-golddeep"
+                      ? "border-gold bg-gold text-ink"
+                      : "border-cream/20 bg-coal text-cream hover:border-gold hover:text-gold"
                   )}
                   aria-current={sub.slug === category.slug ? "page" : undefined}
                 >
@@ -332,25 +332,25 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           </div>
         )}
 
-        <div className="border-t border-sand bg-stone-50/60">
+        <div className="border-t border-cream/10 bg-coal/60">
           <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             {/* Filters */}
             <form
               method="GET"
               action={`/c/${category.slug}`}
-              className="mb-10 rounded-2xl border border-sand bg-white/70 p-5 md:p-6"
+              className="mb-10 rounded-2xl border border-cream/10 bg-coal p-5 md:p-6"
               aria-label="Filter products"
             >
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
                 <div>
-                  <label htmlFor="f-gender" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="f-gender" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Gender
                   </label>
                   <select
                     id="f-gender"
                     name="gender"
                     defaultValue={param(searchParams.gender) ?? ""}
-                    className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                   >
                     <option value="">All</option>
                     <option value="women">Women</option>
@@ -359,14 +359,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="f-goal" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="f-goal" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Goal
                   </label>
                   <select
                     id="f-goal"
                     name="goal"
                     defaultValue={param(searchParams.goal) ?? ""}
-                    className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                   >
                     <option value="">All goals</option>
                     <option value="pilates">Pilates</option>
@@ -379,14 +379,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="f-merchant" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="f-merchant" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Merchant
                   </label>
                   <select
                     id="f-merchant"
                     name="merchant"
                     defaultValue={param(searchParams.merchant) ?? ""}
-                    className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                   >
                     <option value="">All merchants</option>
                     {merchants.map((m) => (
@@ -397,7 +397,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="f-minPrice" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="f-minPrice" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Min price
                   </label>
                   <input
@@ -408,11 +408,11 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     step="1"
                     placeholder="$0"
                     defaultValue={param(searchParams.minPrice) ?? ""}
-                    className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink placeholder:text-ink/35 focus:border-golddeep focus:outline-none"
+                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream placeholder:text-cream/35 focus:border-golddeep focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label htmlFor="f-maxPrice" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="f-maxPrice" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Max price
                   </label>
                   <input
@@ -423,18 +423,18 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     step="1"
                     placeholder="No max"
                     defaultValue={param(searchParams.maxPrice) ?? ""}
-                    className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink placeholder:text-ink/35 focus:border-golddeep focus:outline-none"
+                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream placeholder:text-cream/35 focus:border-golddeep focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label htmlFor="f-sort" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="f-sort" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Sort by
                   </label>
                   <select
                     id="f-sort"
                     name="sort"
                     defaultValue={sort}
-                    className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                   >
                     {SORTS.map((s) => (
                       <option key={s.value} value={s.value}>
@@ -454,7 +454,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 {activeFilters.length > 0 && (
                   <Link
                     href={`/c/${category.slug}`}
-                    className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-golddeep underline-offset-4 hover:underline"
+                    className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-gold underline-offset-4 hover:underline"
                   >
                     Clear all
                   </Link>
@@ -481,7 +481,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {/* Related guides */}
             {guides.length > 0 && (
               <div className="mt-16">
-                <h2 className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+                <h2 className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
                   Guides for {category.name}
                 </h2>
                 <div className="grid gap-6 md:grid-cols-3">
@@ -489,15 +489,15 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     <Link
                       key={g.slug}
                       href={`/guides/${g.slug}`}
-                      className="group rounded-2xl border border-sand bg-white/70 p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
+                      className="group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
                     >
-                      <h3 className="font-display text-xl font-semibold text-ink group-hover:text-golddeep">
+                      <h3 className="font-display text-xl font-semibold text-cream group-hover:text-gold">
                         {g.title}
                       </h3>
                       {g.excerpt && (
-                        <p className="mt-2 line-clamp-2 font-sans text-sm text-ink/65">{g.excerpt}</p>
+                        <p className="mt-2 line-clamp-2 font-sans text-sm text-cream/65">{g.excerpt}</p>
                       )}
-                      <span className="mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em] text-golddeep">
+                      <span className="mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold">
                         Read guide &rarr;
                       </span>
                     </Link>

@@ -35,15 +35,15 @@ export default function SavedPage() {
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16 lg:px-8">
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             Your List
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             Saved Items
           </h1>
-          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-ink/70 md:text-base">
+          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
             Everything you&apos;ve bookmarked, kept privately in your browser. Nothing leaves your
             device.
           </p>
@@ -52,7 +52,7 @@ export default function SavedPage() {
             {!loaded ? (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" aria-hidden="true">
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="h-64 animate-pulse rounded-2xl bg-sand/60" />
+                  <div key={i} className="h-64 animate-pulse rounded-2xl bg-cream/10" />
                 ))}
               </div>
             ) : items.length === 0 ? (
@@ -67,10 +67,10 @@ export default function SavedPage() {
                 {items.map((item) => (
                   <li
                     key={item.id}
-                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-sand bg-white/60"
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-cream/10 bg-coal"
                   >
                     <Link href={`/products/${item.slug}`} className="block">
-                      <span className="relative block aspect-[4/3] overflow-hidden bg-stone-100">
+                      <span className="relative block aspect-[4/3] overflow-hidden bg-coal">
                         {item.image ? (
                           <Image
                             src={item.image}
@@ -90,10 +90,10 @@ export default function SavedPage() {
                         )}
                       </span>
                       <span className="block p-5">
-                        <span className="block font-display text-xl font-semibold leading-snug text-ink group-hover:text-golddeep">
+                        <span className="block font-display text-xl font-semibold leading-snug text-cream group-hover:text-gold">
                           {item.title}
                         </span>
-                        <span className="mt-3 block font-sans text-xs font-semibold uppercase tracking-[0.14em] text-golddeep">
+                        <span className="mt-3 block font-sans text-xs font-semibold uppercase tracking-[0.14em] text-gold">
                           View Product &rarr;
                         </span>
                       </span>
@@ -102,7 +102,7 @@ export default function SavedPage() {
                       type="button"
                       onClick={() => remove(item.id)}
                       aria-label={`Remove ${item.title} from saved items`}
-                      className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-cream/90 text-ink/70 backdrop-blur transition-colors hover:border-golddeep hover:text-golddeep"
+                      className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-cream/15 bg-ink/90 text-cream/70 backdrop-blur transition-colors hover:border-gold hover:text-gold"
                     >
                       <svg
                         width="15"

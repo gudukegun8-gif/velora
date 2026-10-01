@@ -154,12 +154,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16 lg:px-8">
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             Discovery
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             Search VÉLORA
           </h1>
 
@@ -167,7 +167,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           <form
             method="GET"
             action="/search"
-            className="mt-8 rounded-2xl border border-sand bg-white/70 p-5 md:p-6"
+            className="mt-8 rounded-2xl border border-cream/10 bg-coal p-5 md:p-6"
             aria-label="Search products and guides"
             role="search"
           >
@@ -181,7 +181,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 type="search"
                 defaultValue={q ?? ""}
                 placeholder="Try &quot;adjustable dumbbells&quot;, &quot;pilates reformer&quot;, &quot;massage gun&quot;…"
-                className="w-full flex-1 rounded-full border border-sand bg-cream px-6 py-3.5 font-sans text-sm text-ink placeholder:text-ink/40 focus:border-golddeep focus:outline-none"
+                className="w-full flex-1 rounded-full border border-cream/10 bg-ink px-6 py-3.5 font-sans text-sm text-cream placeholder:text-cream/40 focus:border-golddeep focus:outline-none"
               />
               <button
                 type="submit"
@@ -193,14 +193,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               <div>
-                <label htmlFor="s-category" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="s-category" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Category
                 </label>
                 <select
                   id="s-category"
                   name="category"
                   defaultValue={categorySlug ?? ""}
-                  className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                  className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                 >
                   <option value="">All categories</option>
                   {categories.map((c) => (
@@ -211,14 +211,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 </select>
               </div>
               <div>
-                <label htmlFor="s-gender" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="s-gender" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Gender
                 </label>
                 <select
                   id="s-gender"
                   name="gender"
                   defaultValue={param(searchParams.gender) ?? ""}
-                  className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                  className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                 >
                   <option value="">All</option>
                   <option value="women">Women</option>
@@ -227,14 +227,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 </select>
               </div>
               <div>
-                <label htmlFor="s-goal" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="s-goal" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Goal
                 </label>
                 <select
                   id="s-goal"
                   name="goal"
                   defaultValue={goal ?? ""}
-                  className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                  className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                 >
                   <option value="">All goals</option>
                   <option value="pilates">Pilates</option>
@@ -247,14 +247,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 </select>
               </div>
               <div>
-                <label htmlFor="s-merchant" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="s-merchant" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Merchant
                 </label>
                 <select
                   id="s-merchant"
                   name="merchant"
                   defaultValue={merchantSlug ?? ""}
-                  className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                  className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                 >
                   <option value="">All merchants</option>
                   {merchants.map((m) => (
@@ -265,14 +265,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 </select>
               </div>
               <div>
-                <label htmlFor="s-sort" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="s-sort" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Sort by
                 </label>
                 <select
                   id="s-sort"
                   name="sort"
                   defaultValue={sort}
-                  className="w-full rounded-lg border border-sand bg-cream px-3 py-2.5 font-sans text-sm text-ink focus:border-golddeep focus:outline-none"
+                  className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
                 >
                   {SORTS.map((s) => (
                     <option key={s.value} value={s.value}>
@@ -287,11 +287,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           {/* Results */}
           <div className="mt-10">
             {!searched ? (
-              <div className="rounded-2xl border border-sand bg-white/60 p-10 text-center">
-                <p className="font-display text-2xl font-semibold text-ink">
+              <div className="rounded-2xl border border-cream/10 bg-coal p-10 text-center">
+                <p className="font-display text-2xl font-semibold text-cream">
                   What are you looking for?
                 </p>
-                <p className="mx-auto mt-3 max-w-md font-sans text-sm leading-relaxed text-ink/65">
+                <p className="mx-auto mt-3 max-w-md font-sans text-sm leading-relaxed text-cream/65">
                   Search our curated collection of fitness essentials, equipment, and editorial
                   guides — or browse by goal, category, or merchant above.
                 </p>
@@ -311,9 +311,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               <>
                 {products.length > 0 && (
                   <section aria-labelledby="results-products" className="mb-14">
-                    <h2 id="results-products" className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
-                      Products {q && <span className="text-ink/50">for &ldquo;{q}&rdquo;</span>}
-                      <span className="ml-3 align-middle font-sans text-xs font-medium uppercase tracking-[0.16em] text-ink/45">
+                    <h2 id="results-products" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
+                      Products {q && <span className="text-cream/50">for &ldquo;{q}&rdquo;</span>}
+                      <span className="ml-3 align-middle font-sans text-xs font-medium uppercase tracking-[0.16em] text-cream/45">
                         {products.length} found
                       </span>
                     </h2>
@@ -326,9 +326,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 )}
                 {articles.length > 0 && (
                   <section aria-labelledby="results-guides">
-                    <h2 id="results-guides" className="mb-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+                    <h2 id="results-guides" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
                       Guides & Articles
-                      <span className="ml-3 align-middle font-sans text-xs font-medium uppercase tracking-[0.16em] text-ink/45">
+                      <span className="ml-3 align-middle font-sans text-xs font-medium uppercase tracking-[0.16em] text-cream/45">
                         {articles.length} found
                       </span>
                     </h2>
@@ -337,9 +337,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                         <Link
                           key={a.slug}
                           href={`/guides/${a.slug}`}
-                          className="group flex gap-4 rounded-2xl border border-sand bg-white/70 p-4 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
+                          className="group flex gap-4 rounded-2xl border border-cream/10 bg-coal p-4 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
                         >
-                          <span className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl bg-stone-100">
+                          <span className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl bg-coal">
                             {a.featuredImage ? (
                               <Image
                                 src={a.featuredImage}
@@ -357,7 +357,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                           </span>
                           <span>
                             <Badge tone="outline">Guide</Badge>
-                            <span className="mt-2 block font-display text-lg font-semibold leading-snug text-ink group-hover:text-golddeep">
+                            <span className="mt-2 block font-display text-lg font-semibold leading-snug text-cream group-hover:text-gold">
                               {a.title}
                             </span>
                           </span>

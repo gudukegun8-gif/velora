@@ -15,12 +15,12 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-20">
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             Our Story
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             About VÉLORA
           </h1>
 

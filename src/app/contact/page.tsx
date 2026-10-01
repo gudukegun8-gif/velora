@@ -38,20 +38,20 @@ export default function ContactPage() {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-sand bg-white/70 px-4 py-3 font-sans text-sm text-ink placeholder:text-ink/40 focus:border-golddeep focus:outline-none";
+    "w-full rounded-xl border border-cream/10 bg-coal px-4 py-3 font-sans text-sm text-cream placeholder:text-cream/40 focus:border-golddeep focus:outline-none";
 
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-20">
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             Say Hello
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             Contact Us
           </h1>
-          <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-ink/70 md:text-base">
+          <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
             Spotted an error, have a product we should feature, or just want to talk training
             gear? We read everything.
           </p>
@@ -59,12 +59,12 @@ export default function ContactPage() {
           {CONTACT_EMAIL ? (
             <form
               onSubmit={submit}
-              className="mt-10 rounded-3xl border border-sand bg-white/60 p-6 md:p-10"
+              className="mt-10 rounded-3xl border border-cream/10 bg-coal p-6 md:p-10"
               aria-label="Contact form"
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="contact-name" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="contact-name" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Your name
                   </label>
                   <input
@@ -78,7 +78,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                  <label htmlFor="contact-email" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                     Email address
                   </label>
                   <input
@@ -94,7 +94,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="mt-5">
-                <label htmlFor="contact-subject" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="contact-subject" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Subject
                 </label>
                 <input
@@ -107,7 +107,7 @@ export default function ContactPage() {
                 />
               </div>
               <div className="mt-5">
-                <label htmlFor="contact-message" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60">
+                <label htmlFor="contact-message" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
                   Message
                 </label>
                 <textarea
@@ -131,16 +131,16 @@ export default function ContactPage() {
               >
                 Compose Email
               </button>
-              <p className="mt-4 font-sans text-xs leading-relaxed text-ink/55">
+              <p className="mt-4 font-sans text-xs leading-relaxed text-cream/55">
                 This opens your email app addressed to us at {CONTACT_EMAIL} — nothing is sent
                 or stored until you hit send there.
               </p>
             </form>
           ) : (
-            <div className="mt-10 rounded-3xl border border-sand bg-white/60 p-8 md:p-10">
-              <p className="font-sans text-sm leading-relaxed text-ink/70">
+            <div className="mt-10 rounded-3xl border border-cream/10 bg-coal p-8 md:p-10">
+              <p className="font-sans text-sm leading-relaxed text-cream/70">
                 Our contact email is being set up — please check back soon. In the meantime,
-                you can explore our <Link href="/about" className="font-semibold text-golddeep underline-offset-4 hover:underline">about page</Link> to
+                you can explore our <Link href="/about" className="font-semibold text-gold underline-offset-4 hover:underline">about page</Link> to
                 learn more about VÉLORA.
               </p>
             </div>

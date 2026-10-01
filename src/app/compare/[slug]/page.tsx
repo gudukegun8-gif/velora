@@ -125,54 +125,54 @@ export default async function ComparePage({ params }: ComparePageProps) {
           updatedAt: comparison.updatedAt,
         })}
       />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
               <li>
-                <Link href="/" className="hover:text-golddeep">
+                <Link href="/" className="hover:text-gold">
                   Home
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-ink">
+              <li aria-current="page" className="text-cream">
                 Comparison
               </li>
             </ol>
           </nav>
 
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             Side by Side
           </p>
-          <h1 className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-ink md:text-5xl">
+          <h1 className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-cream md:text-5xl">
             {comparison.title}
           </h1>
           {comparison.description && (
-            <p className="mt-4 max-w-2xl font-sans text-base leading-relaxed text-ink/70">
+            <p className="mt-4 max-w-2xl font-sans text-base leading-relaxed text-cream/70">
               {comparison.description}
             </p>
           )}
 
           {products.length === 0 ? (
-            <p className="mt-12 rounded-2xl border border-sand bg-white/60 p-10 text-center font-sans text-sm text-ink/60">
+            <p className="mt-12 rounded-2xl border border-cream/10 bg-coal p-10 text-center font-sans text-sm text-cream/60">
               The products in this comparison are no longer available. Browse our{" "}
-              <Link href="/trending" className="font-semibold text-golddeep underline-offset-4 hover:underline">
+              <Link href="/trending" className="font-semibold text-gold underline-offset-4 hover:underline">
                 trending products
               </Link>{" "}
               instead.
             </p>
           ) : (
-            <div className="mt-10 overflow-x-auto rounded-2xl border border-sand">
-              <table className="w-full min-w-[720px] bg-white/70 font-sans text-sm">
+            <div className="mt-10 overflow-x-auto rounded-2xl border border-cream/10">
+              <table className="w-full min-w-[720px] bg-coal font-sans text-sm">
                 <thead>
-                  <tr className="border-b border-sand">
-                    <th scope="col" className="w-40 px-5 py-4 text-left align-bottom text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50">
+                  <tr className="border-b border-cream/10">
+                    <th scope="col" className="w-40 px-5 py-4 text-left align-bottom text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/50">
                       <span className="sr-only">Feature</span>
                     </th>
                     {products.map((p) => (
                       <th key={p.id} scope="col" className="min-w-52 px-5 py-4 text-left align-top">
                         <Link href={`/products/${p.slug}`} className="group block">
-                          <span className="relative block aspect-[4/3] overflow-hidden rounded-xl bg-stone-100">
+                          <span className="relative block aspect-[4/3] overflow-hidden rounded-xl bg-coal">
                             {p.imageUrl ? (
                               <Image
                                 src={p.imageUrl}
@@ -191,7 +191,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
                               </span>
                             )}
                           </span>
-                          <span className="mt-3 block font-display text-lg font-semibold leading-snug text-ink group-hover:text-golddeep">
+                          <span className="mt-3 block font-display text-lg font-semibold leading-snug text-cream group-hover:text-gold">
                             {p.title}
                           </span>
                         </Link>
@@ -204,11 +204,11 @@ export default async function ComparePage({ params }: ComparePageProps) {
                     {products.map((p) => (
                       <td key={p.id} className="px-5 py-4 align-top">
                         {p.price !== null ? (
-                          <span className="text-base font-semibold text-ink">
+                          <span className="text-base font-semibold text-cream">
                             {formatPrice(p.price, p.currency)}
                           </span>
                         ) : (
-                          <span className="italic text-ink/50">—</span>
+                          <span className="italic text-cream/50">—</span>
                         )}
                       </td>
                     ))}
@@ -218,21 +218,21 @@ export default async function ComparePage({ params }: ComparePageProps) {
                       <td key={p.id} className="px-5 py-4 align-top">
                         {p.rating !== null ? (
                           <span>
-                            <span aria-hidden="true" className="text-golddeep">★</span>{" "}
+                            <span aria-hidden="true" className="text-gold">★</span>{" "}
                             {p.rating.toFixed(1)}
                             {p.reviewCount !== null && p.reviewCount > 0 && (
-                              <span className="text-ink/50"> ({p.reviewCount.toLocaleString("en-US")})</span>
+                              <span className="text-cream/50"> ({p.reviewCount.toLocaleString("en-US")})</span>
                             )}
                           </span>
                         ) : (
-                          <span className="italic text-ink/50">—</span>
+                          <span className="italic text-cream/50">—</span>
                         )}
                       </td>
                     ))}
                   </Row>
                   <Row label="Merchant">
                     {products.map((p) => (
-                      <td key={p.id} className="px-5 py-4 align-top text-ink/75">
+                      <td key={p.id} className="px-5 py-4 align-top text-cream/75">
                         {p.merchantName ?? "—"}
                       </td>
                     ))}
@@ -240,21 +240,21 @@ export default async function ComparePage({ params }: ComparePageProps) {
                   {attrKeys.map((key, i) => (
                     <Row key={key} label={key} striped={i % 2 === 0}>
                       {products.map((p) => (
-                        <td key={p.id} className="px-5 py-4 align-top text-ink/75">
+                        <td key={p.id} className="px-5 py-4 align-top text-cream/75">
                           {attrValue(p, key)}
                         </td>
                       ))}
                     </Row>
                   ))}
-                  <tr className="border-t border-sand">
-                    <th scope="row" className="px-5 py-4 text-left align-top text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50">
+                  <tr className="border-t border-cream/10">
+                    <th scope="row" className="px-5 py-4 text-left align-top text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/50">
                       <span className="sr-only">View</span>
                     </th>
                     {products.map((p) => (
                       <td key={p.id} className="px-5 py-4 align-top">
                         <Link
                           href={`/products/${p.slug}`}
-                          className="inline-flex rounded-full border border-ink px-5 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:border-golddeep hover:text-golddeep"
+                          className="inline-flex rounded-full border border-cream/20 px-5 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:border-gold hover:text-gold"
                         >
                           View Product
                         </Link>
@@ -266,10 +266,10 @@ export default async function ComparePage({ params }: ComparePageProps) {
             </div>
           )}
 
-          <p className="mx-auto mt-10 max-w-2xl text-center font-sans text-xs leading-relaxed text-ink/50">
+          <p className="mx-auto mt-10 max-w-2xl text-center font-sans text-xs leading-relaxed text-cream/50">
             VÉLORA is a product discovery publication — we don&apos;t sell these products. Prices and
             availability are set by the merchants and may change.{" "}
-            <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-golddeep">
+            <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
               Read our affiliate disclosure
             </Link>
             .
@@ -291,10 +291,10 @@ function Row({
   children: React.ReactNode;
 }) {
   return (
-    <tr className={striped ? "bg-stone-50/70" : undefined}>
+    <tr className={striped ? "bg-coal/70" : undefined}>
       <th
         scope="row"
-        className="px-5 py-4 text-left align-top text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50"
+        className="px-5 py-4 text-left align-top text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/50"
       >
         {label}
       </th>

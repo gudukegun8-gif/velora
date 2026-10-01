@@ -15,15 +15,15 @@ export default function EditorialPolicyPage() {
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-20">
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             How We Work
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             Editorial Policy
           </h1>
-          <p className="mt-4 font-sans text-sm text-ink/55">
+          <p className="mt-4 font-sans text-sm text-cream/55">
             Last updated: October 2026
           </p>
 

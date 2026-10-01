@@ -32,29 +32,29 @@ export default async function TrendingPage() {
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
               <li>
-                <Link href="/" className="hover:text-golddeep">
+                <Link href="/" className="hover:text-gold">
                   Home
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-ink">
+              <li aria-current="page" className="text-cream">
                 Trending
               </li>
             </ol>
           </nav>
 
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             What Everyone&apos;s Watching
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             Trending Fitness Products
           </h1>
-          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-ink/70 md:text-base">
+          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
             The finds gaining momentum right now — surfaced by real interest, reviewed by our
             editors before they earn a spot. Nothing here is paid placement.
           </p>

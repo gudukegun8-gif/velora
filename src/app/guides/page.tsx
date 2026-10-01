@@ -68,29 +68,29 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
   return (
     <>
       <Header />
-      <main className="bg-cream">
+      <main className="bg-ink">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+            <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
               <li>
-                <Link href="/" className="hover:text-golddeep">
+                <Link href="/" className="hover:text-gold">
                   Home
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-ink">
+              <li aria-current="page" className="text-cream">
                 Guides
               </li>
             </ol>
           </nav>
 
-          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-golddeep">
+          <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
             Expert Advice
           </p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
             Buying Guides & Editorial
           </h1>
-          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-ink/70 md:text-base">
+          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
             What to look for, what to skip, and which picks earn our recommendation — written by
             people who train, free of paid placements.
           </p>
@@ -106,8 +106,8 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
                   className={cx(
                     "rounded-full border px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors",
                     active
-                      ? "border-ink bg-ink text-cream"
-                      : "border-ink/20 bg-white/60 text-ink hover:border-golddeep hover:text-golddeep"
+                      ? "border-gold bg-gold text-ink"
+                      : "border-cream/20 bg-coal text-cream hover:border-gold hover:text-gold"
                   )}
                 >
                   {f.label}
@@ -172,9 +172,9 @@ function ArticleCard({
   return (
     <Link
       href={`/guides/${slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-sand bg-white/70 transition-shadow duration-300 hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.35)]"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cream/10 bg-coal transition-shadow duration-300 hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.35)]"
     >
-      <div className="relative aspect-[16/9] overflow-hidden bg-stone-100">
+      <div className="relative aspect-[16/9] overflow-hidden bg-coal">
         {image ? (
           <Image
             src={image}
@@ -197,18 +197,18 @@ function ArticleCard({
         <div className="flex flex-wrap items-center gap-2">
           <Badge tone="outline">{typeLabel}</Badge>
           {categoryName && (
-            <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-ink/50">
+            <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-cream/50">
               {categoryName}
             </span>
           )}
         </div>
-        <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-golddeep">
+        <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-cream transition-colors group-hover:text-gold">
           {title}
         </h2>
         {excerpt && (
-          <p className="mt-2 line-clamp-3 font-sans text-sm leading-relaxed text-ink/65">{excerpt}</p>
+          <p className="mt-2 line-clamp-3 font-sans text-sm leading-relaxed text-cream/65">{excerpt}</p>
         )}
-        <p className="mt-auto pt-4 font-sans text-xs uppercase tracking-[0.14em] text-ink/50">
+        <p className="mt-auto pt-4 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
           {authorName && <span>{authorName} · </span>}
           {date
             ? date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
