@@ -11,7 +11,7 @@ const outdir = join(root, "public", "images");
 
 const manifestPath = join(b64dir, "manifest.json");
 if (!existsSync(manifestPath)) {
-  console.log("[velora] images already present, nothing to restore");
+  console.log("[velora] no image manifest found, skipping restore");
   process.exit(0);
 }
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
