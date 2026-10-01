@@ -89,7 +89,7 @@ export async function Footer() {
           <div>
             <Link href="/" aria-label="VÉLORA home" className="inline-flex">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="VÉLORA"
                 width={150}
                 height={38}

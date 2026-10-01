@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "VÉLORA",
     images: [
       {
-        url: "/images/hero.png",
+        url: "/images/hero.webp",
         width: 1536,
         height: 1024,
         alt: "VÉLORA — Premium Fitness & Lifestyle Product Discovery",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: "/images/logo.webp",
+    apple: "/images/logo.webp",
   },
 };
 

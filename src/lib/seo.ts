@@ -14,7 +14,7 @@ export function organizationJsonLd(): Record<string, unknown> {
     "@type": "Organization",
     name: SITE_NAME,
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/images/logo.png"),
+    logo: absoluteUrl("/images/logo.webp"),
   };
 }
 
@@ -121,7 +121,7 @@ export function articleJsonLd(a: ArticleJsonLdInput): Record<string, unknown> {
       name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/images/logo.png"),
+        url: absoluteUrl("/images/logo.webp"),
       },
     },
   };
@@ -189,7 +189,7 @@ export function comparisonJsonLd(
       name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/images/logo.png"),
+        url: absoluteUrl("/images/logo.webp"),
       },
     },
   };

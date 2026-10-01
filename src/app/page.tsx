@@ -337,7 +337,7 @@ export default async function HomePage() {
         {/* ── Hero ─────────────────────────────────────────── */}
         <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-ink text-cream">
           <Image
-            src="/images/hero.png"
+            src="/images/hero.webp"
             alt="Woman in black activewear resting on a gym floor beside dumbbells and a foam roller, with VÉLORA branding on the wall"
             fill
             priority
@@ -376,7 +376,7 @@ export default async function HomePage() {
           eyebrow="Women First"
           title="Women's Fitness Picks"
           description="Training essentials curated for her — from reformers and resistance bands to activewear that performs as good as it looks. Every pick is chosen by our editors for quality, design, and real-world results."
-          image="/images/womens-fitness.png"
+          image="/images/womens-fitness.webp"
           imageAlt="Curated women's fitness collection — premium training essentials"
           category={women}
           href="/c/women"
@@ -389,7 +389,7 @@ export default async function HomePage() {
               <div className="grid overflow-hidden rounded-3xl bg-ink text-cream lg:grid-cols-2">
                 <div className="relative min-h-[300px] lg:min-h-[440px]">
                   <Image
-                    src="/images/womens-strength.png"
+                    src="/images/womens-strength.webp"
                     alt="Woman doing seated dumbbell curls on a workout bench in a premium gym, surrounded by kettlebells, a squat rack, treadmill, foam roller, and yoga mat"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -468,7 +468,7 @@ export default async function HomePage() {
             </div>
             <div className="relative overflow-hidden rounded-3xl">
               <Image
-                src="/images/shop-by-goal.png"
+                src="/images/shop-by-goal.webp"
                 alt="VÉLORA gym collage showing training scenes for Pilates, Strength, Home Workout, Cardio, Glute Training, Walking, and Recovery"
                 width={1536}
                 height={1024}
@@ -514,7 +514,7 @@ export default async function HomePage() {
           eyebrow="For Him"
           title="Men's Fitness"
           description="Serious training gear for him — racks, weights, conditioning tools, and activewear built for the grind. Curated with the same editorial rigor as everything we feature."
-          image="/images/mens-fitness.png"
+          image="/images/mens-fitness.webp"
           imageAlt="Curated men's fitness collection — strength and conditioning essentials"
           category={men}
           href="/c/men"
@@ -537,7 +537,7 @@ export default async function HomePage() {
             <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-14">
               <div className="relative overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/equipment.png"
+                  src="/images/equipment.webp"
                   alt="Premium home gym equipment collection"
                   width={800}
                   height={900}
@@ -582,7 +582,7 @@ export default async function HomePage() {
           eyebrow="Recover Harder"
           title="Recovery and Wellness"
           description="Train hard, recover harder. Massage guns, compression, sleep essentials, and mobility tools — because progress is built between sessions."
-          image="/images/recovery.png"
+          image="/images/recovery.webp"
           imageAlt="Recovery and wellness collection — massage, sleep, and mobility essentials"
           category={recoveryCat}
           href="/c/recovery"
