@@ -25,7 +25,7 @@ const TOP_LEVEL: Array<{
     name: "Women",
     tagline: "Training essentials curated for her.",
     gender: "WOMEN",
-    image: "/images/womens-fitness.png",
+    image: "/images/womens-fitness.webp",
     subs: [
       { slug: "pilates", name: "Pilates", tagline: "Reformers, rings, bands & studio staples.", gender: "WOMEN" },
       { slug: "yoga", name: "Yoga", tagline: "Mats, blocks & flow essentials.", gender: "WOMEN" },
@@ -46,7 +46,7 @@ const TOP_LEVEL: Array<{
     name: "Men",
     tagline: "Serious training gear for him.",
     gender: "MEN",
-    image: "/images/mens-fitness.png",
+    image: "/images/mens-fitness.webp",
     subs: [
       { slug: "men-strength-training", name: "Strength Training", tagline: "Racks, weights & lifting essentials.", gender: "MEN" },
       { slug: "men-home-gym", name: "Home Gym", tagline: "Build the garage gym.", gender: "MEN" },
@@ -61,7 +61,7 @@ const TOP_LEVEL: Array<{
     name: "Equipment",
     tagline: "The gear behind the results.",
     gender: "UNISEX",
-    image: "/images/equipment.png",
+    image: "/images/equipment.webp",
     subs: [],
   },
   {
@@ -77,7 +77,7 @@ const TOP_LEVEL: Array<{
     name: "Recovery",
     tagline: "Recover harder than you train.",
     gender: "UNISEX",
-    image: "/images/recovery.png",
+    image: "/images/recovery.webp",
     subs: [
       { slug: "muscle-recovery", name: "Muscle Recovery", tagline: "Massage guns, compression & relief.", gender: "UNISEX" },
       { slug: "sleep", name: "Sleep", tagline: "Wind-down & sleep optimization.", gender: "UNISEX" },
