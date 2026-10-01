@@ -1,34 +1,50 @@
-import Image from "next/image";
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { Newsletter } from "@/components/site/Newsletter";
 
 const FALLBACK_DISCLOSURE =
   "VÉLORA may earn a commission when you buy through links on this page. This supports our independent curation at no extra cost to you.";
 
 const SHOP_LINKS = [
   { label: "Women's Fitness", href: "/c/women" },
-  { label: "Men's Fitness", href: "/c/men" },
-  { label: "Equipment", href: "/c/equipment" },
-  { label: "Workouts", href: "/c/workouts" },
-  { label: "Recovery", href: "/c/recovery" },
+  { label: "Men's Training", href: "/c/men" },
+  { label: "Trending", href: "/trending" },
+  { label: "Saved", href: "/saved" },
 ];
 
 const DISCOVER_LINKS = [
-  { label: "Trending Now", href: "/trending" },
   { label: "Buying Guides", href: "/guides" },
-  { label: "Product Comparisons", href: "/guides?type=COMPARISON" },
-  { label: "Saved Items", href: "/saved" },
-  { label: "Search", href: "/search" },
+  { label: "Comparisons", href: "/guides?type=COMPARISON" },
+  { label: "Categories", href: "/#categories-heading" },
 ];
 
-const TRUST_LINKS = [
-  { label: "About VÉLORA", href: "/about" },
-  { label: "Editorial Policy", href: "/editorial-policy" },
-  { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
+const COMPANY_LINKS = [
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Editorial Policy", href: "/editorial-policy" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
+];
+
+const SOCIAL_LINKS = [
+  {
+    label: "VÉLORA on Pinterest",
+    href: "https://www.pinterest.com/velorafitness/",
+    Icon: PinterestIcon,
+  },
+  {
+    label: "VÉLORA on Instagram",
+    href: "https://www.instagram.com/vfx_ladka8/",
+    Icon: InstagramIcon,
+  },
+  {
+    label: "VÉLORA on X",
+    href: "https://x.com/thakursahb786",
+    Icon: XIcon,
+  },
 ];
 
 async function getDisclosure(): Promise<string> {
@@ -71,127 +87,89 @@ function InstagramIcon() {
   );
 }
 
+function XIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function LinkColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: Array<{ label: string; href: string }>;
+}) {
+  return (
+    <nav aria-label={title}>
+      <h3 className="mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+        {title}
+      </h3>
+      <ul className="space-y-3">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link
+              href={l.href}
+              className="font-sans text-sm text-cream/70 transition-colors hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            >
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 /**
- * Site footer on ink: brand, nav columns, trust links, affiliate disclosure
- * snippet (from the affiliate_disclosure_short site setting with a fallback),
- * newsletter mini-form, and social icons only when the env URLs are set.
+ * Site footer on ink: brand wordmark, nav columns, social row, affiliate
+ * disclosure snippet (from the affiliate_disclosure_short site setting with a
+ * fallback), and the Amazon Associates attribution line.
  */
 export async function Footer() {
   const disclosure = await getDisclosure();
-  const pinterestUrl =
-    process.env.NEXT_PUBLIC_Pinterest_URL || process.env.NEXT_PUBLIC_PINTEREST_URL;
-  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
+  const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-cream/10 bg-ink text-cream">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.4fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div>
-            <Link href="/" aria-label="VÉLORA home" className="inline-flex">
-              <Image
-                src="/images/logo.webp"
-                alt="VÉLORA"
-                width={150}
-                height={38}
-                loading="lazy"
-                className="h-9 w-auto"
-              />
+            <Link
+              href="/"
+              aria-label="VÉLORA home"
+              className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+            >
+              <span className="font-display text-[28px] font-semibold tracking-[0.14em] text-gold">
+                VÉLORA
+              </span>
             </Link>
             <p className="mt-5 max-w-xs font-sans text-sm leading-relaxed text-cream/65">
               Premium fitness and lifestyle product discovery — curated essentials,
-              honest editorial, and the gear actually worth your attention.
+              honest picks.
             </p>
-            {(pinterestUrl || instagramUrl) && (
-              <div className="mt-6 flex gap-3">
-                {pinterestUrl && (
-                  <a
-                    href={pinterestUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="VÉLORA on Pinterest"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/75 transition-colors hover:border-gold hover:text-gold"
-                  >
-                    <PinterestIcon />
-                  </a>
-                )}
-                {instagramUrl && (
-                  <a
-                    href={instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="VÉLORA on Instagram"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/75 transition-colors hover:border-gold hover:text-gold"
-                  >
-                    <InstagramIcon />
-                  </a>
-                )}
-              </div>
-            )}
+            <div className="mt-6 flex gap-3">
+              {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/75 transition-colors hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <nav aria-label="Shop">
-            <h3 className="mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-              Shop
-            </h3>
-            <ul className="space-y-3">
-              {SHOP_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="font-sans text-sm text-cream/70 transition-colors hover:text-gold"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-label="Discover">
-            <h3 className="mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-              Discover
-            </h3>
-            <ul className="space-y-3">
-              {DISCOVER_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="font-sans text-sm text-cream/70 transition-colors hover:text-gold"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-label="Trust">
-            <h3 className="mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-              Trust
-            </h3>
-            <ul className="space-y-3">
-              {TRUST_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="font-sans text-sm text-cream/70 transition-colors hover:text-gold"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <h3 className="mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-              The VÉLORA Edit
-            </h3>
-            <p className="mb-4 font-sans text-sm leading-relaxed text-cream/65">
-              One considered briefing a week. No noise, unsubscribe anytime.
-            </p>
-            <Newsletter variant="mini" />
-          </div>
+          <LinkColumn title="Shop" links={SHOP_LINKS} />
+          <LinkColumn title="Discover" links={DISCOVER_LINKS} />
+          <LinkColumn title="Company" links={COMPANY_LINKS} />
+          <LinkColumn title="Legal" links={LEGAL_LINKS} />
         </div>
 
         <div className="mt-14 border-t border-cream/10 pt-8">
@@ -200,14 +178,20 @@ export async function Footer() {
               Affiliate Disclosure —{" "}
             </span>
             {disclosure}{" "}
-            <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
+            <Link
+              href="/affiliate-disclosure"
+              className="underline underline-offset-2 hover:text-gold"
+            >
               Read the full disclosure
             </Link>
             .
           </p>
-          <p className="mt-6 text-center font-sans text-xs text-cream/40">
-            © {new Date().getFullYear()} VÉLORA. All rights reserved.
-          </p>
+          <div className="mt-6 flex flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
+            <p className="font-sans text-xs text-cream/40">© {year} VÉLORA. All rights reserved.</p>
+            <p className="font-sans text-xs text-cream/40">
+              As an Amazon Associate and affiliate partner, we earn from qualifying purchases.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

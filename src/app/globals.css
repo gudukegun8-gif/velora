@@ -97,3 +97,43 @@ body {
 .article-body hr {
   @apply my-10 border-cream/10;
 }
+
+/* ============================================================
+   VÉLORA gender accent palettes (appended 2026-10-01)
+   Feminine "rose" + masculine "steel" jewelry over the dark
+   cinematic base. Used by the category pages (/c/[slug]).
+   ============================================================ */
+:root {
+  --velora-rosegold: #e2a58c;
+  --velora-blush: #f5d9cf;
+  --velora-plum: #7c3f53;
+  --velora-steel: #a9becd;
+  --velora-ice: #d4e3f0;
+  --velora-navy: #22364e;
+}
+
+/* Gradient headline accents — feminine / masculine */
+.text-gradient-rose {
+  background: linear-gradient(115deg, #f5d9cf 0%, #e2a58c 55%, #c9826a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-steel {
+  background: linear-gradient(115deg, #d4e3f0 0%, #a9becd 55%, #7c93a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft radial glows for category hero areas (dark foundation kept) */
+.glow-rose {
+  background:
+    radial-gradient(55% 45% at 18% 0%, rgba(124, 63, 83, 0.38), transparent 70%),
+    radial-gradient(38% 32% at 85% 12%, rgba(226, 165, 140, 0.2), transparent 70%);
+}
+.glow-steel {
+  background:
+    radial-gradient(55% 45% at 18% 0%, rgba(34, 54, 78, 0.6), transparent 70%),
+    radial-gradient(38% 32% at 85% 12%, rgba(169, 190, 205, 0.18), transparent 70%);
+}

@@ -28,6 +28,7 @@ export function Newsletter({
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "sending") return; // guard against double-submit
     const value = email.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       setStatus("error");
@@ -68,7 +69,7 @@ export function Newsletter({
 
   if (variant === "mini") {
     return (
-      <form onSubmit={submit} className={cx("w-full", className)} aria-label="Newsletter signup">
+      <form onSubmit={submit} noValidate className={cx("w-full", className)} aria-label="Newsletter signup">
         <label htmlFor="newsletter-email-mini" className="sr-only">
           Email address
         </label>
@@ -81,6 +82,8 @@ export function Newsletter({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={status === "sending"}
+            aria-invalid={status === "error" ? true : undefined}
+            aria-describedby={message ? "newsletter-mini-message" : undefined}
             className="w-full bg-transparent px-4 py-2.5 font-sans text-sm text-cream placeholder:text-cream/40 focus:outline-none"
           />
           <button
@@ -93,7 +96,8 @@ export function Newsletter({
         </div>
         {message && (
           <p
-            role="status"
+            id="newsletter-mini-message"
+            role={status === "error" ? "alert" : "status"}
             className={cx(
               "mt-2 font-sans text-xs",
               status === "success" ? "text-gold" : "text-red-300"
@@ -126,7 +130,7 @@ export function Newsletter({
         <p className="mx-auto mt-4 max-w-xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
           {description}
         </p>
-        <form onSubmit={submit} className="mx-auto mt-8 flex max-w-lg flex-col gap-3 sm:flex-row" aria-label="Newsletter signup">
+        <form onSubmit={submit} noValidate className="mx-auto mt-8 flex max-w-lg flex-col gap-3 sm:flex-row" aria-label="Newsletter signup">
           <label htmlFor="newsletter-email" className="sr-only">
             Email address
           </label>
@@ -138,6 +142,8 @@ export function Newsletter({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={status === "sending"}
+            aria-invalid={status === "error" ? true : undefined}
+            aria-describedby={status === "error" && message ? "newsletter-error" : undefined}
             className="w-full flex-1 rounded-full border border-cream/20 bg-coal px-6 py-3.5 font-sans text-sm text-cream placeholder:text-cream/40 focus:border-gold focus:outline-none disabled:opacity-60"
           />
           <button
@@ -149,7 +155,7 @@ export function Newsletter({
           </button>
         </form>
         {status === "error" && message && (
-          <p role="alert" className="mt-4 font-sans text-sm text-red-300">
+          <p id="newsletter-error" role="alert" className="mt-4 font-sans text-sm text-red-300">
             {message}
           </p>
         )}
