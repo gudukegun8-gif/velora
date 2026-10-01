@@ -146,9 +146,9 @@ export async function Footer() {
               <Image
                 src="/images/logo.webp"
                 alt="VÉLORA"
-                width={112}
-                height={112}
-                className="h-14 w-14 object-contain"
+                width={128}
+                height={128}
+                className="h-16 w-16 object-contain"
               />
             </Link>
             <p className="mt-5 max-w-xs font-sans text-sm leading-relaxed text-cream/65">
