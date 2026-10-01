@@ -23,7 +23,7 @@ export function EmptyState({
   return (
     <div
       className={cx(
-        "flex flex-col items-center rounded-2xl border border-sand bg-stone-50 px-6 py-14 text-center md:py-20",
+        "flex flex-col items-center rounded-2xl border border-cream/10 bg-coal px-6 py-14 text-center md:py-20",
         className
       )}
     >
@@ -33,14 +33,14 @@ export function EmptyState({
       >
         V
       </span>
-      <h3 className="font-display text-2xl font-semibold text-ink md:text-3xl">{title}</h3>
-      <p className="mt-3 max-w-md font-sans text-sm leading-relaxed text-ink/65 md:text-base">
+      <h3 className="font-display text-2xl font-semibold text-cream md:text-3xl">{title}</h3>
+      <p className="mt-3 max-w-md font-sans text-sm leading-relaxed text-cream/65 md:text-base">
         {message}
       </p>
       {actionHref && actionLabel && (
         <Link
           href={actionHref}
-          className="mt-8 inline-flex items-center justify-center rounded-full border border-ink px-6 py-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:border-golddeep hover:text-golddeep"
+          className="mt-8 inline-flex items-center justify-center rounded-full border border-cream/30 px-6 py-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:border-gold hover:text-gold"
         >
           {actionLabel}
         </Link>

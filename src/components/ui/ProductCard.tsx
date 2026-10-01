@@ -90,11 +90,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cx(
-        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-sand bg-white/60 transition-shadow duration-300 hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.35)]",
+        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-cream/10 bg-coal transition-all duration-300 hover:border-gold/30 hover:shadow-[0_18px_50px_-18px_rgba(198,161,91,0.35)]",
         className
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
+      <div className="relative aspect-[4/3] overflow-hidden bg-ink">
         {product.imageUrl ? (
           <Image
             src={product.imageUrl}
@@ -128,12 +128,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
       <div className="flex flex-1 flex-col p-5">
         {product.merchantName && (
-          <p className="mb-1.5 text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-golddeep">
+          <p className="mb-1.5 text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-gold">
             {product.merchantName}
           </p>
         )}
-        <h3 className="font-display text-xl font-semibold leading-snug text-ink">
-          <Link href={href} className="transition-colors hover:text-golddeep">
+        <h3 className="font-display text-xl font-semibold leading-snug text-cream">
+          <Link href={href} className="transition-colors hover:text-gold">
             <span className="absolute inset-0" aria-hidden="true" />
             {product.title}
           </Link>
@@ -142,26 +142,26 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <div className="mt-auto flex items-end justify-between gap-3 pt-4">
           <div>
             {product.price !== null ? (
-              <p className="font-sans text-base font-semibold text-ink">
+              <p className="font-sans text-base font-semibold text-cream">
                 {formatPrice(product.price, product.currency)}
               </p>
             ) : (
-              <p className="font-sans text-xs italic text-ink/50">Price at merchant</p>
+              <p className="font-sans text-xs italic text-cream/50">Price at merchant</p>
             )}
             {product.rating !== null && (
-              <p className="mt-1 font-sans text-xs text-ink/60">
-                <span aria-hidden="true" className="text-golddeep">
+              <p className="mt-1 font-sans text-xs text-cream/60">
+                <span aria-hidden="true" className="text-gold">
                   ★
                 </span>{" "}
                 <span className="sr-only">Rated </span>
                 {product.rating.toFixed(1)}
                 {product.reviewCount !== null && product.reviewCount > 0 && (
-                  <span className="text-ink/45"> ({product.reviewCount.toLocaleString("en-US")})</span>
+                  <span className="text-cream/45"> ({product.reviewCount.toLocaleString("en-US")})</span>
                 )}
               </p>
             )}
           </div>
-          <span className="relative z-10 shrink-0 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-golddeep underline-offset-4 group-hover:underline">
+          <span className="relative z-10 shrink-0 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-gold underline-offset-4 group-hover:underline">
             View Product
           </span>
         </div>

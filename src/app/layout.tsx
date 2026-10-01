@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
+import { JsonLd } from "@/components/site/JsonLd";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -29,15 +30,19 @@ export const metadata: Metadata = {
     siteName: "VÉLORA",
     images: [
       {
-        url: "/images/hero.webp",
-        width: 1536,
-        height: 1024,
-        alt: "VÉLORA — Premium Fitness & Lifestyle Product Discovery",
+        url: "/images/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "VÉLORA — Curated Fitness Essentials for Women & Men",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    title: "VÉLORA — Curated Fitness Essentials for Women & Men",
+    description:
+      "Premium fitness product discovery. Editor-curated training essentials, honest comparisons and buying guides.",
+    images: ["/images/og-image.webp"],
   },
   robots: {
     index: true,
@@ -57,9 +62,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "VÉLORA",
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/logo.webp`,
+    description:
+      "VÉLORA is a premium fitness and lifestyle product discovery destination — editor-curated training essentials, honest comparisons, and buying guides.",
+    sameAs: [
+      process.env.NEXT_PUBLIC_Pinterest_URL || process.env.NEXT_PUBLIC_PINTEREST_URL,
+      process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+    ].filter(Boolean),
+  };
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "VÉLORA",
+    url: SITE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE_URL}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
   return (
     <html lang="en">
-      <body className={`${display.variable} ${body.variable} font-sans bg-cream text-ink antialiased`}>
+      <body className={`${display.variable} ${body.variable} font-sans bg-ink text-cream antialiased`}>
+        <JsonLd data={[orgJsonLd, websiteJsonLd]} />
         {children}
       </body>
     </html>

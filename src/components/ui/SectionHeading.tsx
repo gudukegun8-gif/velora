@@ -21,7 +21,7 @@ export function SectionHeading({
   href,
   linkLabel = "View all",
   align = "left",
-  dark = false,
+  dark = true,
 }: SectionHeadingProps) {
   return (
     <div

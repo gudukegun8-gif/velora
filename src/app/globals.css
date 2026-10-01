@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  @apply bg-cream text-ink font-sans antialiased;
+  @apply bg-ink text-cream font-sans antialiased;
   text-rendering: optimizeLegibility;
 }
 
@@ -39,29 +39,29 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--velora-cream);
+  background: var(--velora-ink);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--velora-golddeep);
   border-radius: 8px;
-  border: 2px solid var(--velora-cream);
+  border: 2px solid var(--velora-ink);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--velora-gold);
 }
 
-/* Article / editorial content defaults */
+/* Article / editorial content defaults — dark cinematic */
 .article-body {
-  @apply text-ink/90 leading-relaxed;
+  @apply text-cream/85 leading-relaxed;
   font-size: 1.0625rem;
 }
 .article-body h2 {
-  @apply font-display text-3xl md:text-4xl mt-12 mb-5 text-ink;
+  @apply font-display text-3xl md:text-4xl mt-12 mb-5 text-cream;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 .article-body h3 {
-  @apply font-display text-2xl mt-10 mb-4 text-ink;
+  @apply font-display text-2xl mt-10 mb-4 text-cream;
   font-weight: 600;
 }
 .article-body p {
@@ -78,22 +78,22 @@ body {
   list-style: decimal;
 }
 .article-body li::marker {
-  color: var(--velora-golddeep);
+  color: var(--velora-gold);
 }
 .article-body a {
-  @apply underline decoration-gold underline-offset-4;
+  @apply underline decoration-gold underline-offset-4 text-gold;
   text-decoration-thickness: 1px;
 }
 .article-body a:hover {
-  color: var(--velora-golddeep);
+  color: var(--velora-cream);
 }
 .article-body blockquote {
-  @apply border-l-2 border-gold pl-6 my-8 italic font-display text-xl text-ink/80;
+  @apply border-l-2 border-gold pl-6 my-8 italic font-display text-xl text-cream/75;
 }
 .article-body strong {
   font-weight: 600;
-  color: var(--velora-ink);
+  color: var(--velora-cream);
 }
 .article-body hr {
-  @apply my-10 border-sand;
+  @apply my-10 border-cream/10;
 }
