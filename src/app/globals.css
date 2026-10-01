@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --velora-ink: #0b0a08;
+  --velora-coal: #14120e;
+  --velora-cream: #f6f1e7;
+  --velora-sand: #e9e0ce;
+  --velora-gold: #c6a15b;
+  --velora-golddeep: #9a7b3f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Text selection */
+::selection {
+  background-color: var(--velora-gold);
+  color: var(--velora-ink);
+}
+
+/* Accessible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--velora-golddeep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Subtle luxury scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--velora-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--velora-golddeep);
+  border-radius: 8px;
+  border: 2px solid var(--velora-cream);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--velora-gold);
+}
+
+/* Article / editorial content defaults */
+.article-body {
+  @apply text-ink/90 leading-relaxed;
+  font-size: 1.0625rem;
+}
+.article-body h2 {
+  @apply font-display text-3xl md:text-4xl mt-12 mb-5 text-ink;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.article-body h3 {
+  @apply font-display text-2xl mt-10 mb-4 text-ink;
+  font-weight: 600;
+}
+.article-body p {
+  @apply mb-6;
+}
+.article-body ul,
+.article-body ol {
+  @apply mb-6 pl-6 space-y-2;
+}
+.article-body ul {
+  list-style: disc;
+}
+.article-body ol {
+  list-style: decimal;
+}
+.article-body li::marker {
+  color: var(--velora-golddeep);
+}
+.article-body a {
+  @apply underline decoration-gold underline-offset-4;
+  text-decoration-thickness: 1px;
+}
+.article-body a:hover {
+  color: var(--velora-golddeep);
+}
+.article-body blockquote {
+  @apply border-l-2 border-gold pl-6 my-8 italic font-display text-xl text-ink/80;
+}
+.article-body strong {
+  font-weight: 600;
+  color: var(--velora-ink);
+}
+.article-body hr {
+  @apply my-10 border-sand;
+}
