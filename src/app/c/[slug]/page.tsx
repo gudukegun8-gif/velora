@@ -171,6 +171,108 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   if (!category) notFound();
 
+  // Gender-aware accent palette: women's pages wear rose jewelry,
+  // men's pages wear steel jewelry — same dark cinematic foundation.
+  // Every string below is a complete literal class name so Tailwind
+  // JIT can detect it.
+  interface CategoryTone {
+    h1: string;
+    eyebrow: string;
+    crumbHover: string;
+    chipActive: string;
+    chipHover: string;
+    cta: string;
+    apply: string;
+    inputFocus: string;
+    clear: string;
+    guideTitle: string;
+    guideLink: string;
+    guideCard: string;
+    cardWrap: string;
+    glow: string;
+    imgWrap: string;
+    imgShade: string;
+    band: string;
+  }
+
+  const slugLower = category.slug.toLowerCase();
+  const nameLower = category.name.toLowerCase();
+  const mentionsWomen = slugLower.includes("women") || nameLower.includes("women");
+  const mentionsMen = slugLower.includes("men") || nameLower.includes("men");
+  const isWomen = mentionsWomen;
+  const isMen = !mentionsWomen && mentionsMen;
+
+  const tone: CategoryTone = isWomen
+    ? {
+        h1: "text-gradient-rose",
+        eyebrow: "text-rosegold",
+        crumbHover: "hover:text-rosegold",
+        chipActive: "border-rosegold bg-rosegold text-ink",
+        chipHover: "hover:border-rosegold hover:text-rosegold",
+        cta: "bg-rosegold text-ink hover:bg-blush hover:text-ink",
+        apply:
+          "border border-rosegold/50 text-rosegold hover:bg-rosegold hover:text-ink",
+        inputFocus: "focus:border-rosegold",
+        clear: "text-rosegold",
+        guideTitle: "group-hover:text-rosegold",
+        guideLink: "text-rosegold",
+        guideCard:
+          "hover:shadow-[0_18px_50px_-18px_rgba(226,165,140,0.35)]",
+        cardWrap:
+          "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(226,165,140,0.4)]",
+        glow: "glow-rose",
+        imgWrap: "ring-1 ring-rosegold/40",
+        imgShade:
+          "bg-gradient-to-t from-plum/40 via-transparent to-transparent",
+        band: "border-t border-rosegold/25 bg-coal/60",
+      }
+    : isMen
+      ? {
+          h1: "text-gradient-steel",
+          eyebrow: "text-steel",
+          crumbHover: "hover:text-steel",
+          chipActive: "border-steel bg-steel text-ink",
+          chipHover: "hover:border-steel hover:text-steel",
+          cta: "bg-steel text-ink hover:bg-ice hover:text-ink",
+          apply:
+            "border border-steel/50 text-steel hover:bg-steel hover:text-ink",
+          inputFocus: "focus:border-steel",
+          clear: "text-steel",
+          guideTitle: "group-hover:text-steel",
+          guideLink: "text-steel",
+          guideCard:
+            "hover:shadow-[0_18px_50px_-18px_rgba(169,190,205,0.35)]",
+          cardWrap:
+            "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(169,190,205,0.4)]",
+          glow: "glow-steel",
+          imgWrap: "ring-1 ring-steel/40",
+          imgShade:
+            "bg-gradient-to-t from-navy/50 via-transparent to-transparent",
+          band: "border-t border-steel/25 bg-coal/60",
+        }
+      : {
+          h1: "text-cream",
+          eyebrow: "text-gold",
+          crumbHover: "hover:text-gold",
+          chipActive: "border-gold bg-gold text-ink",
+          chipHover: "hover:border-gold hover:text-gold",
+          cta: "bg-gold text-ink hover:bg-golddeep hover:text-cream",
+          apply: "bg-ink text-cream hover:bg-coal",
+          inputFocus: "focus:border-golddeep",
+          clear: "text-gold",
+          guideTitle: "group-hover:text-gold",
+          guideLink: "text-gold",
+          guideCard:
+            "hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]",
+          cardWrap:
+            "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(11,10,8,0.45)]",
+          glow: "",
+          imgWrap: "ring-1 ring-cream/10",
+          imgShade:
+            "bg-gradient-to-t from-ink/60 via-transparent to-transparent",
+          band: "border-t border-cream/10 bg-coal/60",
+        };
+
   const categoryIds = [category.id, ...category.children.map((c) => c.id)];
   const where = buildWhere(categoryIds, searchParams);
   const sort = param(searchParams.sort) ?? "newest";
@@ -220,7 +322,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
           <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
             <li>
-              <Link href="/" className="hover:text-gold">
+              <Link href="/" className={tone.crumbHover}>
                 Home
               </Link>
             </li>
@@ -228,7 +330,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <>
                 <li aria-hidden="true">/</li>
                 <li>
-                  <Link href={`/c/${category.parent.slug}`} className="hover:text-gold">
+                  <Link href={`/c/${category.parent.slug}`} className={tone.crumbHover}>
                     {category.parent.name}
                   </Link>
                 </li>
@@ -245,10 +347,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8">
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.4fr]">
             <div>
-              <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
+              <p className={cx("mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em]", tone.eyebrow)}>
                 Collection
               </p>
-              <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
+              <h1 className={cx("font-display text-4xl font-semibold tracking-tight md:text-6xl", tone.h1)}>
                 {category.name}
               </h1>
               {(category.description || category.tagline) && (
@@ -261,16 +363,28 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </p>
             </div>
             {category.image && (
-              <div className="relative overflow-hidden rounded-3xl">
-                <Image
-                  src={category.image}
-                  alt={`${category.name} collection`}
-                  width={1000}
-                  height={600}
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                  className="aspect-[16/9] w-full object-cover"
-                  priority
-                />
+              <div className="relative">
+                {tone.glow && (
+                  <div
+                    aria-hidden="true"
+                    className={cx("absolute -inset-6 rounded-[2rem] blur-2xl", tone.glow)}
+                  />
+                )}
+                <div className={cx("relative overflow-hidden rounded-3xl", tone.imgWrap)}>
+                  <Image
+                    src={category.image}
+                    alt={`${category.name} collection`}
+                    width={1000}
+                    height={600}
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="aspect-[16/9] w-full object-cover"
+                    priority
+                  />
+                  <div
+                    aria-hidden="true"
+                    className={cx("pointer-events-none absolute inset-0", tone.imgShade)}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -285,8 +399,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   className={cx(
                     "rounded-full border px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors",
                     sub.slug === category.slug
-                      ? "border-gold bg-gold text-ink"
-                      : "border-cream/20 bg-coal text-cream hover:border-gold hover:text-gold"
+                      ? tone.chipActive
+                      : cx("border-cream/20 bg-coal text-cream", tone.chipHover)
                   )}
                   aria-current={sub.slug === category.slug ? "page" : undefined}
                 >
@@ -312,7 +426,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 />
               </div>
               <div className="flex flex-col items-start justify-center p-8 md:p-12">
-                <p className="mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em] text-gold">
+                <p className={cx("mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em]", tone.eyebrow)}>
                   {spotlight.eyebrow}
                 </p>
                 <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
@@ -323,7 +437,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 </p>
                 <Link
                   href={`/c/${spotlight.targetSlug}`}
-                  className="mt-8 inline-flex items-center justify-center rounded-full bg-gold px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-golddeep hover:text-cream"
+                  className={cx("mt-8 inline-flex items-center justify-center rounded-full px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] transition-colors", tone.cta)}
                 >
                   {spotlight.ctaLabel}
                 </Link>
@@ -332,7 +446,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           </div>
         )}
 
-        <div className="border-t border-cream/10 bg-coal/60">
+        <div className={cx("border-t bg-coal/60", tone.band)}>
           <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             {/* Filters */}
             <form
@@ -350,7 +464,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     id="f-gender"
                     name="gender"
                     defaultValue={param(searchParams.gender) ?? ""}
-                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
+                    className={cx("w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:outline-none", tone.inputFocus)}
                   >
                     <option value="">All</option>
                     <option value="women">Women</option>
@@ -366,7 +480,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     id="f-goal"
                     name="goal"
                     defaultValue={param(searchParams.goal) ?? ""}
-                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
+                    className={cx("w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:outline-none", tone.inputFocus)}
                   >
                     <option value="">All goals</option>
                     <option value="pilates">Pilates</option>
@@ -386,7 +500,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     id="f-merchant"
                     name="merchant"
                     defaultValue={param(searchParams.merchant) ?? ""}
-                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
+                    className={cx("w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:outline-none", tone.inputFocus)}
                   >
                     <option value="">All merchants</option>
                     {merchants.map((m) => (
@@ -408,7 +522,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     step="1"
                     placeholder="$0"
                     defaultValue={param(searchParams.minPrice) ?? ""}
-                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream placeholder:text-cream/35 focus:border-golddeep focus:outline-none"
+                    className={cx("w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream placeholder:text-cream/35 focus:outline-none", tone.inputFocus)}
                   />
                 </div>
                 <div>
@@ -423,7 +537,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     step="1"
                     placeholder="No max"
                     defaultValue={param(searchParams.maxPrice) ?? ""}
-                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream placeholder:text-cream/35 focus:border-golddeep focus:outline-none"
+                    className={cx("w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream placeholder:text-cream/35 focus:outline-none", tone.inputFocus)}
                   />
                 </div>
                 <div>
@@ -434,7 +548,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     id="f-sort"
                     name="sort"
                     defaultValue={sort}
-                    className="w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:border-golddeep focus:outline-none"
+                    className={cx("w-full rounded-lg border border-cream/10 bg-ink px-3 py-2.5 font-sans text-sm text-cream focus:outline-none", tone.inputFocus)}
                   >
                     {SORTS.map((s) => (
                       <option key={s.value} value={s.value}>
@@ -447,14 +561,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <button
                   type="submit"
-                  className="rounded-full bg-ink px-7 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-cream transition-colors hover:bg-coal"
+                  className={cx("rounded-full px-7 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] transition-colors", tone.apply)}
                 >
                   Apply Filters
                 </button>
                 {activeFilters.length > 0 && (
                   <Link
                     href={`/c/${category.slug}`}
-                    className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-gold underline-offset-4 hover:underline"
+                    className={cx("font-sans text-xs font-semibold uppercase tracking-[0.14em] underline-offset-4 hover:underline", tone.clear)}
                   >
                     Clear all
                   </Link>
@@ -466,7 +580,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {products.length > 0 ? (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((p) => (
-                  <ProductCard key={p.id} product={p} />
+                  <div key={p.id} className={cx("rounded-3xl", tone.cardWrap)}>
+                    <ProductCard product={p} />
+                  </div>
                 ))}
               </div>
             ) : (
@@ -489,15 +605,15 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     <Link
                       key={g.slug}
                       href={`/guides/${g.slug}`}
-                      className="group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
+                      className={cx("group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow", tone.guideCard)}
                     >
-                      <h3 className="font-display text-xl font-semibold text-cream group-hover:text-gold">
+                      <h3 className={cx("font-display text-xl font-semibold text-cream", tone.guideTitle)}>
                         {g.title}
                       </h3>
                       {g.excerpt && (
                         <p className="mt-2 line-clamp-2 font-sans text-sm text-cream/65">{g.excerpt}</p>
                       )}
-                      <span className="mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+                      <span className={cx("mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em]", tone.guideLink)}>
                         Read guide &rarr;
                       </span>
                     </Link>

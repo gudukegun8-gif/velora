@@ -76,22 +76,16 @@ const FAQS = [
 
 const TESTIMONIALS = [
   {
-    quote:
-      "Finally, a fitness site that doesn't feel like an ad. Every pick feels considered — I've bought three things from their guides and loved all of them.",
-    name: "Sarah M.",
-    detail: "Strength training · 2 years",
+    title: "Editor-curated, always",
+    text: "Every product is chosen by our editors for quality, design, and real-world value. Research first, recommendations second.",
   },
   {
-    quote:
-      "The comparisons saved me hours of research. Side-by-side specs, honest trade-offs, no fluff. This is how product discovery should work.",
-    name: "James K.",
-    detail: "Home gym builder",
+    title: "Zero paid placements",
+    text: "Brands cannot buy a spot in our picks. A product earns its place through merit — or it doesn't appear at all.",
   },
   {
-    quote:
-      "I came for the equipment guides and stayed for the curation. It feels like advice from a trainer friend who actually did the homework.",
-    name: "Priya S.",
-    detail: "Pilates & recovery",
+    title: "Honest by design",
+    text: "Prices and availability are shown exactly as listed by the merchant. We disclose our affiliate relationships on every page.",
   },
 ];
 
@@ -168,6 +162,7 @@ function FeatureBlock({
   category,
   href,
   flip = false,
+  accent = "gold",
 }: {
   eyebrow: string;
   title: string;
@@ -177,11 +172,33 @@ function FeatureBlock({
   category: CategoryLite | null;
   href: string;
   flip?: boolean;
+  accent?: "gold" | "rose" | "steel";
 }) {
   const subs = (category?.children ?? []).slice(0, 6);
+  const accents = {
+    gold: {
+      eyebrow: "text-gold",
+      arrow: "text-gold",
+      hoverBorder: "hover:border-gold/60",
+      glow: "bg-[radial-gradient(60%_50%_at_50%_40%,rgba(201,162,39,0.14),transparent_70%)]",
+    },
+    rose: {
+      eyebrow: "text-[#E2A58C]",
+      arrow: "text-[#E2A58C]",
+      hoverBorder: "hover:border-[#E2A58C]/60",
+      glow: "bg-[radial-gradient(60%_50%_at_50%_40%,rgba(124,63,83,0.35),transparent_70%)]",
+    },
+    steel: {
+      eyebrow: "text-[#A9BECD]",
+      arrow: "text-[#A9BECD]",
+      hoverBorder: "hover:border-[#A9BECD]/60",
+      glow: "bg-[radial-gradient(60%_50%_at_50%_40%,rgba(34,54,78,0.55),transparent_70%)]",
+    },
+  }[accent];
   return (
-    <section className="bg-ink py-14 text-cream md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-ink py-14 text-cream md:py-24">
+      <div aria-hidden="true" className={cx("pointer-events-none absolute inset-0", accents.glow)} />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           className={cx(
             "grid items-center gap-10 lg:grid-cols-2 lg:gap-16",
@@ -204,7 +221,7 @@ function FeatureBlock({
             />
           </div>
           <div>
-            <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
+            <p className={cx("mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em]", accents.eyebrow)}>
               {eyebrow}
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight md:text-5xl">
@@ -219,7 +236,10 @@ function FeatureBlock({
                   <li key={sub.slug}>
                     <Link
                       href={`/c/${sub.slug}`}
-                      className="group flex items-center justify-between gap-3 rounded-xl border border-cream/10 bg-coal px-5 py-4 transition-colors hover:border-gold/60"
+                      className={cx(
+                        "group flex items-center justify-between gap-3 rounded-xl border border-cream/10 bg-coal px-5 py-4 transition-colors",
+                        accents.hoverBorder
+                      )}
                     >
                       <span>
                         <span className="block font-sans text-sm font-semibold text-cream">
@@ -231,7 +251,7 @@ function FeatureBlock({
                           </span>
                         )}
                       </span>
-                      <span aria-hidden="true" className="text-gold transition-transform group-hover:translate-x-1">
+                      <span aria-hidden="true" className={cx(accents.arrow, "transition-transform group-hover:translate-x-1")}>
                         &rarr;
                       </span>
                     </Link>
@@ -400,6 +420,11 @@ export default async function HomePage() {
                   Trending Now
                 </Button>
               </div>
+              <p className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-sans text-xs text-cream/60">
+                <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> 100% independent curation</span>
+                <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> Zero paid placements</span>
+                <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> Updated weekly</span>
+              </p>
             </div>
           </div>
           {/* Stats strip */}
@@ -421,6 +446,7 @@ export default async function HomePage() {
 
         {/* ── Women's Fitness ──────────────────────────────── */}
         <FeatureBlock
+          accent="rose"
           eyebrow="Women First"
           title="Women's Fitness Picks"
           description="Training essentials curated for her — from reformers and resistance bands to activewear that performs as good as it looks. Every pick is chosen by our editors for quality, design, and real-world results."
@@ -447,7 +473,7 @@ export default async function HomePage() {
                   <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent to-coal/30" />
                 </div>
                 <div className="flex flex-col items-start justify-center p-8 md:p-14">
-                  <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
+                  <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-[#E2A58C]">
                     Women&apos;s Strength
                   </p>
                   <h2 id="strength-spotlight" className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
@@ -544,6 +570,7 @@ export default async function HomePage() {
 
         {/* ── Men's Fitness ────────────────────────────────── */}
         <FeatureBlock
+          accent="steel"
           eyebrow="For Him"
           title="Men's Fitness"
           description="Serious training gear for him — racks, weights, conditioning tools, and activewear built for the grind. Curated with the same editorial rigor as everything we feature."
@@ -622,15 +649,15 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ── Community / Testimonials ─────────────────────── */}
-        <section className="relative overflow-hidden border-y border-cream/10 bg-ink py-14 md:py-24" aria-labelledby="community-heading">
+        {/* ── The VÉLORA Standard ──────────────────────────── */}
+        <section className="relative overflow-hidden border-y border-cream/10 bg-ink py-14 md:py-24" aria-labelledby="standard-heading">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div id="community-heading">
+            <div id="standard-heading">
               <SectionHeading
                 align="center"
-                eyebrow="The Community"
-                title="Trusted by People Who Train"
-                description="Readers who plan their training around our curation — in their own words."
+                eyebrow="Why Trust Us"
+                title="The VÉLORA Standard"
+                description="Three commitments behind everything we publish — no exceptions."
               />
             </div>
             <div className="relative mb-12 overflow-hidden rounded-3xl">
@@ -646,30 +673,21 @@ export default async function HomePage() {
               <div aria-hidden="true" className="absolute inset-0 rounded-3xl bg-gradient-to-t from-ink/70 via-transparent to-transparent ring-1 ring-inset ring-cream/10" />
             </div>
             <div className="grid gap-6 md:grid-cols-3">
-              {TESTIMONIALS.map((t) => (
-                <figure
-                  key={t.name}
+              {TESTIMONIALS.map((t, i) => (
+                <div
+                  key={t.title}
                   className="flex h-full flex-col rounded-2xl border border-cream/10 bg-coal p-7"
                 >
-                  <div aria-hidden="true" className="mb-4 font-display text-4xl leading-none text-gold">
-                    &ldquo;
+                  <div aria-hidden="true" className="mb-4 font-display text-sm font-semibold tracking-[0.3em] text-gold">
+                    0{i + 1}
                   </div>
-                  <blockquote className="flex-1 font-sans text-sm leading-relaxed text-cream/80">
-                    {t.quote}
-                  </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-4">
-                    <span
-                      aria-hidden="true"
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold font-display text-lg font-semibold text-ink"
-                    >
-                      {t.name.trim().charAt(0)}
-                    </span>
-                    <span>
-                      <span className="block font-sans text-sm font-semibold text-cream">{t.name}</span>
-                      <span className="block font-sans text-xs text-cream/55">{t.detail}</span>
-                    </span>
-                  </figcaption>
-                </figure>
+                  <h3 className="font-display text-xl font-semibold text-cream">
+                    {t.title}
+                  </h3>
+                  <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-cream/70">
+                    {t.text}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
