@@ -137,3 +137,27 @@ body {
     radial-gradient(55% 45% at 18% 0%, rgba(34, 54, 78, 0.6), transparent 70%),
     radial-gradient(38% 32% at 85% 12%, rgba(169, 190, 205, 0.18), transparent 70%);
 }
+
+/* ---- VÉLORA logo 3D presentation (real logo image, depth + hover tilt) ---- */
+.logo-3d {
+  display: inline-block;
+  perspective: 900px;
+  line-height: 0;
+}
+.logo-3d img {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 18px rgba(198, 161, 91, 0.28));
+  transition: transform 0.5s ease-out;
+  transform-style: preserve-3d;
+}
+.logo-3d:hover img {
+  transform: rotateX(8deg) rotateY(-10deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-3d img {
+    transition: none;
+  }
+  .logo-3d:hover img {
+    transform: none;
+  }
+}

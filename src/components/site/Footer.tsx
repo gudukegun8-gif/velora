@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { db } from "@/lib/db";
 
@@ -142,9 +143,13 @@ export async function Footer() {
               aria-label="VÉLORA home"
               className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
             >
-              <span className="font-display text-[28px] font-semibold tracking-[0.14em] text-gold">
-                VÉLORA
-              </span>
+              <Image
+                src="/images/logo.webp"
+                alt="VÉLORA"
+                width={112}
+                height={112}
+                className="h-14 w-14 object-contain"
+              />
             </Link>
             <p className="mt-5 max-w-xs font-sans text-sm leading-relaxed text-cream/65">
               Premium fitness and lifestyle product discovery — curated essentials,
