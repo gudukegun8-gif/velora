@@ -161,23 +161,30 @@ body {
 .logo-3d::after {
   content: "";
   position: absolute;
-  inset: -20%;
-  background: linear-gradient(100deg, transparent 42%, rgba(255, 244, 214, 0.32) 50%, transparent 58%);
-  transform: translateX(-130%);
-  animation: logo-shine 4.5s ease-in-out infinite;
+  inset: -10%;
+  background: linear-gradient(100deg, transparent 35%, rgba(255, 246, 220, 0.55) 50%, transparent 65%);
+  transform: translateX(-150%);
+  animation: logo-shine 3.8s ease-in-out infinite;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 @keyframes logo-shine {
-  0%, 55% { transform: translateX(-130%); }
-  100% { transform: translateX(130%); }
+  0%, 50% { transform: translateX(-150%); opacity: 0; }
+  55% { opacity: 1; }
+  95%, 100% { transform: translateX(150%); opacity: 1; }
 }
 .logo-3d img {
-  /* Blend the logo's black backdrop into dark surfaces so no box edge shows */
-  mix-blend-mode: screen;
+  /* Luminance mask: black background becomes transparent, gold stays opaque.
+     No box edge — the logo blends organically into any dark surface. */
+  -webkit-mask-image: url("/images/logo-v2.webp");
+  mask-image: url("/images/logo-v2.webp");
+  -webkit-mask-mode: luminance;
+  mask-mode: luminance;
+  -webkit-mask-size: contain;
+  mask-size: contain;
   filter:
-    drop-shadow(0 1px 1px rgba(255, 242, 205, 0.35))
-    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
-    drop-shadow(0 0 28px rgba(198, 161, 91, 0.38));
+    drop-shadow(0 2px 3px rgba(255, 242, 205, 0.4))
+    drop-shadow(0 0 24px rgba(198, 161, 91, 0.35));
   transition: transform 0.5s ease-out, filter 0.5s ease-out;
   transform-style: preserve-3d;
   animation: logo-breathe 6s ease-in-out infinite;
