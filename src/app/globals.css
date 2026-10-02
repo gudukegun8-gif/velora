@@ -1,1 +1,464 @@
-QHRhaWx3aW5kIGJhc2U7CkB0YWlsd2luZCBjb21wb25lbnRzOwpAdGFpbHdpbmQgdXRpbGl0aWVzOwoKOnJvb3QgewogIC0tdmVsb3JhLWluazogIzBiMGEwODsKICAtLXZlbG9yYS1jb2FsOiAjMTQxMjBlOwogIC0tdmVsb3JhLWNyZWFtOiAjZjZmMWU3OwogIC0tdmVsb3JhLXNhbmQ6ICNlOWUwY2U7CiAgLS12ZWxvcmEtZ29sZDogI2M2YTE1YjsKICAtLXZlbG9yYS1nb2xkZGVlcDogIzlhN2IzZjsKfQoKaHRtbCB7CiAgc2Nyb2xsLWJlaGF2aW9yOiBzbW9vdGg7Cn0KCmJvZHkgewogIEBhcHBseSBiZy1pbmsgdGV4dC1jcmVhbSBmb250LXNhbnMgYW50aWFsaWFzZWQ7CiAgdGV4dC1yZW5kZXJpbmc6IG9wdGltaXplTGVnaWJpbGl0eTsKICAvKiBHdWFyZCBhZ2FpbnN0IHN0cmF5IGhvcml6b250YWwgb3ZlcmZsb3cgYXQgaW50ZXJtZWRpYXRlIGJyZWFrcG9pbnRzCiAgICAgKGNsaXAsIG5vdCBoaWRkZW4sIHNvIHBvc2l0aW9uOnN0aWNreSBrZWVwcyB3b3JraW5nKS4gKi8KICBvdmVyZmxvdy14OiBjbGlwOwp9CgovKiBUZXh0IHNlbGVjdGlvbiAqLwo6OnNlbGVjdGlvbiB7CiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tdmVsb3JhLWdvbGQpOwogIGNvbG9yOiB2YXIoLS12ZWxvcmEtaW5rKTsKfQoKLyogQWNjZXNzaWJsZSBrZXlib2FyZCBmb2N1cyAqLwo6Zm9jdXMtdmlzaWJsZSB7CiAgb3V0bGluZTogMnB4IHNvbGlkIHZhcigtLXZlbG9yYS1nb2xkZGVlcCk7CiAgb3V0bGluZS1vZmZzZXQ6IDNweDsKICBib3JkZXItcmFkaXVzOiAycHg7Cn0KCi8qIFN1YnRsZSBsdXh1cnkgc2Nyb2xsYmFyICovCjo6LXdlYmtpdC1zY3JvbGxiYXIgewogIHdpZHRoOiAxMHB4OwogIGhlaWdodDogMTBweDsKfQo6Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS12ZWxvcmEtaW5rKTsKfQo6Oi13ZWJraXQtc2Nyb2xsYmFyLXRodW1iIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS12ZWxvcmEtZ29sZGRlZXApOwogIGJvcmRlci1yYWRpdXM6IDhweDsKICBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS12ZWxvcmEtaW5rKTsKfQo6Oi13ZWJraXQtc2Nyb2xsYmFyLXRodW1iOmhvdmVyIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS12ZWxvcmEtZ29sZCk7Cn0KCi8qIEFydGljbGUgLyBlZGl0b3JpYWwgY29udGVudCBkZWZhdWx0cyDigJQgZGFyayBjaW5lbWF0aWMgKi8KLmFydGljbGUtYm9keSB7CiAgQGFwcGx5IHRleHQtY3JlYW0vODUgbGVhZGluZy1yZWxheGVkOwogIGZvbnQtc2l6ZTogMS4wNjI1cmVtOwp9Ci5hcnRpY2xlLWJvZHkgaDIgewogIEBhcHBseSBmb250LWRpc3BsYXkgdGV4dC0zeGwgbWQ6dGV4dC00eGwgbXQtMTIgbWItNSB0ZXh0LWNyZWFtOwogIGZvbnQtd2VpZ2h0OiA2MDA7CiAgbGV0dGVyLXNwYWNpbmc6IC0wLjAxZW07Cn0KLmFydGljbGUtYm9keSBoMyB7CiAgQGFwcGx5IGZvbnQtZGlzcGxheSB0ZXh0LTJ4bCBtdC0xMCBtYi00IHRleHQtY3JlYW07CiAgZm9udC13ZWlnaHQ6IDYwMDsKfQouYXJ0aWNsZS1ib2R5IHAgewogIEBhcHBseSBtYi02Owp9Ci5hcnRpY2xlLWJvZHkgdWwsCi5hcnRpY2xlLWJvZHkgb2wgewogIEBhcHBseSBtYi02IHBsLTYgc3BhY2UteS0yOwp9Ci5hcnRpY2xlLWJvZHkgdWwgewogIGxpc3Qtc3R5bGU6IGRpc2M7Cn0KLmFydGljbGUtYm9keSBvbCB7CiAgbGlzdC1zdHlsZTogZGVjaW1hbDsKfQouYXJ0aWNsZS1ib2R5IGxpOjptYXJrZXIgewogIGNvbG9yOiB2YXIoLS12ZWxvcmEtZ29sZCk7Cn0KLmFydGljbGUtYm9keSBhIHsKICBAYXBwbHkgdW5kZXJsaW5lIGRlY29yYXRpb24tZ29sZCB1bmRlcmxpbmUtb2Zmc2V0LTQgdGV4dC1nb2xkOwogIHRleHQtZGVjb3JhdGlvbi10aGlja25lc3M6IDFweDsKfQouYXJ0aWNsZS1ib2R5IGE6aG92ZXIgewogIGNvbG9yOiB2YXIoLS12ZWxvcmEtY3JlYW0pOwp9Ci5hcnRpY2xlLWJvZHkgYmxvY2txdW90ZSB7CiAgQGFwcGx5IGJvcmRlci1sLTIgYm9yZGVyLWdvbGQgcGwtNiBteS04IGl0YWxpYyBmb250LWRpc3BsYXkgdGV4dC14bCB0ZXh0LWNyZWFtLzc1Owp9Ci5hcnRpY2xlLWJvZHkgc3Ryb25nIHsKICBmb250LXdlaWdodDogNjAwOwogIGNvbG9yOiB2YXIoLS12ZWxvcmEtY3JlYW0pOwp9Ci5hcnRpY2xlLWJvZHkgaHIgewogIEBhcHBseSBteS0xMCBib3JkZXItY3JlYW0vMTA7Cn0KCi8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICBWw4lMT1JBIGdlbmRlciBhY2NlbnQgcGFsZXR0ZXMgKGFwcGVuZGVkIDIwMjYtMTAtMDEpCiAgIEZlbWluaW5lICJyb3NlIiArIG1hc2N1bGluZSAic3RlZWwiIGpld2Vscnkgb3ZlciB0aGUgZGFyawogICBjaW5lbWF0aWMgYmFzZS4gVXNlZCBieSB0aGUgY2F0ZWdvcnkgcGFnZXMgKC9jL1tzbHVnXSkuCiAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwo6cm9vdCB7CiAgLS12ZWxvcmEtcm9zZWdvbGQ6ICNlMmE1OGM7CiAgLS12ZWxvcmEtYmx1c2g6ICNmNWQ5Y2Y7CiAgLS12ZWxvcmEtcGx1bTogIzdjM2Y1MzsKICAtLXZlbG9yYS1zdGVlbDogI2E5YmVjZDsKICAtLXZlbG9yYS1pY2U6ICNkNGUzZjA7CiAgLS12ZWxvcmEtbmF2eTogIzIyMzY0ZTsKfQoKLyogR3JhZGllbnQgaGVhZGxpbmUgYWNjZW50cyDigJQgZmVtaW5pbmUgLyBtYXNjdWxpbmUgKi8KLnRleHQtZ3JhZGllbnQtcm9zZSB7CiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDExNWRlZywgI2Y1ZDljZiAwJSwgI2UyYTU4YyA1NSUsICNjOTgyNmEgMTAwJSk7CiAgLXdlYmtpdC1iYWNrZ3JvdW5kLWNsaXA6IHRleHQ7CiAgYmFja2dyb3VuZC1jbGlwOiB0ZXh0OwogIGNvbG9yOiB0cmFuc3BhcmVudDsKfQoudGV4dC1ncmFkaWVudC1zdGVlbCB7CiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDExNWRlZywgI2Q0ZTNmMCAwJSwgI2E5YmVjZCA1NSUsICM3YzkzYTggMTAwJSk7CiAgLXdlYmtpdC1iYWNrZ3JvdW5kLWNsaXA6IHRleHQ7CiAgYmFja2dyb3VuZC1jbGlwOiB0ZXh0OwogIGNvbG9yOiB0cmFuc3BhcmVudDsKfQoKLyogU29mdCByYWRpYWwgZ2xvd3MgZm9yIGNhdGVnb3J5IGhlcm8gYXJlYXMgKGRhcmsgZm91bmRhdGlvbiBrZXB0KSAqLwouZ2xvdy1yb3NlIHsKICBiYWNrZ3JvdW5kOgogICAgcmFkaWFsLWdyYWRpZW50KDU1JSA0NSUgYXQgMTglIDAlLCByZ2JhKDEyNCwgNjMsIDgzLCAwLjM4KSwgdHJhbnNwYXJlbnQgNzAlKSwKICAgIHJhZGlhbC1ncmFkaWVudCgzOCUgMzIlIGF0IDg1JSAxMiUsIHJnYmEoMjI2LCAxNjUsIDE0MCwgMC4yKSwgdHJhbnNwYXJlbnQgNzAlKTsKfQouZ2xvdy1zdGVlbCB7CiAgYmFja2dyb3VuZDoKICAgIHJhZGlhbC1ncmFkaWVudCg1NSUgNDUlIGF0IDE4JSAwJSwgcmdiYSgzNCwgNTQsIDc4LCAwLjYpLCB0cmFuc3BhcmVudCA3MCUpLAogICAgcmFkaWFsLWdyYWRpZW50KDM4JSAzMiUgYXQgODUlIDEyJSwgcmdiYSgxNjksIDE5MCwgMjA1LCAwLjE4KSwgdHJhbnNwYXJlbnQgNzAlKTsKfQoKLyogLS0tLSBWw4lMT1JBIGxvZ28gM0QgcHJlc2VudGF0aW9uIChyZWFsIGxvZ28gaW1hZ2UsIGRlcHRoICsgaG92ZXIgdGlsdCkgLS0tLSAqLwovKiDilIDilIAgRWxlZ2FudCBmZW1pbmluZSB0eXBvZ3JhcGh5IOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgAogICBUaGUgYXVkaWVuY2UgaXMgbW9zdGx5IHdvbWVuOiBkaXNwbGF5IHNlcmlmIHN0YXlzIGxpZ2h0IGFuZCBncmFjZWZ1bCwKICAgbmV2ZXIgaGVhdnkuIFNvZnRlbnMgYW55IHNlbWlib2xkIGRpc3BsYXkgaGVhZGluZ3Mgc2l0ZS13aWRlLiAqLwouZm9udC1kaXNwbGF5IHsKICBmb250LXdlaWdodDogNTAwOwogIGxldHRlci1zcGFjaW5nOiAwLjAxNWVtOwp9CgoubG9nby0zZCB7CiAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogIHBlcnNwZWN0aXZlOiA5MDBweDsKICBsaW5lLWhlaWdodDogMDsKICBwb3NpdGlvbjogcmVsYXRpdmU7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKfQovKiBWaXNpYmxlIHNoaW5lIHN3ZWVwIGFjcm9zcyB0aGUgbG9nbyDigJQgY2xlYXJseSBhbmltYXRpbmcsIHByZW1pdW0gZmVlbCAqLwoubG9nby0zZDo6YWZ0ZXIgewogIGNvbnRlbnQ6ICIiOwogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICBpbnNldDogLTIwJTsKICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTAwZGVnLCB0cmFuc3BhcmVudCA0MiUsIHJnYmEoMjU1LCAyNDQsIDIxNCwgMC4zMikgNTAlLCB0cmFuc3BhcmVudCA1OCUpOwogIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtMTMwJSk7CiAgYW5pbWF0aW9uOiBsb2dvLXNoaW5lIDQuNXMgZWFzZS1pbi1vdXQgaW5maW5pdGU7CiAgcG9pbnRlci1ldmVudHM6IG5vbmU7Cn0KQGtleWZyYW1lcyBsb2dvLXNoaW5lIHsKICAwJSwgNTUlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC0xMzAlKTsgfQogIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMTMwJSk7IH0KfQoubG9nby0zZCBpbWcgewogIC8qIEJsZW5kIHRoZSBsb2dvJ3MgYmxhY2sgYmFja2Ryb3AgaW50byBkYXJrIHN1cmZhY2VzIHNvIG5vIGJveCBlZGdlIHNob3dzICovCiAgbWl4LWJsZW5kLW1vZGU6IHNjcmVlbjsKICBmaWx0ZXI6CiAgICBkcm9wLXNoYWRvdygwIDFweCAxcHggcmdiYSgyNTUsIDI0MiwgMjA1LCAwLjM1KSkKICAgIGRyb3Atc2hhZG93KDAgMTJweCAyMHB4IHJnYmEoMCwgMCwgMCwgMC42NSkpCiAgICBkcm9wLXNoYWRvdygwIDAgMjhweCByZ2JhKDE5OCwgMTYxLCA5MSwgMC4zOCkpOwogIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjVzIGVhc2Utb3V0LCBmaWx0ZXIgMC41cyBlYXNlLW91dDsKICB0cmFuc2Zvcm0tc3R5bGU6IHByZXNlcnZlLTNkOwogIGFuaW1hdGlvbjogbG9nby1icmVhdGhlIDZzIGVhc2UtaW4tb3V0IGluZmluaXRlOwp9CkBrZXlmcmFtZXMgbG9nby1icmVhdGhlIHsKICAwJSwgMTAwJSB7CiAgICBmaWx0ZXI6CiAgICAgIGRyb3Atc2hhZG93KDAgMXB4IDFweCByZ2JhKDI1NSwgMjQyLCAyMDUsIDAuMzUpKQogICAgICBkcm9wLXNoYWRvdygwIDEycHggMjBweCByZ2JhKDAsIDAsIDAsIDAuNjUpKQogICAgICBkcm9wLXNoYWRvdygwIDAgMjhweCByZ2JhKDE5OCwgMTYxLCA5MSwgMC4zOCkpOwogIH0KICA1MCUgewogICAgZmlsdGVyOgogICAgICBkcm9wLXNoYWRvdygwIDFweCAxcHggcmdiYSgyNTUsIDI0MiwgMjA1LCAwLjQ1KSkKICAgICAgZHJvcC1zaGFkb3coMCAxMnB4IDIwcHggcmdiYSgwLCAwLCAwLCAwLjY1KSkKICAgICAgZHJvcC1zaGFkb3coMCAwIDQ0cHggcmdiYSgxOTgsIDE2MSwgOTEsIDAuNTUpKTsKICB9Cn0KLmxvZ28tM2Q6aG92ZXIgaW1nIHsKICB0cmFuc2Zvcm06IHJvdGF0ZVgoOGRlZykgcm90YXRlWSgtMTBkZWcpIHNjYWxlKDEuMDUpOwogIGZpbHRlcjoKICAgIGRyb3Atc2hhZG93KDAgMXB4IDFweCByZ2JhKDI1NSwgMjQyLCAyMDUsIDAuNDUpKQogICAgZHJvcC1zaGFkb3coMCAxOHB4IDMwcHggcmdiYSgwLCAwLCAwLCAwLjcpKQogICAgZHJvcC1zaGFkb3coMCAwIDQwcHggcmdiYSgxOTgsIDE2MSwgOTEsIDAuNTUpKTsKfQpAbWVkaWEgKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246IHJlZHVjZSkgewogIC5sb2dvLTNkIGltZyB7CiAgICB0cmFuc2l0aW9uOiBub25lOwogICAgYW5pbWF0aW9uOiBub25lOwogIH0KICAubG9nby0zZDo6YWZ0ZXIgewogICAgYW5pbWF0aW9uOiBub25lOwogICAgZGlzcGxheTogbm9uZTsKICB9CiAgLmxvZ28tM2Q6aG92ZXIgaW1nIHsKICAgIHRyYW5zZm9ybTogbm9uZTsKICB9Cn0KCi8qID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICBWw4lMT1JBIHYyIHNpdGUtd2lkZSB2aXN1YWwgcG9saXNoIChhcHBlbmRlZCAyMDI2LTEwLTAyKQogICBUeXBvZ3JhcGh5IHJoeXRobSDCtyBoaWVyYXJjaHkgwrcgY29udHJhc3QgwrcgaW50ZXJhY3RpdmUgc3RhdGVzCiAgIMK3IHN1YnRsZSBtb3Rpb24uIEV4aXN0aW5nIGxvZ28tM2QsIGdlbmRlciBwYWxldHRlcywgc2Nyb2xsYmFyCiAgIGFuZCBhcnRpY2xlIHN0eWxlcyBhYm92ZSBhcmUgcHJlc2VydmVkIGFuZCBvbmx5IHJlZmluZWQuCiAgID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwoKLyogLS0tLS0tLS0tLSAxLiBCYXNlIHR5cG9ncmFwaHkgcmVmaW5lbWVudHMgLS0tLS0tLS0tLSAqLwoKLyogU2xpZ2h0bHkgbGFyZ2VyLCBtb3JlIGJyZWF0aGFibGUgYm9keSBsaW5lLWhlaWdodCBhY3Jvc3MgdGhlIHNpdGUuICovCmJvZHkgewogIGxpbmUtaGVpZ2h0OiAxLjc7CiAgbGV0dGVyLXNwYWNpbmc6IDAuMDAxZW07Cn0KCi8qIEJhbGFuY2VkIGhlYWRpbmcgbGV0dGVyLXNwYWNpbmc6IGRpc3BsYXkgaGVhZGluZ3Mgc3RheSBlbGVnYW50IGFuZCB0aWdodCwKICAgc21hbGwgY2FwcyAvIGV5ZWJyb3dzIGdldCBnZW50bGUgcG9zaXRpdmUgdHJhY2tpbmcgZm9yIGxlZ2liaWxpdHkuICovCi5mb250LWRpc3BsYXksCmgxLmZvbnQtZGlzcGxheSwKaDIuZm9udC1kaXNwbGF5LApoMy5mb250LWRpc3BsYXksCi5hcnRpY2xlLWJvZHkgaDIsCi5hcnRpY2xlLWJvZHkgaDMgewogIGxldHRlci1zcGFjaW5nOiAtMC4wMTVlbTsKfQoKLyogRXllYnJvdyAvIGtpY2tlciBsYWJlbCDigJQgc21hbGwgY2FwcyBzZWN0aW9uIGxhYmVscyAqLwouZXllYnJvdyB7CiAgQGFwcGx5IHRleHQteHMgZm9udC1zZW1pYm9sZCB1cHBlcmNhc2U7CiAgbGV0dGVyLXNwYWNpbmc6IDAuMjJlbTsKICBjb2xvcjogcmdiYSgxOTgsIDE2MSwgOTEsIDAuOTUpOwp9CgovKiBTZWN0aW9uIHJoeXRobTogY29uc2lzdGVudCB2ZXJ0aWNhbCBicmVhdGhpbmcgcm9vbSBmb3IgcGFnZSBzZWN0aW9ucy4gKi8KLnNlY3Rpb24gewogIEBhcHBseSBweS0xNiBtZDpweS0yNDsKfQouc2VjdGlvbi1zbSB7CiAgQGFwcGx5IHB5LTEwIG1kOnB5LTE0Owp9CgovKiBTZWN0aW9uIGhlYWRpbmcgKyBzdXBwb3J0aW5nIGNvcHkgbG9jay11cCAqLwouc2VjdGlvbi1oZWFkaW5nIHsKICBAYXBwbHkgZm9udC1kaXNwbGF5IHRleHQtY3JlYW07CiAgZm9udC1zaXplOiBjbGFtcCgxLjc1cmVtLCA0dncsIDIuNzVyZW0pOwogIGZvbnQtd2VpZ2h0OiA2MDA7CiAgbGV0dGVyLXNwYWNpbmc6IC0wLjAxNWVtOwogIGxpbmUtaGVpZ2h0OiAxLjE1OwogIHRleHQtd3JhcDogYmFsYW5jZTsKfQouc2VjdGlvbi1zdWIgewogIEBhcHBseSBtdC00IG1heC13LTJ4bDsKICBjb2xvcjogcmdiYSgyNDYsIDI0MSwgMjMxLCAwLjcyKTsKICBmb250LXNpemU6IDEuMDYyNXJlbTsKICBsaW5lLWhlaWdodDogMS42NTsKfQoKLyogUmVmaW5lZCBoYWlybGluZSBkaXZpZGVyIHdpdGggYSBzb2Z0IGdvbGQgY29yZSAqLwouZGl2aWRlci1nb2xkIHsKICBAYXBwbHkgYm9yZGVyLTAgaC1weDsKICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoCiAgICB0byByaWdodCwKICAgIHRyYW5zcGFyZW50LAogICAgcmdiYSgxOTgsIDE2MSwgOTEsIDAuNDUpIDUwJSwKICAgIHRyYW5zcGFyZW50CiAgKTsKfQoKLyogLS0tLS0tLS0tLSAyLiBDb250cmFzdCDigJQgcmVhZGFibGUgbWluaW11bXMgb24gZGFyayAtLS0tLS0tLS0tICovCgovKiBCb2R5LWxldmVsIHRleHQgc2hvdWxkIG5ldmVyIGRpcCBiZWxvdyB+NzAlIGNyZWFtIG9uIGRhcmsgc3VyZmFjZXMuICovCi5wcm9zZS1kYXJrIHAsCi5wcm9zZS1kYXJrIGxpLAoudGV4dC1ib2R5IHsKICBjb2xvcjogcmdiYSgyNDYsIDI0MSwgMjMxLCAwLjc4KTsKfQovKiBTZWNvbmRhcnkgLyBzdXBwb3J0aW5nIGNvcHkgbWluaW11bSB+NjUlIGNyZWFtICovCi50ZXh0LW11dGVkIHsKICBjb2xvcjogcmdiYSgyNDYsIDI0MSwgMjMxLCAwLjY2KTsKfQovKiBGYWludCBsYWJlbHMsIGNhcHRpb25zLCBtZXRhIHRleHQg4oCUIGZsb29yIGF0IH41NSUgKi8KLnRleHQtZmFpbnQgewogIGNvbG9yOiByZ2JhKDI0NiwgMjQxLCAyMzEsIDAuNTgpOwp9CgovKiBMZWdpYmlsaXR5IGd1YXJkOiBhbnkgY2FyZC9wYW5lbCBjb3B5IHRoYXQgaW5oZXJpdHMgYSBkaW0gdG9uZSAqLwouY2FyZCAudGV4dC1mYWludCwKLnBhbmVsIC50ZXh0LWZhaW50IHsKICBjb2xvcjogcmdiYSgyNDYsIDI0MSwgMjMxLCAwLjYyKTsKfQoKLyogLS0tLS0tLS0tLSAzLiBJbnRlcmFjdGl2ZSBzdGF0ZXMgLS0tLS0tLS0tLSAqLwoKLyogU21vb3RoZXIsIGxvbmdlciwgbW9yZSBsdXh1cmlvdXMgdHJhbnNpdGlvbnMgZm9yIGNvbnRyb2xzICovCi5idG4sCmJ1dHRvbiwKYS5idXR0b24sCmlucHV0W3R5cGU9InN1Ym1pdCJdIHsKICB0cmFuc2l0aW9uOgogICAgdHJhbnNmb3JtIDAuMzVzIGN1YmljLWJlemllcigwLjIyLCAxLCAwLjM2LCAxKSwKICAgIGJhY2tncm91bmQtY29sb3IgMC4zNXMgZWFzZSwKICAgIGJvcmRlci1jb2xvciAwLjM1cyBlYXNlLAogICAgY29sb3IgMC4zNXMgZWFzZSwKICAgIGJveC1zaGFkb3cgMC4zNXMgZWFzZTsKfQoKLyogR29sZCBnbG93IGxhbmd1YWdlIGZvciBjYXJkcyAvIHRpbGVzIOKAlCByZWZpbmVkIGhvdmVyIHNoYWRvdyAqLwouY2FyZCwKLnRpbGUsCi5wYW5lbCB7CiAgdHJhbnNpdGlvbjoKICAgIHRyYW5zZm9ybSAwLjQ1cyBjdWJpYy1iZXppZXIoMC4yMiwgMSwgMC4zNiwgMSksCiAgICBib3gtc2hhZG93IDAuNDVzIGVhc2UsCiAgICBib3JkZXItY29sb3IgMC40NXMgZWFzZTsKfQouY2FyZDpob3ZlciwKLnRpbGU6aG92ZXIgewogIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtM3B4KTsKICBib3gtc2hhZG93OgogICAgMCAxOHB4IDQycHggcmdiYSgwLCAwLCAwLCAwLjU1KSwKICAgIDAgMCAzMnB4IHJnYmEoMTk4LCAxNjEsIDkxLCAwLjE2KTsKICBib3JkZXItY29sb3I6IHJnYmEoMTk4LCAxNjEsIDkxLCAwLjM1KTsKfQoKLyogVW5kZXJsaW5lIGxpbmtzIHRoYXQgYnJpZ2h0ZW4gb24gaG92ZXIgaW5zdGVhZCBvZiBqdW1waW5nICovCi5saW5rLXVuZGVybGluZSB7CiAgQGFwcGx5IHVuZGVybGluZSB1bmRlcmxpbmUtb2Zmc2V0LTQgZGVjb3JhdGlvbi1nb2xkLzYwIHRleHQtY3JlYW0vODA7CiAgdGV4dC1kZWNvcmF0aW9uLXRoaWNrbmVzczogMXB4OwogIHRyYW5zaXRpb246IGNvbG9yIDAuM3MgZWFzZSwgdGV4dC1kZWNvcmF0aW9uLWNvbG9yIDAuM3MgZWFzZTsKfQoubGluay11bmRlcmxpbmU6aG92ZXIgewogIGNvbG9yOiB2YXIoLS12ZWxvcmEtY3JlYW0pOwogIHRleHQtZGVjb3JhdGlvbi1jb2xvcjogdmFyKC0tdmVsb3JhLWdvbGQpOwp9CgovKiBTdHJvbmdlciwgc3RpbGwgZWxlZ2FudCBrZXlib2FyZCBmb2N1czogZ29sZCByaW5nIHdpdGggYW4gaW5rIGdhcCBzbyBpdAogICByZWFkcyBvbiBib3RoIGRhcmsgYW5kIGxpZ2h0IHN1cmZhY2VzLiAqLwo6Zm9jdXMtdmlzaWJsZSB7CiAgb3V0bGluZTogMnB4IHNvbGlkIHZhcigtLXZlbG9yYS1nb2xkKTsKICBvdXRsaW5lLW9mZnNldDogM3B4OwogIGJvcmRlci1yYWRpdXM6IDJweDsKICBib3gtc2hhZG93OiAwIDAgMCA0cHggcmdiYSgxMSwgMTAsIDgsIDAuOSk7Cn0KCi8qIC0tLS0tLS0tLS0gNC4gU3VidGxlIGdsb2JhbCBhbmltYXRpb25zIC0tLS0tLS0tLS0KICAgQWxsIG1vdGlvbiBpcyBnZW50bGUgYW5kIGV2ZXJ5IGFuaW1hdGVkIHV0aWxpdHkgaXMgZGlzYWJsZWQgdW5kZXIKICAgcHJlZmVycy1yZWR1Y2VkLW1vdGlvbi4gKi8KCi8qIEZhZGUtdXAgcmV2ZWFsOiBhZGQgLnJldmVhbCB0byBhbiBlbGVtZW50OyBJbnRlcnNlY3Rpb25PYnNlcnZlci1kcml2ZW4gSlMKICAgYWRkcyAucmV2ZWFsLXZpc2libGUgd2hlbiBpdCBzY3JvbGxzIGludG8gdmlldy4gUHJvZ3Jlc3NpdmUtZW5oYW5jZW1lbnQKICAgcGF0dGVybjogdGhlIGhpZGRlbiBzdGFydCBzdGF0ZSBvbmx5IGFwcGxpZXMgd2hlbiBKUyBpcyBwcmVzZW50CiAgIChib2R5IGNhcnJpZXMgLmpzLCBhZGRlZCBieSBhIG9uZS1saW5lIHNjcmlwdCksIHNvIGNvbnRlbnQgaXMgbmV2ZXIKICAgaGlkZGVuIGlmIEpTIGZhaWxzIG9yIElPIGlzIHVuc3VwcG9ydGVkLiBQdXJlIENTUyDigJQgbm8gSlMgaGVyZS4gKi8KLnJldmVhbCB7CiAgd2lsbC1jaGFuZ2U6IG9wYWNpdHksIHRyYW5zZm9ybTsKfQouanMgLnJldmVhbCB7CiAgb3BhY2l0eTogMDsKICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMThweCk7CiAgdHJhbnNpdGlvbjoKICAgIG9wYWNpdHkgMC44cyBjdWJpYy1iZXppZXIoMC4yMiwgMSwgMC4zNiwgMSksCiAgICB0cmFuc2Zvcm0gMC44cyBjdWJpYy1iZXppZXIoMC4yMiwgMSwgMC4zNiwgMSk7Cn0KLmpzIC5yZXZlYWwtdmlzaWJsZSB7CiAgb3BhY2l0eTogMTsKICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7Cn0KLyogU3RhZ2dlciBkZWxheXMgZm9yIGdyb3VwZWQgcmV2ZWFscyAqLwouanMgLnJldmVhbC1kZWxheS0xIHsgdHJhbnNpdGlvbi1kZWxheTogMC4xMnM7IH0KLmpzIC5yZXZlYWwtZGVsYXktMiB7IHRyYW5zaXRpb24tZGVsYXk6IDAuMjRzOyB9Ci5qcyAucmV2ZWFsLWRlbGF5LTMgeyB0cmFuc2l0aW9uLWRlbGF5OiAwLjM2czsgfQoKLyogVmVyeSBzdWJ0bGUgc2xvdyBmbG9hdCBmb3IgZGVjb3JhdGl2ZSBlbGVtZW50cyAoYmFkZ2VzLCBnbG93cywgb3JuYW1lbnRzKSAqLwpAa2V5ZnJhbWVzIHZlbG9yYS1mbG9hdCB7CiAgMCUsIDEwMCUgewogICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOwogIH0KICA1MCUgewogICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC04cHgpOwogIH0KfQouZmxvYXQtc2xvdyB7CiAgYW5pbWF0aW9uOiB2ZWxvcmEtZmxvYXQgN3MgZWFzZS1pbi1vdXQgaW5maW5pdGU7Cn0KLmZsb2F0LXNsb3dlciB7CiAgYW5pbWF0aW9uOiB2ZWxvcmEtZmxvYXQgMTFzIGVhc2UtaW4tb3V0IGluZmluaXRlOwp9CgovKiBHZW50bGUgZ2xvdyBwdWxzZSBmb3IgYW1iaWVudCBkZWNvcmF0aXZlIGdsb3dzICovCkBrZXlmcmFtZXMgdmVsb3JhLWdsb3ctcHVsc2UgewogIDAlLCAxMDAlIHsKICAgIG9wYWNpdHk6IDAuNTU7CiAgfQogIDUwJSB7CiAgICBvcGFjaXR5OiAwLjg1OwogIH0KfQouZ2xvdy1wdWxzZSB7CiAgYW5pbWF0aW9uOiB2ZWxvcmEtZ2xvdy1wdWxzZSA2cyBlYXNlLWluLW91dCBpbmZpbml0ZTsKfQoKLyogUmVkdWNlZCBtb3Rpb246IGRpc2FibGUgYWxsIG9mIGl0LCBhbmQga2lsbCBzbW9vdGggc2Nyb2xsaW5nICovCkBtZWRpYSAocHJlZmVycy1yZWR1Y2VkLW1vdGlvbjogcmVkdWNlKSB7CiAgaHRtbCB7CiAgICBzY3JvbGwtYmVoYXZpb3I6IGF1dG87CiAgfQogIC5qcyAucmV2ZWFsLAogIC5yZXZlYWwgewogICAgb3BhY2l0eTogMTsKICAgIHRyYW5zZm9ybTogbm9uZTsKICAgIHRyYW5zaXRpb246IG5vbmU7CiAgfQogIC5mbG9hdC1zbG93LAogIC5mbG9hdC1zbG93ZXIsCiAgLmdsb3ctcHVsc2UgewogICAgYW5pbWF0aW9uOiBub25lOwogIH0KICAuY2FyZDpob3ZlciwKICAudGlsZTpob3ZlciB7CiAgICB0cmFuc2Zvcm06IG5vbmU7CiAgfQogIC5idG4sCiAgYnV0dG9uLAogIGEuYnV0dG9uLAogIGlucHV0W3R5cGU9InN1Ym1pdCJdLAogIC5jYXJkLAogIC50aWxlLAogIC5wYW5lbCB7CiAgICB0cmFuc2l0aW9uOiBub25lOwogIH0KfQoKLyogLS0tLS0tLS0tLSA1LiBTbWFsbCByZWZpbmVtZW50cyB0byBleGlzdGluZyBwaWVjZXMgLS0tLS0tLS0tLSAqLwoKLyogQXJ0aWNsZSByZWFkYWJpbGl0eTogYXJ0aWNsZSBoZWFkaW5ncyBhbHJlYWR5IGdvb2Qg4oCUIHRpZ2h0ZW4gYm9keSBjb250cmFzdAogICBmbG9vciBzbGlnaHRseSBmb3IgbG9uZy1mb3JtIHJlYWRpbmcuICovCi5hcnRpY2xlLWJvZHkgewogIGNvbG9yOiByZ2JhKDI0NiwgMjQxLCAyMzEsIDAuODIpOwp9CgovKiBJbWFnZXM6IHNvZnQgc2V0dGxlIG9uIGRhcmsg4oCUIGF2b2lkcyBoYXJzaCBlZGdlcyAqLwppbWcgewogIGJvcmRlci1jb2xvcjogcmdiYSgyNDYsIDI0MSwgMjMxLCAwLjA4KTsKfQoK
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --velora-ink: #0b0a08;
+  --velora-coal: #14120e;
+  --velora-cream: #f6f1e7;
+  --velora-sand: #e9e0ce;
+  --velora-gold: #c6a15b;
+  --velora-golddeep: #9a7b3f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink text-cream font-sans antialiased;
+  text-rendering: optimizeLegibility;
+  /* Guard against stray horizontal overflow at intermediate breakpoints
+     (clip, not hidden, so position:sticky keeps working). */
+  overflow-x: clip;
+}
+
+/* Text selection */
+::selection {
+  background-color: var(--velora-gold);
+  color: var(--velora-ink);
+}
+
+/* Accessible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--velora-golddeep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Subtle luxury scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--velora-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--velora-golddeep);
+  border-radius: 8px;
+  border: 2px solid var(--velora-ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--velora-gold);
+}
+
+/* Article / editorial content defaults — dark cinematic */
+.article-body {
+  @apply text-cream/85 leading-relaxed;
+  font-size: 1.0625rem;
+}
+.article-body h2 {
+  @apply font-display text-3xl md:text-4xl mt-12 mb-5 text-cream;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.article-body h3 {
+  @apply font-display text-2xl mt-10 mb-4 text-cream;
+  font-weight: 600;
+}
+.article-body p {
+  @apply mb-6;
+}
+.article-body ul,
+.article-body ol {
+  @apply mb-6 pl-6 space-y-2;
+}
+.article-body ul {
+  list-style: disc;
+}
+.article-body ol {
+  list-style: decimal;
+}
+.article-body li::marker {
+  color: var(--velora-gold);
+}
+.article-body a {
+  @apply underline decoration-gold underline-offset-4 text-gold;
+  text-decoration-thickness: 1px;
+}
+.article-body a:hover {
+  color: var(--velora-cream);
+}
+.article-body blockquote {
+  @apply border-l-2 border-gold pl-6 my-8 italic font-display text-xl text-cream/75;
+}
+.article-body strong {
+  font-weight: 600;
+  color: var(--velora-cream);
+}
+.article-body hr {
+  @apply my-10 border-cream/10;
+}
+
+/* ============================================================
+   VÉLORA gender accent palettes (appended 2026-10-01)
+   Feminine "rose" + masculine "steel" jewelry over the dark
+   cinematic base. Used by the category pages (/c/[slug]).
+   ============================================================ */
+:root {
+  --velora-rosegold: #e2a58c;
+  --velora-blush: #f5d9cf;
+  --velora-plum: #7c3f53;
+  --velora-steel: #a9becd;
+  --velora-ice: #d4e3f0;
+  --velora-navy: #22364e;
+}
+
+/* Gradient headline accents — feminine / masculine */
+.text-gradient-rose {
+  background: linear-gradient(115deg, #f5d9cf 0%, #e2a58c 55%, #c9826a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-steel {
+  background: linear-gradient(115deg, #d4e3f0 0%, #a9becd 55%, #7c93a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft radial glows for category hero areas (dark foundation kept) */
+.glow-rose {
+  background:
+    radial-gradient(55% 45% at 18% 0%, rgba(124, 63, 83, 0.38), transparent 70%),
+    radial-gradient(38% 32% at 85% 12%, rgba(226, 165, 140, 0.2), transparent 70%);
+}
+.glow-steel {
+  background:
+    radial-gradient(55% 45% at 18% 0%, rgba(34, 54, 78, 0.6), transparent 70%),
+    radial-gradient(38% 32% at 85% 12%, rgba(169, 190, 205, 0.18), transparent 70%);
+}
+
+/* ---- VÉLORA logo 3D presentation (real logo image, depth + hover tilt) ---- */
+/* ── Elegant feminine typography ─────────────────────────────
+   The audience is mostly women: display serif stays light and graceful,
+   never heavy. Softens any semibold display headings site-wide. */
+.font-display {
+  font-weight: 500;
+  letter-spacing: 0.015em;
+}
+
+.logo-3d {
+  display: inline-block;
+  perspective: 900px;
+  line-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+/* Visible shine sweep across the logo — clearly animating, premium feel */
+.logo-3d::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(100deg, transparent 42%, rgba(255, 244, 214, 0.32) 50%, transparent 58%);
+  transform: translateX(-130%);
+  animation: logo-shine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes logo-shine {
+  0%, 55% { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
+.logo-3d img {
+  /* Blend the logo's black backdrop into dark surfaces so no box edge shows */
+  mix-blend-mode: screen;
+  filter:
+    drop-shadow(0 1px 1px rgba(255, 242, 205, 0.35))
+    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
+    drop-shadow(0 0 28px rgba(198, 161, 91, 0.38));
+  transition: transform 0.5s ease-out, filter 0.5s ease-out;
+  transform-style: preserve-3d;
+  animation: logo-breathe 6s ease-in-out infinite;
+}
+@keyframes logo-breathe {
+  0%, 100% {
+    filter:
+      drop-shadow(0 1px 1px rgba(255, 242, 205, 0.35))
+      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
+      drop-shadow(0 0 28px rgba(198, 161, 91, 0.38));
+  }
+  50% {
+    filter:
+      drop-shadow(0 1px 1px rgba(255, 242, 205, 0.45))
+      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
+      drop-shadow(0 0 44px rgba(198, 161, 91, 0.55));
+  }
+}
+.logo-3d:hover img {
+  transform: rotateX(8deg) rotateY(-10deg) scale(1.05);
+  filter:
+    drop-shadow(0 1px 1px rgba(255, 242, 205, 0.45))
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 40px rgba(198, 161, 91, 0.55));
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-3d img {
+    transition: none;
+    animation: none;
+  }
+  .logo-3d::after {
+    animation: none;
+    display: none;
+  }
+  .logo-3d:hover img {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   VÉLORA v2 site-wide visual polish (appended 2026-10-02)
+   Typography rhythm · hierarchy · contrast · interactive states
+   · subtle motion. Existing logo-3d, gender palettes, scrollbar
+   and article styles above are preserved and only refined.
+   ============================================================ */
+
+/* ---------- 1. Base typography refinements ---------- */
+
+/* Slightly larger, more breathable body line-height across the site. */
+body {
+  line-height: 1.7;
+  letter-spacing: 0.001em;
+}
+
+/* Balanced heading letter-spacing: display headings stay elegant and tight,
+   small caps / eyebrows get gentle positive tracking for legibility. */
+.font-display,
+h1.font-display,
+h2.font-display,
+h3.font-display,
+.article-body h2,
+.article-body h3 {
+  letter-spacing: -0.015em;
+}
+
+/* Eyebrow / kicker label — small caps section labels */
+.eyebrow {
+  @apply text-xs font-semibold uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(198, 161, 91, 0.95);
+}
+
+/* Section rhythm: consistent vertical breathing room for page sections. */
+.section {
+  @apply py-16 md:py-24;
+}
+.section-sm {
+  @apply py-10 md:py-14;
+}
+
+/* Section heading + supporting copy lock-up */
+.section-heading {
+  @apply font-display text-cream;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.section-sub {
+  @apply mt-4 max-w-2xl;
+  color: rgba(246, 241, 231, 0.72);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Refined hairline divider with a soft gold core */
+.divider-gold {
+  @apply border-0 h-px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(198, 161, 91, 0.45) 50%,
+    transparent
+  );
+}
+
+/* ---------- 2. Contrast — readable minimums on dark ---------- */
+
+/* Body-level text should never dip below ~70% cream on dark surfaces. */
+.prose-dark p,
+.prose-dark li,
+.text-body {
+  color: rgba(246, 241, 231, 0.78);
+}
+/* Secondary / supporting copy minimum ~65% cream */
+.text-muted {
+  color: rgba(246, 241, 231, 0.66);
+}
+/* Faint labels, captions, meta text — floor at ~55% */
+.text-faint {
+  color: rgba(246, 241, 231, 0.58);
+}
+
+/* Legibility guard: any card/panel copy that inherits a dim tone */
+.card .text-faint,
+.panel .text-faint {
+  color: rgba(246, 241, 231, 0.62);
+}
+
+/* ---------- 3. Interactive states ---------- */
+
+/* Smoother, longer, more luxurious transitions for controls */
+.btn,
+button,
+a.button,
+input[type="submit"] {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Gold glow language for cards / tiles — refined hover shadow */
+.card,
+.tile,
+.panel {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+.card:hover,
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.55),
+    0 0 32px rgba(198, 161, 91, 0.16);
+  border-color: rgba(198, 161, 91, 0.35);
+}
+
+/* Underline links that brighten on hover instead of jumping */
+.link-underline {
+  @apply underline underline-offset-4 decoration-gold/60 text-cream/80;
+  text-decoration-thickness: 1px;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+.link-underline:hover {
+  color: var(--velora-cream);
+  text-decoration-color: var(--velora-gold);
+}
+
+/* Stronger, still elegant keyboard focus: gold ring with an ink gap so it
+   reads on both dark and light surfaces. */
+:focus-visible {
+  outline: 2px solid var(--velora-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px rgba(11, 10, 8, 0.9);
+}
+
+/* ---------- 4. Subtle global animations ----------
+   All motion is gentle and every animated utility is disabled under
+   prefers-reduced-motion. */
+
+/* Fade-up reveal: add .reveal to an element; IntersectionObserver-driven JS
+   adds .reveal-visible when it scrolls into view. Progressive-enhancement
+   pattern: the hidden start state only applies when JS is present
+   (body carries .js, added by a one-line script), so content is never
+   hidden if JS fails or IO is unsupported. Pure CSS — no JS here. */
+.reveal {
+  will-change: opacity, transform;
+}
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger delays for grouped reveals */
+.js .reveal-delay-1 { transition-delay: 0.12s; }
+.js .reveal-delay-2 { transition-delay: 0.24s; }
+.js .reveal-delay-3 { transition-delay: 0.36s; }
+
+/* Very subtle slow float for decorative elements (badges, glows, ornaments) */
+@keyframes velora-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.float-slow {
+  animation: velora-float 7s ease-in-out infinite;
+}
+.float-slower {
+  animation: velora-float 11s ease-in-out infinite;
+}
+
+/* Gentle glow pulse for ambient decorative glows */
+@keyframes velora-glow-pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.glow-pulse {
+  animation: velora-glow-pulse 6s ease-in-out infinite;
+}
+
+/* Reduced motion: disable all of it, and kill smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal,
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .float-slow,
+  .float-slower,
+  .glow-pulse {
+    animation: none;
+  }
+  .card:hover,
+  .tile:hover {
+    transform: none;
+  }
+  .btn,
+  button,
+  a.button,
+  input[type="submit"],
+  .card,
+  .tile,
+  .panel {
+    transition: none;
+  }
+}
+
+/* ---------- 5. Small refinements to existing pieces ---------- */
+
+/* Article readability: article headings already good — tighten body contrast
+   floor slightly for long-form reading. */
+.article-body {
+  color: rgba(246, 241, 231, 0.82);
+}
+
+/* Images: soft settle on dark — avoids harsh edges */
+img {
+  border-color: rgba(246, 241, 231, 0.08);
+}
+
