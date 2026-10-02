@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Clock } from "@/components/site/Clock";
 import { Logo3D } from "@/components/site/Logo3D";
 import { readSaved } from "@/components/site/SaveButton";
 import { cx } from "@/lib/utils";
@@ -83,13 +82,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-cream/10 bg-ink text-cream">
-      {/* Slim utility bar: tagline left, live local clock right */}
+      {/* Slim utility bar: centered tagline */}
       <div className="border-b border-cream/10 bg-ink">
-        <div className="mx-auto flex h-8 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-8 max-w-7xl items-center justify-center px-4 sm:px-6 lg:px-8">
           <p className="truncate font-sans text-[10px] uppercase tracking-[0.22em] text-cream/45">
             Premium fitness discovery — curated for women &amp; men
           </p>
-          <Clock />
         </div>
       </div>
 
