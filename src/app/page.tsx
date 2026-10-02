@@ -440,11 +440,11 @@ export default async function HomePage() {
             />
           </div>
           {/* Readability: gentle darken across, plus a soft blur panel behind the text */}
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-transparent via-ink/20 to-ink/60" />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-ink/70" />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-ink/20 to-ink/60" />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-ink/70" />
 
-          {/* Text — left corner, bigger, stylish, with gap from image */}
-          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-start px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+          {/* Text — right side, clear of the subject */}
+          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-end px-6 py-20 sm:px-10 md:py-28 lg:px-16">
             <div className="hero-text-block w-full md:max-w-2xl">
               <p className="hero-reveal hero-reveal-1 text-shimmer mb-5 font-sans text-[11px] font-medium uppercase tracking-[0.32em]">
                 Curated for Women &amp; Men
