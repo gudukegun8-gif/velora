@@ -33,10 +33,10 @@ interface ProductModalProps {
  */
 export function usageImageFor(title: string): string {
   const lower = title.toLowerCase();
-  if (lower.includes("kettlebell")) return "/images/usage/usage-kettlebell.webp";
-  if (lower.includes("bench")) return "/images/usage/usage-bench.webp";
-  if (lower.includes("dumbbell")) return "/images/usage/usage-dumbbells.webp";
-  return "/images/usage/usage-dumbbells.webp";
+  if (lower.includes("kettlebell")) return "/images/usage-kettlebell.webp";
+  if (lower.includes("bench")) return "/images/usage-bench.webp";
+  if (lower.includes("dumbbell")) return "/images/usage-dumbbells.webp";
+  return "/images/usage-dumbbells.webp";
 }
 
 /**
@@ -143,7 +143,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
               aria-hidden="true"
               className="flex h-full min-h-[260px] w-full items-center justify-center bg-gradient-to-br from-coal via-ink to-coal"
             >
-              <span className="font-display text-8xl font-semibold text-gold">{initial}</span>
+              <span className="font-display text-8xl font-medium text-gold">{initial}</span>
             </div>
           )}
         </div>
@@ -151,17 +151,17 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
         {/* Details. */}
         <div className="flex flex-col p-6 sm:p-8">
           {product.merchantName && (
-            <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+            <p className="mb-2 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-gold">
               {product.merchantName}
             </p>
           )}
-          <h2 className="font-display text-2xl font-semibold leading-snug text-cream sm:text-3xl">
+          <h2 className="font-display text-2xl font-medium leading-snug text-cream sm:text-3xl">
             {product.title}
           </h2>
 
           <div className="mt-3 flex items-center gap-3">
             {product.price !== null ? (
-              <p className="font-sans text-xl font-semibold text-cream">
+              <p className="font-sans text-xl font-medium text-cream">
                 {formatPrice(product.price, product.currency)}
               </p>
             ) : (
@@ -183,7 +183,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
 
           {/* Practical use. */}
           <div className="mt-6">
-            <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-cream/50">
+            <p className="mb-2 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-cream/50">
               Practical use
             </p>
             <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-cream/10">
@@ -202,7 +202,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
           <div className="mt-auto pt-8">
             <Link
               href={href}
-              className="block w-full rounded-xl bg-gold px-6 py-4 text-center font-sans text-sm font-bold uppercase tracking-[0.18em] text-ink transition-all hover:bg-gold/90 hover:shadow-[0_12px_36px_-12px_rgba(198,161,91,0.6)]"
+              className="block w-full rounded-xl bg-gold px-6 py-4 text-center font-sans text-sm font-medium uppercase tracking-[0.18em] text-ink transition-all hover:bg-gold/90 hover:shadow-[0_12px_36px_-12px_rgba(198,161,91,0.6)]"
             >
               View Full Details
             </Link>
