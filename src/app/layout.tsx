@@ -89,6 +89,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${display.variable} ${body.variable} font-sans bg-ink text-cream antialiased`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.body.classList.add('js')",
+          }}
+        />
         <JsonLd data={[orgJsonLd, websiteJsonLd]} />
         {children}
       </body>

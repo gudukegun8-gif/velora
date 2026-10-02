@@ -14,12 +14,12 @@ export function Logo3D({ compact = false }: Logo3DProps) {
   return (
     <span className="logo-3d">
       <Image
-        src="/images/logo.webp"
+        src="/images/logo-v2.webp"
         alt=""
         width={compact ? 112 : 144}
         height={compact ? 112 : 144}
         priority
-        className={compact ? "h-12 w-12 object-contain" : "h-14 w-14 object-contain"}
+        className={compact ? "h-14 w-14 object-contain" : "h-16 w-16 object-contain"}
       />
     </span>
   );

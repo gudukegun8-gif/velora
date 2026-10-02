@@ -1,0 +1,60 @@
+/* ── VÉLORA Hero v2 animations ─────────────────────────────────
+   Subtle, CSS-only. All motion respects prefers-reduced-motion. */
+
+/* (a) Slow Ken Burns drift on the hero image — ~20s, scale 1.0 → 1.06 */
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.hero-kenburns {
+  animation: hero-kenburns 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* (b) Gentle fade/slide-in for the hero text block, staggered on load */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-reveal {
+  opacity: 0;
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-reveal-1 { animation-delay: 0.1s; }
+.hero-reveal-2 { animation-delay: 0.22s; }
+.hero-reveal-3 { animation-delay: 0.34s; }
+.hero-reveal-4 { animation-delay: 0.46s; }
+.hero-reveal-5 { animation-delay: 0.58s; }
+
+/* Reduced motion: show everything static, no drift, no entrance */
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .hero-reveal,
+  .hero-reveal-1,
+  .hero-reveal-2,
+  .hero-reveal-3,
+  .hero-reveal-4,
+  .hero-reveal-5 {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
