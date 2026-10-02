@@ -12,12 +12,12 @@ import "./hero.css";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ProductCard } from "@/components/ui/ProductCard";
 import {
-  ProductCard,
   cardProductSelect,
   toCardProduct,
   type CardProduct,
-} from "@/components/ui/ProductCard";
+} from "@/lib/card-product";
 
 export const dynamic = "force-dynamic";
 
