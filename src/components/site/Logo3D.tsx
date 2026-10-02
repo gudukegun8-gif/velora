@@ -16,10 +16,10 @@ export function Logo3D({ compact = false }: Logo3DProps) {
       <Image
         src="/images/logo-v2.webp"
         alt=""
-        width={compact ? 144 : 176}
-        height={compact ? 144 : 176}
+        width={compact ? 144 : 192}
+        height={compact ? 144 : 192}
         priority
-        className={compact ? "h-16 w-16 object-contain" : "h-20 w-20 object-contain"}
+        className={compact ? "h-16 w-16 object-contain" : "h-24 w-24 object-contain"}
       />
     </span>
   );
