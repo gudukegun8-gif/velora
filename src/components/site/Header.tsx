@@ -96,7 +96,7 @@ export function Header() {
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
               className={cx(
-                "nav-link font-sans text-[13px] font-normal uppercase tracking-[0.16em] transition-colors hover:text-gold",
+                "nav-link font-sans text-[13px] font-medium uppercase tracking-[0.16em] transition-colors hover:text-gold",
                 pathname === item.href ? "text-gold" : "text-cream/80"
               )}
             >
