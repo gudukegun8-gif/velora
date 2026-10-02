@@ -77,7 +77,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             aria-hidden="true"
             className="flex h-full w-full items-center justify-center bg-gradient-to-br from-coal via-ink to-coal"
           >
-            <span className="font-display text-6xl font-semibold text-gold">{initial}</span>
+            <span className="font-display text-6xl font-medium text-gold">{initial}</span>
           </div>
         )}
         <div className="absolute left-3 top-3 flex flex-col items-start gap-2">
@@ -96,11 +96,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
       <div className="flex flex-1 flex-col p-5">
         {product.merchantName && (
-          <p className="mb-1.5 text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-gold">
+          <p className="mb-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-gold">
             {product.merchantName}
           </p>
         )}
-        <h3 className="font-display text-xl font-semibold leading-snug text-cream">
+        <h3 className="font-display text-lg font-medium leading-snug text-cream">
           <Link href={href} onClick={stop} className="transition-colors hover:text-gold">
             {product.title}
           </Link>
@@ -109,7 +109,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <div className="mt-auto flex items-end justify-between gap-3 pt-4">
           <div>
             {product.price !== null ? (
-              <p className="font-sans text-base font-semibold text-cream">
+              <p className="font-sans text-base font-medium text-cream">
                 {formatPrice(product.price, product.currency)}
               </p>
             ) : (
@@ -131,7 +131,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           <Link
             href={href}
             onClick={stop}
-            className="relative z-10 shrink-0 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-gold underline-offset-4 group-hover:underline"
+            className="relative z-10 shrink-0 font-sans text-xs font-medium uppercase tracking-[0.14em] text-gold underline-offset-4 group-hover:underline"
           >
             View Product
           </Link>
