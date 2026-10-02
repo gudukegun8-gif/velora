@@ -6,11 +6,11 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-gold text-ink hover:bg-golddeep hover:text-cream border border-gold hover:border-golddeep",
+    "bg-gold text-ink border border-gold shadow-[0_4px_20px_-6px_rgba(201,162,39,0.5)] hover:bg-golddeep hover:text-cream hover:border-golddeep hover:shadow-[0_8px_28px_-6px_rgba(201,162,39,0.6)] hover:-translate-y-px",
   secondary:
-    "bg-transparent text-cream border border-cream/40 hover:border-gold hover:text-gold",
+    "bg-transparent text-cream border border-cream/30 hover:border-gold/70 hover:text-gold hover:-translate-y-px",
   ghost: "bg-transparent text-cream hover:text-gold underline-offset-4 hover:underline",
-  ink: "bg-transparent text-cream hover:text-gold border border-cream/30 hover:border-gold",
+  ink: "bg-transparent text-cream hover:text-gold border border-cream/25 hover:border-gold/60 hover:-translate-y-px",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -40,7 +40,7 @@ export function Button({
   external = false,
 }: ButtonProps) {
   const classes = cx(
-    "inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold uppercase tracking-[0.14em] transition-colors duration-200",
+    "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium uppercase tracking-[0.14em] transition-all duration-300 ease-out",
     variants[variant],
     sizes[size],
     className
