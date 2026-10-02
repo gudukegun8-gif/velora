@@ -105,7 +105,7 @@ function LinkColumn({
 }) {
   return (
     <nav aria-label={title}>
-      <h3 className="mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+      <h3 className="mb-5 font-sans text-xs font-medium uppercase tracking-[0.22em] text-gold">
         {title}
       </h3>
       <ul className="space-y-3">
@@ -144,7 +144,7 @@ export async function Footer() {
               className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
             >
               <Image
-                src="/images/logo.webp"
+                src="/images/logo-v2.webp"
                 alt="VÉLORA"
                 width={128}
                 height={128}
@@ -179,7 +179,7 @@ export async function Footer() {
 
         <div className="mt-14 border-t border-cream/10 pt-8">
           <p className="mx-auto max-w-3xl text-center font-sans text-xs leading-relaxed text-cream/50">
-            <span className="font-semibold uppercase tracking-[0.18em] text-cream/60">
+            <span className="font-medium uppercase tracking-[0.18em] text-cream/60">
               Affiliate Disclosure —{" "}
             </span>
             {disclosure}{" "}
