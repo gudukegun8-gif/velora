@@ -89,6 +89,29 @@ const TESTIMONIALS = [
   },
 ];
 
+const HOW_STEPS = [
+  {
+    n: "01",
+    title: "Discover",
+    text: "Browse curated fitness essentials across categories — every product selected by our editors for real-world value.",
+  },
+  {
+    n: "02",
+    title: "Explore",
+    text: "Read honest product details, key features, and merchant pricing. No fake reviews, no invented ratings.",
+  },
+  {
+    n: "03",
+    title: "Compare",
+    text: "Weigh your options with side-by-side comparisons and buying guides written for real training goals.",
+  },
+  {
+    n: "04",
+    title: "Shop with the retailer",
+    text: "When you're ready, continue to the retailer's site to purchase. We may earn a commission — at no extra cost to you.",
+  },
+];
+
 const STATS = [
   { value: "26", label: "Curated collections" },
   { value: "100%", label: "Independent picks" },
@@ -280,7 +303,7 @@ const GOALS = [
 ];
 
 export default async function HomePage() {
-  const [women, men, equipmentCat, recoveryCat, topCategories, trendingRaw, featuredRaw, latestRaw, comparisons, guides] =
+  const [women, men, equipmentCat, recoveryCat, topCategories, trendingRaw, featuredRaw, latestRaw, comparisons, guides, smart25Raw, smart50Raw, premiumRaw] =
     await Promise.all([
       db.category.findUnique({
         where: { slug: "women" },
@@ -348,11 +371,32 @@ export default async function HomePage() {
           publishedAt: true, author: { select: { name: true } },
         },
       }),
+      db.product.findMany({
+        where: { status: "PUBLISHED", price: { lt: 25 } },
+        orderBy: [{ reviewCount: "desc" }, { createdAt: "desc" }],
+        take: 8,
+        select: cardProductSelect,
+      }),
+      db.product.findMany({
+        where: { status: "PUBLISHED", price: { gte: 25, lt: 50 } },
+        orderBy: [{ reviewCount: "desc" }, { createdAt: "desc" }],
+        take: 8,
+        select: cardProductSelect,
+      }),
+      db.product.findMany({
+        where: { status: "PUBLISHED", price: { gte: 100 } },
+        orderBy: [{ reviewCount: "desc" }, { createdAt: "desc" }],
+        take: 4,
+        select: cardProductSelect,
+      }),
     ]);
 
   const trending = trendingRaw.map(toCardProduct);
   const featured = featuredRaw.map(toCardProduct);
   const latest = latestRaw.map(toCardProduct);
+  const smart25 = smart25Raw.map(toCardProduct);
+  const smart50 = smart50Raw.map(toCardProduct);
+  const premium = premiumRaw.map(toCardProduct);
   const hasStrengthTraining = (women?.children ?? []).some((c) => c.slug === "strength-training");
 
   let equipmentProducts: CardProduct[] = [];
@@ -441,6 +485,41 @@ export default async function HomePage() {
                 </div>
               ))}
             </dl>
+          </div>
+        </section>
+
+        {/* ── How VÉLORA Works ───────────────────────────── */}
+        <section className="bg-ink py-14 md:py-24" aria-labelledby="how-heading">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div id="how-heading">
+              <SectionHeading
+                align="center"
+                eyebrow="How It Works"
+                title="How VÉLORA Works"
+                description="VÉLORA is a product discovery destination, not a store. Here's how a visit turns into the right purchase — on the retailer's site."
+              />
+            </div>
+            <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {HOW_STEPS.map((s) => (
+                <li
+                  key={s.n}
+                  className="rounded-2xl border border-cream/10 bg-coal/60 p-6 transition-colors hover:border-gold/40"
+                >
+                  <p className="font-display text-3xl font-semibold text-gold/80">{s.n}</p>
+                  <h3 className="mt-3 font-sans text-sm font-semibold uppercase tracking-[0.14em] text-cream">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/65">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mx-auto mt-8 max-w-2xl text-center font-sans text-xs leading-relaxed text-cream/50">
+              VÉLORA may earn a commission when you purchase through qualifying links. This does not
+              affect the price you pay.{" "}
+              <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
+                Read our affiliate disclosure
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -593,6 +672,69 @@ export default async function HomePage() {
                 />
               </div>
               <ProductRail products={featured} />
+            </div>
+          </section>
+        )}
+
+        {/* ── Smart Buys ───────────────────────────────────── */}
+        {(smart25.length > 0 || smart50.length > 0) && (
+          <section className="border-y border-cream/10 bg-coal/50 py-14 md:py-24" aria-labelledby="smart-heading">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div id="smart-heading">
+                <SectionHeading
+                  eyebrow="Every Budget"
+                  title="Smart Buys"
+                  description="Great fitness finds don't have to cost a fortune. Editor-curated picks organized by price — no bargain-bin energy, just honest value."
+                />
+              </div>
+              {smart25.length > 0 && (
+                <div className="mt-10">
+                  <div className="mb-5 flex items-center justify-between">
+                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                      Under $25
+                    </h3>
+                    <Link
+                      href="/search?maxPrice=25"
+                      className="font-sans text-xs font-medium text-cream/60 underline-offset-4 hover:text-gold hover:underline"
+                    >
+                      View all
+                    </Link>
+                  </div>
+                  <ProductRail products={smart25} />
+                </div>
+              )}
+              {smart50.length > 0 && (
+                <div className="mt-10">
+                  <div className="mb-5 flex items-center justify-between">
+                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                      Under $50
+                    </h3>
+                    <Link
+                      href="/search?maxPrice=50"
+                      className="font-sans text-xs font-medium text-cream/60 underline-offset-4 hover:text-gold hover:underline"
+                    >
+                      View all
+                    </Link>
+                  </div>
+                  <ProductRail products={smart50} />
+                </div>
+              )}
+              {premium.length > 0 && (
+                <div className="mt-10">
+                  <div className="mb-5 flex items-center justify-between">
+                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                      Premium Picks
+                    </h3>
+                    <Link
+                      href="/search?minPrice=100"
+                      className="font-sans text-xs font-medium text-cream/60 underline-offset-4 hover:text-gold hover:underline"
+                    >
+                      View all
+                    </Link>
+                  </div>
+                  <ProductRail products={premium} />
+                </div>
+              )}
             </div>
           </section>
         )}

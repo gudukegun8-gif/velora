@@ -70,6 +70,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const genderParam = param(searchParams.gender)?.toUpperCase();
   const goal = param(searchParams.goal);
   const merchantSlug = param(searchParams.merchant);
+  const minPrice = param(searchParams.minPrice);
+  const maxPrice = param(searchParams.maxPrice);
   const sort = param(searchParams.sort) ?? "relevance";
 
   const [categories, merchants] = await Promise.all([
@@ -94,7 +96,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }> = [];
   let searched = false;
 
-  if (q || categorySlug || genderParam || goal || merchantSlug) {
+  if (q || categorySlug || genderParam || goal || merchantSlug || minPrice || maxPrice) {
     searched = true;
     const productWhere: Prisma.ProductWhereInput = { status: "PUBLISHED" };
     const and: Prisma.ProductWhereInput[] = [];
@@ -122,6 +124,14 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     }
     if (goal) and.push(goalClause(goal));
     if (merchantSlug) productWhere.merchant = { slug: merchantSlug };
+    const minP = minPrice ? Number(minPrice) : NaN;
+    const maxP = maxPrice ? Number(maxPrice) : NaN;
+    if (!Number.isNaN(minP) || !Number.isNaN(maxP)) {
+      productWhere.price = {
+        ...(Number.isNaN(minP) ? {} : { gte: minP }),
+        ...(Number.isNaN(maxP) ? {} : { lt: maxP }),
+      };
+    }
     if (and.length > 0) productWhere.AND = and;
 
     const [productRows, articleRows] = await Promise.all([
