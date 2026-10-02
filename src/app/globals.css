@@ -161,12 +161,22 @@ body {
 
 /* ── Hero text block: very slow cinematic breathing zoom ── */
 .hero-text-block {
-  animation: hero-text-breathe 18s ease-in-out infinite;
+  animation: hero-text-breathe 20s ease-in-out infinite;
   transform-origin: right center;
 }
 @keyframes hero-text-breathe {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.025); }
+  50% { transform: scale(1.03); }
+}
+
+/* ── Hero image: alternating slow zoom (out when text zooms in) ── */
+.hero-kenburns-alt {
+  animation: hero-kenburns-alt 20s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes hero-kenburns-alt {
+  0%, 100% { transform: scale(1.08); }
+  50% { transform: scale(1); }
 }
 
 /* ── Logo emblem: gentle floating glow pulse ── */
