@@ -150,6 +150,58 @@ body {
   letter-spacing: 0.015em;
 }
 
+/* ── Animated nav links: gold underline sweeps in on hover ── */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #c6a15b, transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* ── Gentle zoom in/out for editorial imagery (realistic, alive) ── */
+.img-breathe {
+  animation: img-breathe 14s ease-in-out infinite;
+}
+@keyframes img-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* ── Cards lift toward the viewer on hover ── */
+.lift-on-hover {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.lift-on-hover:hover {
+  transform: translateY(-6px);
+}
+
+/* ── Shimmer sweep for eyebrow/tagline text ── */
+.text-shimmer {
+  background: linear-gradient(100deg, #c6a15b 30%, #f5e7c1 50%, #c6a15b 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 5s linear infinite;
+}
+@keyframes text-shimmer {
+  to { background-position: 200% center; }
+}
+
 .logo-3d {
   display: inline-block;
   perspective: 900px;
@@ -220,6 +272,13 @@ body {
     display: none;
   }
   .logo-3d:hover img {
+    transform: none;
+  }
+  .img-breathe,
+  .text-shimmer {
+    animation: none;
+  }
+  .lift-on-hover:hover {
     transform: none;
   }
 }
