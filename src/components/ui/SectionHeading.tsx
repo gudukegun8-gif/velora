@@ -33,7 +33,8 @@ export function SectionHeading({
       <div className="flex w-full flex-wrap items-end justify-between gap-4">
         <div className={cx(align === "center" && "w-full")}>
           {eyebrow && (
-            <p className="mb-3 text-[11px] font-sans font-medium uppercase tracking-[0.28em] text-golddeep">
+            <p className="mb-3 flex items-center gap-3 text-[11px] font-sans font-medium uppercase tracking-[0.28em] text-golddeep">
+              <span aria-hidden="true" className="inline-block h-px w-8 bg-gold/60" />
               {eyebrow}
             </p>
           )}
