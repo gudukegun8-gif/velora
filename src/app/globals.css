@@ -170,3 +170,249 @@ body {
     transform: none;
   }
 }
+
+/* ============================================================
+   VÉLORA v2 site-wide visual polish (appended 2026-10-02)
+   Typography rhythm · hierarchy · contrast · interactive states
+   · subtle motion. Existing logo-3d, gender palettes, scrollbar
+   and article styles above are preserved and only refined.
+   ============================================================ */
+
+/* ---------- 1. Base typography refinements ---------- */
+
+/* Slightly larger, more breathable body line-height across the site. */
+body {
+  line-height: 1.7;
+  letter-spacing: 0.001em;
+}
+
+/* Balanced heading letter-spacing: display headings stay elegant and tight,
+   small caps / eyebrows get gentle positive tracking for legibility. */
+.font-display,
+h1.font-display,
+h2.font-display,
+h3.font-display,
+.article-body h2,
+.article-body h3 {
+  letter-spacing: -0.015em;
+}
+
+/* Eyebrow / kicker label — small caps section labels */
+.eyebrow {
+  @apply text-xs font-semibold uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(198, 161, 91, 0.95);
+}
+
+/* Section rhythm: consistent vertical breathing room for page sections. */
+.section {
+  @apply py-16 md:py-24;
+}
+.section-sm {
+  @apply py-10 md:py-14;
+}
+
+/* Section heading + supporting copy lock-up */
+.section-heading {
+  @apply font-display text-cream;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.section-sub {
+  @apply mt-4 max-w-2xl;
+  color: rgba(246, 241, 231, 0.72);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Refined hairline divider with a soft gold core */
+.divider-gold {
+  @apply border-0 h-px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(198, 161, 91, 0.45) 50%,
+    transparent
+  );
+}
+
+/* ---------- 2. Contrast — readable minimums on dark ---------- */
+
+/* Body-level text should never dip below ~70% cream on dark surfaces. */
+.prose-dark p,
+.prose-dark li,
+.text-body {
+  color: rgba(246, 241, 231, 0.78);
+}
+/* Secondary / supporting copy minimum ~65% cream */
+.text-muted {
+  color: rgba(246, 241, 231, 0.66);
+}
+/* Faint labels, captions, meta text — floor at ~55% */
+.text-faint {
+  color: rgba(246, 241, 231, 0.58);
+}
+
+/* Legibility guard: any card/panel copy that inherits a dim tone */
+.card .text-faint,
+.panel .text-faint {
+  color: rgba(246, 241, 231, 0.62);
+}
+
+/* ---------- 3. Interactive states ---------- */
+
+/* Smoother, longer, more luxurious transitions for controls */
+.btn,
+button,
+a.button,
+input[type="submit"] {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Gold glow language for cards / tiles — refined hover shadow */
+.card,
+.tile,
+.panel {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+.card:hover,
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.55),
+    0 0 32px rgba(198, 161, 91, 0.16);
+  border-color: rgba(198, 161, 91, 0.35);
+}
+
+/* Underline links that brighten on hover instead of jumping */
+.link-underline {
+  @apply underline underline-offset-4 decoration-gold/60 text-cream/80;
+  text-decoration-thickness: 1px;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+.link-underline:hover {
+  color: var(--velora-cream);
+  text-decoration-color: var(--velora-gold);
+}
+
+/* Stronger, still elegant keyboard focus: gold ring with an ink gap so it
+   reads on both dark and light surfaces. */
+:focus-visible {
+  outline: 2px solid var(--velora-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px rgba(11, 10, 8, 0.9);
+}
+
+/* ---------- 4. Subtle global animations ----------
+   All motion is gentle and every animated utility is disabled under
+   prefers-reduced-motion. */
+
+/* Fade-up reveal: add .reveal to an element; IntersectionObserver-driven JS
+   adds .reveal-visible when it scrolls into view. Progressive-enhancement
+   pattern: the hidden start state only applies when JS is present
+   (body carries .js, added by a one-line script), so content is never
+   hidden if JS fails or IO is unsupported. Pure CSS — no JS here. */
+.reveal {
+  will-change: opacity, transform;
+}
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger delays for grouped reveals */
+.js .reveal-delay-1 { transition-delay: 0.12s; }
+.js .reveal-delay-2 { transition-delay: 0.24s; }
+.js .reveal-delay-3 { transition-delay: 0.36s; }
+
+/* Very subtle slow float for decorative elements (badges, glows, ornaments) */
+@keyframes velora-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.float-slow {
+  animation: velora-float 7s ease-in-out infinite;
+}
+.float-slower {
+  animation: velora-float 11s ease-in-out infinite;
+}
+
+/* Gentle glow pulse for ambient decorative glows */
+@keyframes velora-glow-pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.glow-pulse {
+  animation: velora-glow-pulse 6s ease-in-out infinite;
+}
+
+/* Reduced motion: disable all of it, and kill smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal,
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .float-slow,
+  .float-slower,
+  .glow-pulse {
+    animation: none;
+  }
+  .card:hover,
+  .tile:hover {
+    transform: none;
+  }
+  .btn,
+  button,
+  a.button,
+  input[type="submit"],
+  .card,
+  .tile,
+  .panel {
+    transition: none;
+  }
+}
+
+/* ---------- 5. Small refinements to existing pieces ---------- */
+
+/* Article readability: article headings already good — tighten body contrast
+   floor slightly for long-form reading. */
+.article-body {
+  color: rgba(246, 241, 231, 0.82);
+}
+
+/* Images: soft settle on dark — avoids harsh edges */
+img {
+  border-color: rgba(246, 241, 231, 0.08);
+}
+

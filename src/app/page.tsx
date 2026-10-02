@@ -8,6 +8,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Newsletter } from "@/components/site/Newsletter";
 import { JsonLd } from "@/components/site/JsonLd";
+import "./hero.css";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -425,54 +426,56 @@ export default async function HomePage() {
       <JsonLd data={faqJsonLd} />
       <Header />
       <main>
-        {/* ── Cinematic Hero ───────────────────────────────── */}
-        <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-ink text-cream">
-          <Image
-            src="/images/hero.webp"
-            alt="Athletic woman training with battle ropes in a dark cinematic gym — VÉLORA curated fitness essentials"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/50 to-ink/10"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/30"
-          />
-          <div className="relative mx-auto w-full max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="mb-5 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
-                Premium Fitness Discovery
-              </p>
-              <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
-                Train Like It
-                <span className="text-gold"> Matters.</span>
-              </h1>
-              <p className="mt-6 max-w-xl font-sans text-base leading-relaxed text-cream/80 md:text-lg">
-                Editor-curated fitness essentials, smart equipment, and honest
-                buying guides — chosen for quality, never paid placements.
-              </p>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Button href="/c/women" size="lg">
-                  Explore Fitness
-                </Button>
-                <Button href="/trending" variant="secondary" size="lg">
-                  Trending Now
-                </Button>
+        {/* ── Cinematic Hero v2 ──────────────────────────────── */}
+        <section className="relative overflow-hidden bg-ink text-cream">
+          <div className="grid md:grid-cols-2">
+            {/* Image — left column (stacks on top for mobile) */}
+            <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[92vh]">
+              <Image
+                src="/images/hero-v2.webp"
+                alt="Athletic woman training with battle ropes in a dark cinematic gym — VÉLORA curated fitness essentials"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="hero-kenburns object-cover object-center"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-ink"
+              />
+            </div>
+            {/* Text — right column */}
+            <div className="relative flex items-center px-4 py-16 sm:px-6 md:py-24 lg:px-12">
+              <div className="mx-auto w-full max-w-xl">
+                <p className="hero-reveal hero-reveal-1 mb-5 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
+                  Premium Fitness Discovery
+                </p>
+                <h1 className="hero-reveal hero-reveal-2 font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+                  Train Like It
+                  <span className="text-gold"> Matters.</span>
+                </h1>
+                <p className="hero-reveal hero-reveal-3 mt-6 font-sans text-base leading-relaxed text-cream/80 md:text-lg">
+                  Editor-curated fitness essentials, smart equipment, and honest
+                  buying guides — chosen for quality, never paid placements.
+                </p>
+                <div className="hero-reveal hero-reveal-4 mt-10 flex flex-wrap gap-4">
+                  <Button href="/c/women" size="lg">
+                    Explore Fitness
+                  </Button>
+                  <Button href="/trending" variant="secondary" size="lg">
+                    Trending Now
+                  </Button>
+                </div>
+                <p className="hero-reveal hero-reveal-5 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-sans text-xs text-cream/60">
+                  <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> 100% independent curation</span>
+                  <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> Zero paid placements</span>
+                  <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> Updated weekly</span>
+                </p>
               </div>
-              <p className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-sans text-xs text-cream/60">
-                <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> 100% independent curation</span>
-                <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> Zero paid placements</span>
-                <span className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="text-gold">✓</span> Updated weekly</span>
-              </p>
             </div>
           </div>
           {/* Stats strip */}
-          <div className="absolute inset-x-0 bottom-0 border-t border-cream/10 bg-ink/60 backdrop-blur-sm">
+          <div className="border-t border-cream/10 bg-ink/60 backdrop-blur-sm">
             <dl className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-cream/10 px-4 sm:px-6 md:grid-cols-4 lg:px-8">
               {STATS.map((s) => (
                 <div key={s.label} className="px-4 py-5 text-center md:py-6">
