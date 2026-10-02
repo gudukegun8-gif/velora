@@ -344,10 +344,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-6 sm:px-6 lg:px-8">
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.4fr]">
             <div>
-              <p className={cx("mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em]", tone.eyebrow)}>
+              <p className={cx("mb-3 text-[11px] font-sans font-medium uppercase tracking-[0.28em]", tone.eyebrow)}>
                 Collection
               </p>
-              <h1 className={cx("font-display text-4xl font-semibold tracking-tight md:text-6xl", tone.h1)}>
+              <h1 className={cx("font-display text-4xl font-medium tracking-tight md:text-6xl", tone.h1)}>
                 {category.name}
               </h1>
               {(category.description || category.tagline) && (
@@ -394,7 +394,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   key={sub.slug}
                   href={`/c/${sub.slug}`}
                   className={cx(
-                    "rounded-full border px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.14em] transition-colors",
+                    "rounded-full border px-5 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.14em] transition-colors",
                     sub.slug === category.slug
                       ? tone.chipActive
                       : cx("border-cream/20 bg-coal text-cream", tone.chipHover)
@@ -423,10 +423,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 />
               </div>
               <div className="flex flex-col items-start justify-center p-8 md:p-12">
-                <p className={cx("mb-3 text-[11px] font-sans font-semibold uppercase tracking-[0.28em]", tone.eyebrow)}>
+                <p className={cx("mb-3 text-[11px] font-sans font-medium uppercase tracking-[0.28em]", tone.eyebrow)}>
                   {spotlight.eyebrow}
                 </p>
-                <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
+                <h2 className="font-display text-3xl font-medium tracking-tight md:text-4xl">
                   {spotlight.title}
                 </h2>
                 <p className="mt-4 max-w-md font-sans text-sm leading-relaxed text-cream/70 md:text-base">
@@ -434,7 +434,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 </p>
                 <Link
                   href={`/c/${spotlight.targetSlug}`}
-                  className={cx("mt-8 inline-flex items-center justify-center rounded-full px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] transition-colors", tone.cta)}
+                  className={cx("mt-8 inline-flex items-center justify-center rounded-full px-8 py-3.5 font-sans text-xs font-medium uppercase tracking-[0.16em] transition-colors", tone.cta)}
                 >
                   {spotlight.ctaLabel}
                 </Link>
@@ -454,7 +454,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             >
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
                 <div>
-                  <label htmlFor="f-gender" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
+                  <label htmlFor="f-gender" className="mb-1.5 block font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cream/60">
                     Gender
                   </label>
                   <select
@@ -470,7 +470,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="f-goal" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
+                  <label htmlFor="f-goal" className="mb-1.5 block font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cream/60">
                     Goal
                   </label>
                   <select
@@ -490,7 +490,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="f-merchant" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
+                  <label htmlFor="f-merchant" className="mb-1.5 block font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cream/60">
                     Merchant
                   </label>
                   <select
@@ -508,7 +508,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="f-minPrice" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
+                  <label htmlFor="f-minPrice" className="mb-1.5 block font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cream/60">
                     Min price
                   </label>
                   <input
@@ -523,7 +523,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   />
                 </div>
                 <div>
-                  <label htmlFor="f-maxPrice" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
+                  <label htmlFor="f-maxPrice" className="mb-1.5 block font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cream/60">
                     Max price
                   </label>
                   <input
@@ -538,7 +538,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   />
                 </div>
                 <div>
-                  <label htmlFor="f-sort" className="mb-1.5 block font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/60">
+                  <label htmlFor="f-sort" className="mb-1.5 block font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cream/60">
                     Sort by
                   </label>
                   <select
@@ -558,14 +558,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <button
                   type="submit"
-                  className={cx("rounded-full px-7 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] transition-colors", tone.apply)}
+                  className={cx("rounded-full px-7 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.16em] transition-colors", tone.apply)}
                 >
                   Apply Filters
                 </button>
                 {activeFilters.length > 0 && (
                   <Link
                     href={`/c/${category.slug}`}
-                    className={cx("font-sans text-xs font-semibold uppercase tracking-[0.14em] underline-offset-4 hover:underline", tone.clear)}
+                    className={cx("font-sans text-xs font-medium uppercase tracking-[0.14em] underline-offset-4 hover:underline", tone.clear)}
                   >
                     Clear all
                   </Link>
@@ -594,7 +594,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {/* Related guides */}
             {guides.length > 0 && (
               <div className="mt-16">
-                <h2 className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
+                <h2 className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
                   Guides for {category.name}
                 </h2>
                 <div className="grid gap-6 md:grid-cols-3">
@@ -604,13 +604,13 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                       href={`/guides/${g.slug}`}
                       className={cx("group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow", tone.guideCard)}
                     >
-                      <h3 className={cx("font-display text-xl font-semibold text-cream", tone.guideTitle)}>
+                      <h3 className={cx("font-display text-xl font-medium text-cream", tone.guideTitle)}>
                         {g.title}
                       </h3>
                       {g.excerpt && (
                         <p className="mt-2 line-clamp-2 font-sans text-sm text-cream/65">{g.excerpt}</p>
                       )}
-                      <span className={cx("mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em]", tone.guideLink)}>
+                      <span className={cx("mt-4 block font-sans text-xs font-medium uppercase tracking-[0.16em]", tone.guideLink)}>
                         Read guide &rarr;
                       </span>
                     </Link>
