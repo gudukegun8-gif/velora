@@ -60,12 +60,12 @@ body {
 }
 .article-body h2 {
   @apply font-display text-3xl md:text-4xl mt-12 mb-5 text-cream;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 .article-body h3 {
   @apply font-display text-2xl mt-10 mb-4 text-cream;
-  font-weight: 600;
+  font-weight: 500;
 }
 .article-body p {
   @apply mb-6;
@@ -94,7 +94,7 @@ body {
   @apply border-l-2 border-gold pl-6 my-8 italic font-display text-xl text-cream/75;
 }
 .article-body strong {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--velora-cream);
 }
 .article-body hr {
@@ -269,7 +269,7 @@ h3.font-display,
 .section-heading {
   @apply font-display text-cream;
   font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.015em;
   line-height: 1.15;
   text-wrap: balance;
