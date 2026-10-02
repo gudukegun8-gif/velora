@@ -220,7 +220,18 @@ function FeatureBlock({
     },
   }[accent];
   return (
-    <section className="relative bg-ink py-14 text-cream md:py-24">
+    <section className="relative overflow-hidden bg-ink py-14 text-cream md:py-24">
+      {/* Faint category background image with warm tint */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.12]">
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="100vw"
+          loading="lazy"
+          className="object-cover"
+        />
+      </div>
       <div aria-hidden="true" className={cx("pointer-events-none absolute inset-0", accents.glow)} />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -239,6 +250,8 @@ function FeatureBlock({
               loading="lazy"
               className="aspect-[4/5] w-full object-cover"
             />
+            {/* Consistent warm cinematic grade */}
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-[#c6a15b]/10 via-transparent to-[#1a0f08]/30 mix-blend-overlay" />
             <div
               aria-hidden="true"
               className="absolute inset-0 rounded-3xl bg-gradient-to-t from-ink/40 via-transparent to-transparent ring-1 ring-inset ring-cream/10"
@@ -436,7 +449,7 @@ export default async function HomePage() {
               fill
               priority
               sizes="100vw"
-              className="hero-kenburns object-cover object-center"
+              className="hero-kenburns-alt object-cover object-center"
             />
           </div>
           {/* Readability: gentle darken across, plus a soft blur panel behind the text */}
@@ -444,8 +457,8 @@ export default async function HomePage() {
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-ink/70" />
 
           {/* Text — right side, clear of the subject */}
-          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-end px-6 py-20 sm:px-10 md:py-28 lg:px-16">
-            <div className="hero-text-block w-full md:max-w-2xl">
+          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-end px-4 py-20 sm:px-6 md:py-28 lg:px-10">
+            <div className="hero-text-block w-full md:max-w-2xl md:mr-4">
               <p className="hero-reveal hero-reveal-1 text-shimmer mb-5 font-sans text-[11px] font-medium uppercase tracking-[0.32em]">
                 Curated for Women &amp; Men
               </p>
@@ -473,7 +486,7 @@ export default async function HomePage() {
             </div>
           </div>
 {/* Stats strip */}
-          <div className="border-t border-cream/10 bg-ink/60 backdrop-blur-sm">
+          <div className="mt-6 border-t border-cream/10 bg-ink/60 backdrop-blur-sm md:mt-10">
             <dl className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-cream/10 px-4 sm:px-6 md:grid-cols-4 lg:px-8">
               {STATS.map((s) => (
                 <div key={s.label} className="px-4 py-5 text-center md:py-6">
