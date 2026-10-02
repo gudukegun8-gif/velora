@@ -142,18 +142,43 @@ body {
 }
 
 /* ---- VÉLORA logo 3D presentation (real logo image, depth + hover tilt) ---- */
+/* ── Elegant feminine typography ─────────────────────────────
+   The audience is mostly women: display serif stays light and graceful,
+   never heavy. Softens any semibold display headings site-wide. */
+.font-display {
+  font-weight: 500;
+  letter-spacing: 0.015em;
+}
+
 .logo-3d {
   display: inline-block;
   perspective: 900px;
   line-height: 0;
 }
 .logo-3d img {
+  /* Blend the logo's black backdrop into dark surfaces so no box edge shows */
+  mix-blend-mode: screen;
   filter:
     drop-shadow(0 1px 1px rgba(255, 242, 205, 0.35))
     drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
     drop-shadow(0 0 28px rgba(198, 161, 91, 0.38));
   transition: transform 0.5s ease-out, filter 0.5s ease-out;
   transform-style: preserve-3d;
+  animation: logo-breathe 6s ease-in-out infinite;
+}
+@keyframes logo-breathe {
+  0%, 100% {
+    filter:
+      drop-shadow(0 1px 1px rgba(255, 242, 205, 0.35))
+      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
+      drop-shadow(0 0 28px rgba(198, 161, 91, 0.38));
+  }
+  50% {
+    filter:
+      drop-shadow(0 1px 1px rgba(255, 242, 205, 0.45))
+      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65))
+      drop-shadow(0 0 44px rgba(198, 161, 91, 0.55));
+  }
 }
 .logo-3d:hover img {
   transform: rotateX(8deg) rotateY(-10deg) scale(1.05);
@@ -165,6 +190,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .logo-3d img {
     transition: none;
+    animation: none;
   }
   .logo-3d:hover img {
     transform: none;
