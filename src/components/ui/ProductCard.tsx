@@ -45,7 +45,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cx(
-        "group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-cream/10 bg-coal transition-all duration-300 hover:border-gold/30 hover:shadow-[0_18px_50px_-18px_rgba(198,161,91,0.35)]",
+        "lift-on-hover group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-cream/10 bg-coal hover:border-gold/30 hover:shadow-[0_18px_50px_-18px_rgba(198,161,91,0.35)]",
         className
       )}
       onClick={openModal}
