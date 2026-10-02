@@ -265,7 +265,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     aria-hidden="true"
                     className="flex h-full w-full items-center justify-center bg-gradient-to-br from-coal via-ink to-coal"
                   >
-                    <span className="font-display text-8xl font-semibold text-gold">{initial}</span>
+                    <span className="font-display text-8xl font-medium text-gold">{initial}</span>
                   </div>
                 )}
                 <div className="absolute left-4 top-4 flex flex-col items-start gap-2">
@@ -298,11 +298,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {/* Details */}
             <div>
               {merchantName && (
-                <p className="mb-2 text-[11px] font-sans font-semibold uppercase tracking-[0.24em] text-gold">
+                <p className="mb-2 text-[11px] font-sans font-medium uppercase tracking-[0.24em] text-gold">
                   {merchantName}
                 </p>
               )}
-              <h1 className="font-display text-3xl font-semibold tracking-tight text-cream md:text-5xl">
+              <h1 className="font-display text-3xl font-medium tracking-tight text-cream md:text-5xl">
                 {product.title}
               </h1>
 
@@ -314,7 +314,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       {"★".repeat(5 - Math.max(0, Math.min(5, Math.round(product.rating))))}
                     </span>
                   </span>{" "}
-                  <span className="font-semibold text-cream">{product.rating.toFixed(1)}</span>
+                  <span className="font-medium text-cream">{product.rating.toFixed(1)}</span>
                   {product.reviewCount !== null && product.reviewCount > 0 && (
                     <span className="text-cream/55">
                       {" "}
@@ -327,7 +327,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="mt-6 flex flex-wrap items-baseline gap-3">
                 {price !== null ? (
                   <>
-                    <p className="font-sans text-3xl font-semibold text-cream">
+                    <p className="font-sans text-3xl font-medium text-cream">
                       {formatPrice(price, currency)}
                     </p>
                     {originalPrice !== null && originalPrice > price && (
@@ -355,7 +355,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <Link
                     href={`/go/${product.id}`}
                     rel="nofollow sponsored noopener"
-                    className="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-golddeep hover:text-cream"
+                    className="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 font-sans text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-golddeep hover:text-cream"
                   >
                     Check Price at {merchantName ?? "Merchant"}
                   </Link>
@@ -363,7 +363,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <button
                     type="button"
                     disabled
-                    className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cream/10 px-8 py-4 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-cream/50"
+                    className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cream/10 px-8 py-4 font-sans text-xs font-medium uppercase tracking-[0.16em] text-cream/50"
                   >
                     Not available
                   </button>
@@ -386,7 +386,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               {whoFor.length > 0 && (
                 <div className="mt-8 border-t border-cream/10 pt-6">
-                  <h2 className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/60">
+                  <h2 className="mb-3 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-cream/60">
                     Who it&apos;s for
                   </h2>
                   <div className="flex flex-wrap gap-2">
@@ -406,7 +406,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           {/* Specifications */}
           <section className="mt-14 md:mt-20" aria-labelledby="specs-heading">
-            <h2 id="specs-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
+            <h2 id="specs-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
               Specifications
             </h2>
             {specs.length > 0 ? (
@@ -417,7 +417,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       <tr key={`${row.key}-${i}`} className={i % 2 === 1 ? "bg-coal/70" : undefined}>
                         <th
                           scope="row"
-                          className="w-1/3 px-5 py-3.5 text-left align-top text-xs font-semibold uppercase tracking-[0.12em] text-cream/55"
+                          className="w-1/3 px-5 py-3.5 text-left align-top text-xs font-medium uppercase tracking-[0.12em] text-cream/55"
                         >
                           {row.key}
                         </th>
@@ -438,7 +438,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Editorial notes */}
           {product.description && (
             <section className="mt-14 md:mt-20" aria-labelledby="notes-heading">
-              <h2 id="notes-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
+              <h2 id="notes-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
                 Editorial Notes
               </h2>
               <div className="max-w-3xl space-y-4">
@@ -454,7 +454,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Related products */}
           {related.length > 0 && (
             <section className="mt-14 md:mt-20" aria-labelledby="related-heading">
-              <h2 id="related-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
+              <h2 id="related-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
                 You May Also Like
               </h2>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -468,7 +468,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Related guides */}
           {relatedGuides.length > 0 && (
             <section className="mt-14 md:mt-20" aria-labelledby="related-guides-heading">
-              <h2 id="related-guides-heading" className="mb-6 font-display text-2xl font-semibold text-cream md:text-3xl">
+              <h2 id="related-guides-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
                 Related Guides
               </h2>
               <div className="grid gap-6 md:grid-cols-3">
@@ -478,13 +478,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     href={`/guides/${g.slug}`}
                     className="group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
                   >
-                    <h3 className="font-display text-xl font-semibold text-cream group-hover:text-gold">
+                    <h3 className="font-display text-xl font-medium text-cream group-hover:text-gold">
                       {g.title}
                     </h3>
                     {g.excerpt && (
                       <p className="mt-2 line-clamp-2 font-sans text-sm text-cream/65">{g.excerpt}</p>
                     )}
-                    <span className="mt-4 block font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+                    <span className="mt-4 block font-sans text-xs font-medium uppercase tracking-[0.16em] text-gold">
                       Read guide &rarr;
                     </span>
                   </Link>
