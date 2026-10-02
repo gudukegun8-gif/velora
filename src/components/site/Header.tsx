@@ -50,7 +50,7 @@ function SavedCount() {
       {count > 0 && (
         <span
           aria-label={`${count} saved items`}
-          className="flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-bold text-ink"
+          className="flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-medium text-ink"
         >
           {count > 99 ? "99+" : count}
         </span>
@@ -82,29 +82,22 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-cream/10 bg-ink text-cream">
-      {/* Slim utility bar: centered tagline */}
-      <div className="border-b border-cream/10 bg-ink">
-        <div className="mx-auto flex h-8 max-w-7xl items-center justify-center px-4 sm:px-6 lg:px-8">
-          <p className="truncate font-sans text-[10px] uppercase tracking-[0.22em] text-cream/45">
-            Premium fitness discovery — curated for women &amp; men
-          </p>
-        </div>
-      </div>
-
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+        {/* Logo — left, bigger for clear wordmark readability */}
         <Link href="/" aria-label="VÉLORA home" className="flex shrink-0 items-center">
-          <Logo3D compact />
+          <Logo3D />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        {/* Nav — centered */}
+        <nav aria-label="Primary" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
               className={cx(
-                "font-sans text-[13px] font-medium uppercase tracking-[0.14em] transition-colors hover:text-gold",
-                pathname === item.href ? "text-gold" : "text-cream/85"
+                "nav-link font-sans text-[13px] font-normal uppercase tracking-[0.16em] transition-colors hover:text-gold",
+                pathname === item.href ? "text-gold" : "text-cream/80"
               )}
             >
               {item.label}
@@ -112,7 +105,15 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-4">
+        {/* Icons — far right corner (search at the very edge) */}
+        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+          <Link
+            href="/saved"
+            aria-label="View saved items"
+            className="flex h-10 items-center justify-center rounded-full px-2 text-cream/85 transition-colors hover:text-gold"
+          >
+            <SavedCount />
+          </Link>
           <Link
             href="/search"
             aria-label="Search products and guides"
@@ -132,13 +133,6 @@ export function Header() {
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>
-          </Link>
-          <Link
-            href="/saved"
-            aria-label="View saved items"
-            className="flex h-10 items-center justify-center rounded-full px-2 text-cream/85 transition-colors hover:text-gold"
-          >
-            <SavedCount />
           </Link>
           <button
             type="button"
