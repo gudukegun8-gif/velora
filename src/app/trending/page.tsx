@@ -5,11 +5,8 @@ import { canonical } from "@/lib/site";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { EmptyState } from "@/components/ui/EmptyState";
-import {
-  ProductCard,
-  cardProductSelect,
-  toCardProduct,
-} from "@/components/ui/ProductCard";
+import { ProductCard } from "@/components/ui/ProductCard";
+import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 
 export const dynamic = "force-dynamic";
 
