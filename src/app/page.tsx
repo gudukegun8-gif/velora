@@ -440,8 +440,8 @@ export default async function HomePage() {
             />
           </div>
           {/* Readability: gentle darken across, plus a soft blur panel behind the text */}
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-ink/5 via-ink/45 to-ink/85" />
-          <div aria-hidden="true" className="absolute inset-y-0 left-0 hidden w-[55%] bg-ink/30 backdrop-blur-[5px] md:block" />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-transparent via-ink/20 to-ink/60" />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-ink/70" />
 
           {/* Text — left corner, bigger, stylish, with gap from image */}
           <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-start px-6 py-20 sm:px-10 md:py-28 lg:px-16">
