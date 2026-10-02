@@ -82,7 +82,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-cream/10 bg-ink text-cream">
-      <div className="relative mx-auto flex h-24 max-w-7xl items-center pl-4 pr-2 sm:pl-6 sm:pr-3 lg:pl-8 lg:pr-4">
+      <div className="relative mx-auto flex h-24 max-w-7xl items-center pl-4 pr-0 sm:pl-6 sm:pr-1 lg:pl-8 lg:pr-2">
         {/* Logo — left, bigger for clear wordmark readability */}
         <Link href="/" aria-label="VÉLORA home" className="flex shrink-0 items-center">
           <Logo3D />
