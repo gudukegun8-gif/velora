@@ -162,7 +162,7 @@ body {
 /* ── Hero text block: very slow cinematic breathing zoom ── */
 .hero-text-block {
   animation: hero-text-breathe 18s ease-in-out infinite;
-  transform-origin: left center;
+  transform-origin: right center;
 }
 @keyframes hero-text-breathe {
   0%, 100% { transform: scale(1); }
