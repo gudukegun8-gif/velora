@@ -441,12 +441,12 @@ export default async function HomePage() {
           </div>
           {/* Readability: gentle darken across, plus a soft blur panel behind the text */}
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink/5 via-ink/45 to-ink/80" />
-          <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-[48%] bg-ink/20 backdrop-blur-[3px] md:block" />
+          <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-[52%] bg-ink/25 backdrop-blur-[4px] md:block" />
 
           {/* Text — right side, fully readable */}
-          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-            <div className="w-full md:ml-auto md:max-w-xl">
-              <p className="hero-reveal hero-reveal-1 mb-5 font-sans text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
+          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-end px-4 py-20 sm:px-6 md:py-28 lg:px-12">
+            <div className="w-full md:max-w-lg lg:max-w-xl">
+              <p className="hero-reveal hero-reveal-1 text-shimmer mb-5 font-sans text-[11px] font-medium uppercase tracking-[0.32em]">
                 Curated for Women &amp; Men
               </p>
               <h1 className="hero-reveal hero-reveal-2 font-display text-5xl font-medium leading-[1.08] md:text-6xl">
