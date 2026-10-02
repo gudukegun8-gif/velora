@@ -18,6 +18,9 @@ html {
 body {
   @apply bg-ink text-cream font-sans antialiased;
   text-rendering: optimizeLegibility;
+  /* Guard against stray horizontal overflow at intermediate breakpoints
+     (clip, not hidden, so position:sticky keeps working). */
+  overflow-x: clip;
 }
 
 /* Text selection */
