@@ -45,7 +45,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cx(
-        "lift-on-hover group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-cream/10 bg-coal hover:border-gold/30 hover:shadow-[0_18px_50px_-18px_rgba(198,161,91,0.35)]",
+        "lift-on-hover group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl",
+        "border border-cream/[0.08] bg-gradient-to-b from-coal via-coal to-[#0d0b08]",
+        "shadow-[0_2px_12px_-4px_rgba(0,0,0,0.5)]",
+        "hover:border-gold/25 hover:shadow-[0_24px_60px_-20px_rgba(198,161,91,0.28),0_8px_24px_-8px_rgba(0,0,0,0.6)]",
         className
       )}
       onClick={openModal}
@@ -64,14 +67,18 @@ export function ProductCard({ product, className }: ProductCardProps) {
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-ink">
         {product.imageUrl ? (
-          <Image
-            src={product.imageUrl}
-            alt={product.title}
-            fill
-            sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-            loading="lazy"
-          />
+          <>
+            <Image
+              src={product.imageUrl}
+              alt={product.title}
+              fill
+              sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 25vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+              loading="lazy"
+            />
+            {/* Consistent brand grade on product imagery */}
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0b08]/25 via-transparent to-transparent" />
+          </>
         ) : (
           <div
             aria-hidden="true"
