@@ -12,11 +12,8 @@ import { TrackView } from "@/components/site/TrackView";
 import { Badge } from "@/components/ui/Badge";
 import { JsonLd } from "@/components/site/JsonLd";
 import { articleJsonLd } from "@/lib/seo";
-import {
-  ProductCard,
-  cardProductSelect,
-  toCardProduct,
-} from "@/components/ui/ProductCard";
+import { ProductCard } from "@/components/ui/ProductCard";
+import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 
 export const dynamic = "force-dynamic";
 
