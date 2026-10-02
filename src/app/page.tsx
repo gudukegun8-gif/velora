@@ -177,6 +177,16 @@ function CategoryCard({ category }: { category: CategoryLite }) {
 }
 
 /** Cinematic editorial feature block: large image beside subcategory cards. */
+function VeloraDivider() {
+  return (
+    <div className="relative bg-ink px-4 py-2 sm:px-6 lg:px-8" aria-hidden="true">
+      <div className="velora-divider mx-auto max-w-7xl">
+        <span className="velora-divider-mark" />
+      </div>
+    </div>
+  );
+}
+
 function FeatureBlock({
   eyebrow,
   title,
@@ -441,7 +451,7 @@ export default async function HomePage() {
       <main>
         {/* ── Cinematic Hero v3: full-bleed image, blurred text panel ── */}
         <section className="relative overflow-hidden bg-ink text-cream">
-          {/* Full-bleed background image — fully clear and sharp */}
+          {/* Full-bleed background image — photographic treatment */}
           <div className="absolute inset-0" aria-hidden="true">
             <Image
               src="/images/hero-v2.webp"
@@ -451,6 +461,13 @@ export default async function HomePage() {
               sizes="100vw"
               className="hero-kenburns-alt object-cover object-center"
             />
+            {/* Filmic color grade: natural, less "perfect" */}
+            <div className="absolute inset-0 bg-[#1a1208]/15 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-[#c6a15b]/8 mix-blend-overlay" />
+            {/* Photographic vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(75%_65%_at_50%_45%,transparent_55%,rgba(5,4,3,0.5)_100%)]" />
+            {/* Film grain for authentic texture */}
+            <div className="film-grain absolute inset-0 opacity-[0.07]" />
           </div>
           {/* Readability: gentle darken across, plus a soft blur panel behind the text */}
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-ink/20 to-ink/60" />
@@ -627,6 +644,7 @@ export default async function HomePage() {
         )}
 
         {/* ── Men's Fitness ────────────────────────────────── */}
+        <VeloraDivider />
         <FeatureBlock
           accent="steel"
           eyebrow="For Him"
@@ -815,6 +833,7 @@ export default async function HomePage() {
         </section>
 
         {/* ── Recovery and Wellness ────────────────────────── */}
+        <VeloraDivider />
         <FeatureBlock
           eyebrow="Recover Harder"
           title="Recovery and Wellness"
