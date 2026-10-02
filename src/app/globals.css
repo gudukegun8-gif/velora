@@ -150,10 +150,50 @@ body {
   letter-spacing: 0.015em;
 }
 
-/* ── Animated nav links: gold underline sweeps in on hover ── */
+/* ── Text elements gently zoom on hover ── */
+.zoom-on-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
+}
+.zoom-on-hover:hover {
+  transform: scale(1.04);
+}
+
+/* ── Hero text block: very slow cinematic breathing zoom ── */
+.hero-text-block {
+  animation: hero-text-breathe 18s ease-in-out infinite;
+  transform-origin: left center;
+}
+@keyframes hero-text-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+
+/* ── Logo emblem: gentle floating glow pulse ── */
+@keyframes logo-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -2px; }
+}
+
+/* ── Shine sweep for nav/taskbar items (like the logo shine) ── */
 .nav-link {
   position: relative;
   padding-bottom: 2px;
+  overflow: hidden;
+}
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background: linear-gradient(100deg, transparent 40%, rgba(255, 246, 220, 0.35) 50%, transparent 60%);
+  transform: translateX(-150%);
+  animation: nav-shine 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes nav-shine {
+  0%, 60% { transform: translateX(-150%); opacity: 0; }
+  65% { opacity: 1; }
+  95%, 100% { transform: translateX(150%); opacity: 1; }
 }
 .nav-link::after {
   content: "";
@@ -239,7 +279,7 @@ body {
     drop-shadow(0 0 24px rgba(198, 161, 91, 0.35));
   transition: transform 0.5s ease-out, filter 0.5s ease-out;
   transform-style: preserve-3d;
-  animation: logo-breathe 6s ease-in-out infinite;
+  animation: logo-breathe 6s ease-in-out infinite, logo-float 7s ease-in-out infinite;
 }
 @keyframes logo-breathe {
   0%, 100% {
