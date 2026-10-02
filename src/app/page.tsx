@@ -440,16 +440,16 @@ export default async function HomePage() {
             />
           </div>
           {/* Readability: gentle darken across, plus a soft blur panel behind the text */}
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink/5 via-ink/45 to-ink/80" />
-          <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-[52%] bg-ink/25 backdrop-blur-[4px] md:block" />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-ink/5 via-ink/45 to-ink/85" />
+          <div aria-hidden="true" className="absolute inset-y-0 left-0 hidden w-[55%] bg-ink/30 backdrop-blur-[5px] md:block" />
 
-          {/* Text — right side, fully readable */}
-          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-end px-4 py-20 sm:px-6 md:py-28 lg:px-12">
-            <div className="w-full md:max-w-lg lg:max-w-xl">
+          {/* Text — left corner, bigger, stylish, with gap from image */}
+          <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-center justify-start px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+            <div className="hero-text-block w-full md:max-w-2xl">
               <p className="hero-reveal hero-reveal-1 text-shimmer mb-5 font-sans text-[11px] font-medium uppercase tracking-[0.32em]">
                 Curated for Women &amp; Men
               </p>
-              <h1 className="hero-reveal hero-reveal-2 font-display text-5xl font-medium leading-[1.08] md:text-6xl">
+              <h1 className="hero-reveal hero-reveal-2 zoom-on-hover font-display text-6xl font-medium leading-[1.05] md:text-7xl lg:text-8xl">
                 Discover Fitness
                 <span className="italic text-gold"> You&rsquo;ll Love.</span>
               </h1>
@@ -486,41 +486,6 @@ export default async function HomePage() {
                 </div>
               ))}
             </dl>
-          </div>
-        </section>
-
-        {/* ── How VÉLORA Works ───────────────────────────── */}
-        <section className="bg-ink py-14 md:py-24" aria-labelledby="how-heading">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div id="how-heading">
-              <SectionHeading
-                align="center"
-                eyebrow="How It Works"
-                title="How VÉLORA Works"
-                description="VÉLORA is a product discovery destination, not a store. Here's how a visit turns into the right purchase — on the retailer's site."
-              />
-            </div>
-            <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {HOW_STEPS.map((s) => (
-                <li
-                  key={s.n}
-                  className="rounded-2xl border border-cream/10 bg-coal/60 p-6 transition-colors hover:border-gold/40"
-                >
-                  <p className="font-display text-3xl font-medium text-gold/80">{s.n}</p>
-                  <h3 className="mt-3 font-sans text-sm font-medium uppercase tracking-[0.14em] text-cream">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/65">{s.text}</p>
-                </li>
-              ))}
-            </ol>
-            <p className="mx-auto mt-8 max-w-2xl text-center font-sans text-xs leading-relaxed text-cream/50">
-              VÉLORA may earn a commission when you purchase through qualifying links. This does not
-              affect the price you pay.{" "}
-              <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
-                Read our affiliate disclosure
-              </Link>
-            </p>
           </div>
         </section>
 
@@ -955,6 +920,41 @@ export default async function HomePage() {
                 </details>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── How VÉLORA Works ───────────────────────────── */}
+        <section className="bg-ink py-14 md:py-24" aria-labelledby="how-heading">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div id="how-heading">
+              <SectionHeading
+                align="center"
+                eyebrow="How It Works"
+                title="How VÉLORA Works"
+                description="VÉLORA is a product discovery destination, not a store. Here's how a visit turns into the right purchase — on the retailer's site."
+              />
+            </div>
+            <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {HOW_STEPS.map((s) => (
+                <li
+                  key={s.n}
+                  className="rounded-2xl border border-cream/10 bg-coal/60 p-6 transition-colors hover:border-gold/40"
+                >
+                  <p className="font-display text-3xl font-medium text-gold/80">{s.n}</p>
+                  <h3 className="mt-3 font-sans text-sm font-medium uppercase tracking-[0.14em] text-cream">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/65">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mx-auto mt-8 max-w-2xl text-center font-sans text-xs leading-relaxed text-cream/50">
+              VÉLORA may earn a commission when you purchase through qualifying links. This does not
+              affect the price you pay.{" "}
+              <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-gold">
+                Read our affiliate disclosure
+              </Link>
+            </p>
           </div>
         </section>
 
