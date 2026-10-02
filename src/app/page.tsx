@@ -155,7 +155,7 @@ function CategoryCard({ category }: { category: CategoryLite }) {
             aria-hidden="true"
             className="flex h-full w-full items-center justify-center bg-gradient-to-br from-coal via-ink to-coal"
           >
-            <span className="font-display text-5xl font-semibold text-gold">{initial}</span>
+            <span className="font-display text-5xl font-medium text-gold">{initial}</span>
           </div>
         )}
         <div
@@ -164,11 +164,11 @@ function CategoryCard({ category }: { category: CategoryLite }) {
         />
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-2xl font-semibold text-cream">{category.name}</h3>
+        <h3 className="font-display text-2xl font-medium text-cream">{category.name}</h3>
         {category.tagline && (
           <p className="mt-2 font-sans text-sm leading-relaxed text-cream/60">{category.tagline}</p>
         )}
-        <span className="mt-4 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold group-hover:underline group-hover:underline-offset-4">
+        <span className="mt-4 font-sans text-xs font-medium uppercase tracking-[0.16em] text-gold group-hover:underline group-hover:underline-offset-4">
           Explore &rarr;
         </span>
       </div>
@@ -245,10 +245,10 @@ function FeatureBlock({
             />
           </div>
           <div>
-            <p className={cx("mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em]", accents.eyebrow)}>
+            <p className={cx("mb-3 font-sans text-[11px] font-medium uppercase tracking-[0.28em]", accents.eyebrow)}>
               {eyebrow}
             </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="font-display text-3xl font-medium tracking-tight md:text-5xl">
               {title}
             </h2>
             <p className="mt-4 max-w-lg font-sans text-sm leading-relaxed text-cream/70 md:text-base">
@@ -266,7 +266,7 @@ function FeatureBlock({
                       )}
                     >
                       <span>
-                        <span className="block font-sans text-sm font-semibold text-cream">
+                        <span className="block font-sans text-sm font-medium text-cream">
                           {sub.name}
                         </span>
                         {sub.tagline && (
@@ -480,7 +480,7 @@ export default async function HomePage() {
                   <dt className="order-2 mt-1 block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-cream/55">
                     {s.label}
                   </dt>
-                  <dd className="font-display text-2xl font-semibold text-gold md:text-3xl">
+                  <dd className="font-display text-2xl font-medium text-gold md:text-3xl">
                     {s.value}
                   </dd>
                 </div>
@@ -506,8 +506,8 @@ export default async function HomePage() {
                   key={s.n}
                   className="rounded-2xl border border-cream/10 bg-coal/60 p-6 transition-colors hover:border-gold/40"
                 >
-                  <p className="font-display text-3xl font-semibold text-gold/80">{s.n}</p>
-                  <h3 className="mt-3 font-sans text-sm font-semibold uppercase tracking-[0.14em] text-cream">
+                  <p className="font-display text-3xl font-medium text-gold/80">{s.n}</p>
+                  <h3 className="mt-3 font-sans text-sm font-medium uppercase tracking-[0.14em] text-cream">
                     {s.title}
                   </h3>
                   <p className="mt-2 font-sans text-sm leading-relaxed text-cream/65">{s.text}</p>
@@ -553,10 +553,10 @@ export default async function HomePage() {
                   <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent to-coal/30" />
                 </div>
                 <div className="flex flex-col items-start justify-center p-8 md:p-14">
-                  <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-[#E2A58C]">
+                  <p className="mb-3 font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-[#E2A58C]">
                     Women&apos;s Strength
                   </p>
-                  <h2 id="strength-spotlight" className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
+                  <h2 id="strength-spotlight" className="font-display text-3xl font-medium tracking-tight md:text-4xl">
                     Strength Training, Curated for Her
                   </h2>
                   <p className="mt-4 max-w-md font-sans text-sm leading-relaxed text-cream/70 md:text-base">
@@ -618,7 +618,7 @@ export default async function HomePage() {
                 <Link
                   key={g.value}
                   href={`/search?goal=${g.value}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-coal px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-cream transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-coal px-5 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.16em] text-cream transition-colors hover:border-gold hover:text-gold"
                 >
                   {g.label}
                   <span aria-hidden="true">&rarr;</span>
@@ -691,7 +691,7 @@ export default async function HomePage() {
               {smart25.length > 0 && (
                 <div className="mt-10">
                   <div className="mb-5 flex items-center justify-between">
-                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    <h3 className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
                       Under $25
                     </h3>
                     <Link
@@ -707,7 +707,7 @@ export default async function HomePage() {
               {smart50.length > 0 && (
                 <div className="mt-10">
                   <div className="mb-5 flex items-center justify-between">
-                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    <h3 className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
                       Under $50
                     </h3>
                     <Link
@@ -723,7 +723,7 @@ export default async function HomePage() {
               {premium.length > 0 && (
                 <div className="mt-10">
                   <div className="mb-5 flex items-center justify-between">
-                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    <h3 className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
                       Premium Picks
                     </h3>
                     <Link
@@ -781,7 +781,7 @@ export default async function HomePage() {
                 ) : (
                   <p className="font-sans text-sm text-cream/60">
                     Equipment picks are being curated.{" "}
-                    <Link href="/c/equipment" className="font-semibold text-gold underline-offset-4 hover:underline">
+                    <Link href="/c/equipment" className="font-medium text-gold underline-offset-4 hover:underline">
                       Browse the equipment collection
                     </Link>
                     .
@@ -821,10 +821,10 @@ export default async function HomePage() {
                   key={t.title}
                   className="flex h-full flex-col rounded-2xl border border-cream/10 bg-coal p-7"
                 >
-                  <div aria-hidden="true" className="mb-4 font-display text-sm font-semibold tracking-[0.3em] text-gold">
+                  <div aria-hidden="true" className="mb-4 font-display text-sm font-medium tracking-[0.3em] text-gold">
                     0{i + 1}
                   </div>
-                  <h3 className="font-display text-xl font-semibold text-cream">
+                  <h3 className="font-display text-xl font-medium text-cream">
                     {t.title}
                   </h3>
                   <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-cream/70">
@@ -868,7 +868,7 @@ export default async function HomePage() {
                     <Badge tone="outline" className="self-start">
                       Comparison
                     </Badge>
-                    <h3 className="mt-4 font-display text-2xl font-semibold text-cream">
+                    <h3 className="mt-4 font-display text-2xl font-medium text-cream">
                       {c.title}
                     </h3>
                     {c.description && (
@@ -876,7 +876,7 @@ export default async function HomePage() {
                         {c.description}
                       </p>
                     )}
-                    <span className="mt-auto pt-5 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold group-hover:underline group-hover:underline-offset-4">
+                    <span className="mt-auto pt-5 font-sans text-xs font-medium uppercase tracking-[0.16em] text-gold group-hover:underline group-hover:underline-offset-4">
                       Compare {c.productIds.length} products &rarr;
                     </span>
                   </Link>
@@ -945,7 +945,7 @@ export default async function HomePage() {
             <div className="divide-y divide-cream/10 rounded-2xl border border-cream/10 bg-coal px-6 md:px-8">
               {FAQS.map((f) => (
                 <details key={f.q} className="group py-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-base font-semibold text-cream transition-colors hover:text-gold [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-base font-medium text-cream transition-colors hover:text-gold [&::-webkit-details-marker]:hidden">
                     {f.q}
                     <span aria-hidden="true" className="shrink-0 text-xl font-light text-gold transition-transform duration-200 group-open:rotate-45">
                       +
@@ -977,21 +977,21 @@ export default async function HomePage() {
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
               <div className="text-center">
-                <h3 className="font-display text-xl font-semibold text-cream">Independent Curation</h3>
+                <h3 className="font-display text-xl font-medium text-cream">Independent Curation</h3>
                 <p className="mt-3 font-sans text-sm leading-relaxed text-cream/65">
                   Every product is chosen by our editors for quality, design, and real-world
                   value. No paid placements in our picks — ever.
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="font-display text-xl font-semibold text-cream">Honest Presentation</h3>
+                <h3 className="font-display text-xl font-medium text-cream">Honest Presentation</h3>
                 <p className="mt-3 font-sans text-sm leading-relaxed text-cream/65">
                   Prices, ratings, and specifications are shown exactly as provided. When
                   information is missing, we say so instead of guessing.
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="font-display text-xl font-semibold text-cream">Transparent Affiliates</h3>
+                <h3 className="font-display text-xl font-medium text-cream">Transparent Affiliates</h3>
                 <p className="mt-3 font-sans text-sm leading-relaxed text-cream/65">
                   When you buy through our links, we may earn a commission at no extra cost to
                   you. It keeps our curation independent.
@@ -1008,7 +1008,7 @@ export default async function HomePage() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-gold underline-offset-4 hover:underline"
+                  className="font-sans text-xs font-medium uppercase tracking-[0.16em] text-gold underline-offset-4 hover:underline"
                 >
                   {l.label}
                 </Link>
@@ -1058,7 +1058,7 @@ function GuideCard({
             aria-hidden="true"
             className="flex h-full w-full items-center justify-center bg-gradient-to-br from-coal via-ink to-coal"
           >
-            <span className="font-display text-5xl font-semibold text-gold">{initial}</span>
+            <span className="font-display text-5xl font-medium text-gold">{initial}</span>
           </div>
         )}
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
@@ -1067,7 +1067,7 @@ function GuideCard({
         <Badge tone="outline" className="self-start">
           Buying Guide
         </Badge>
-        <h3 className="mt-3 font-display text-2xl font-semibold leading-snug text-cream transition-colors group-hover:text-gold">
+        <h3 className="mt-3 font-display text-2xl font-medium leading-snug text-cream transition-colors group-hover:text-gold">
           {title}
         </h3>
         {excerpt && (
