@@ -107,7 +107,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             {product.merchantName}
           </p>
         )}
-        <h3 className="font-display text-lg font-medium leading-snug text-cream">
+        <h3 className="font-display text-lg font-normal leading-snug text-cream/90">
           <Link href={href} onClick={stop} className="transition-colors hover:text-gold">
             {product.title}
           </Link>
@@ -116,7 +116,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <div className="mt-auto flex items-end justify-between gap-3 pt-4">
           <div>
             {product.price !== null ? (
-              <p className="font-sans text-base font-medium text-cream">
+              <p className="font-sans text-base font-normal text-cream/90">
                 {formatPrice(product.price, product.currency)}
               </p>
             ) : (
