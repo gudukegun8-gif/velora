@@ -14,6 +14,7 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 import { JsonLd } from "@/components/site/JsonLd";
 import { productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import ProductZoomImage from "@/components/site/ProductZoomImage";
 
 export const dynamic = "force-dynamic";
 
@@ -250,28 +251,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </ol>
           </nav>
 
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-            {/* Gallery */}
+          {/* Gallery — large, scroll-to-zoom */}
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
             <div>
-              <div className="relative aspect-square overflow-hidden rounded-3xl bg-coal">
+              <div className="relative">
                 {product.images.length > 0 ? (
-                  <Image
+                  <ProductZoomImage
                     src={product.images[0].url}
                     alt={product.images[0].alt || product.title}
-                    fill
                     priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
                   />
                 ) : (
                   <div
                     aria-hidden="true"
-                    className="flex h-full w-full items-center justify-center bg-gradient-to-br from-coal via-ink to-coal"
+                    className="flex aspect-square w-full items-center justify-center rounded-3xl bg-gradient-to-br from-coal via-ink to-coal"
                   >
                     <span className="font-display text-8xl font-medium text-gold">{initial}</span>
                   </div>
                 )}
-                <div className="absolute left-4 top-4 flex flex-col items-start gap-2">
+                <div className="pointer-events-none absolute left-4 top-4 flex flex-col items-start gap-2">
                   {product.trendStatus === "PUBLISHED" && <Badge tone="gold">Trending</Badge>}
                   {product.isFeatured && <Badge tone="ink">Editor&apos;s Pick</Badge>}
                 </div>
@@ -305,7 +303,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   {merchantName}
                 </p>
               )}
-              <h1 className="font-display text-3xl font-medium tracking-tight text-cream md:text-5xl">
+              <h1 className="font-display text-2xl font-medium tracking-tight text-cream md:text-3xl">
                 {product.title}
               </h1>
 
@@ -330,7 +328,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="mt-6 flex flex-wrap items-baseline gap-3">
                 {price !== null ? (
                   <>
-                    <p className="font-sans text-3xl font-medium text-cream">
+                    <p className="font-sans text-2xl font-medium text-cream">
                       {formatPrice(price, currency)}
                     </p>
                     {originalPrice !== null && originalPrice > price && (
