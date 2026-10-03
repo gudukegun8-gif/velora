@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "CEXa-vli2vXcqyZJ5w0vWS_XUZZsUeA2tdt8_b7Ss9g",
+  },
   alternates: {
     canonical: "/",
   },
