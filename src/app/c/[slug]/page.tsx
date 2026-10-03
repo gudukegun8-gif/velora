@@ -686,7 +686,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </h3>
                   <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70">
                     Our editors review this collection regularly — adding new finds, removing
-                    discontinued items, and updating prices. Look for the "curated" count above
+                    discontinued items, and updating prices. Look for the &ldquo;curated&rdquo; count above
                     for the current selection.
                   </p>
                 </div>
