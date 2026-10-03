@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const description =
     article.seoDescription || article.excerpt || truncate(article.content, 160);
   const meta: Metadata = {
-    title: article.seoTitle || `${article.title} | VÉLORA`,
+    title: article.seoTitle || article.title,
     description,
     alternates: { canonical: article.canonicalUrl || canonical(`/guides/${params.slug}`) },
   };

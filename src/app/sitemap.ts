@@ -7,8 +7,6 @@ export const dynamic = "force-dynamic";
 const STATIC_ROUTES = [
   "/",
   "/trending",
-  "/guides",
-  "/search",
   "/about",
   "/affiliate-disclosure",
   "/privacy",

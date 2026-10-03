@@ -141,11 +141,17 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     where: { slug: params.slug },
     select: { name: true, tagline: true, description: true, seoTitle: true, seoDescription: true },
   });
-  if (!category) return { title: "Collection not found — VÉLORA" };
+  if (!category) return { title: "Collection not found" };
+  // SEO: keyword-rich fallback descriptions (fix 2026-10-03)
+  const fallbackDescription =
+    category.seoDescription ||
+    category.description ||
+    (category.tagline
+      ? `${category.name}: ${category.tagline} Shop editor-curated ${category.name.toLowerCase()} picks — no paid placements, updated for 2026.`
+      : `${category.name} — editor-curated fitness essentials. Shop our handpicked ${category.name.toLowerCase()} collection with honest reviews and no paid placements.`);
   return {
-    title: category.seoTitle || `${category.name} — Curated Fitness Essentials | VÉLORA`,
-    description:
-      category.seoDescription || category.description || category.tagline || undefined,
+    title: category.seoTitle || `${category.name} — Curated Fitness Essentials`,
+    description: fallbackDescription,
     alternates: { canonical: canonical(`/c/${params.slug}`) },
   };
 }
@@ -620,6 +626,85 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 </div>
               </div>
             )}
+            {/* ── Editorial: How we choose (SEO) ── */}
+            <div className="mt-16 rounded-3xl border border-cream/10 bg-coal p-8 md:p-12">
+              <h2 className="font-display text-2xl font-medium tracking-tight text-cream md:text-3xl">
+                How Our Editors Choose {category.name}
+              </h2>
+              <div className="mt-4 max-w-3xl space-y-4 font-sans text-sm leading-relaxed text-cream/75 md:text-base">
+                <p>
+                  Every {category.name.toLowerCase()} product on this page is handpicked by the VÉLORA
+                  editorial team — never paid placements. We start by researching what real buyers
+                  actually need: durability for daily use, honest pricing, and designs that work in
+                  real homes and gyms, not just product photos.
+                </p>
+                <p>
+                  We compare specifications across merchants, read verified buyer reviews for
+                  recurring complaints (not just star ratings), and filter out anything with
+                  inflated claims or missing safety information. Products that survive this process
+                  earn a place here — and we re-check prices and availability regularly so what
+                  you see is what you can actually buy.
+                </p>
+                <p>
+                  <Link href="/editorial-policy" className="text-gold underline-offset-4 hover:underline">
+                    Read our full editorial policy
+                  </Link>{" "}
+                  to see exactly how we evaluate every product.
+                </p>
+              </div>
+            </div>
+
+            {/* ── Editorial: FAQ (SEO) ── */}
+            <div className="mt-12">
+              <h2 className="mb-6 font-display text-2xl font-medium tracking-tight text-cream md:text-3xl">
+                {category.name} FAQs
+              </h2>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-2xl border border-cream/10 bg-coal p-6">
+                  <h3 className="font-display text-lg font-medium text-cream">
+                    What should I look for when buying {category.name.toLowerCase()}?
+                  </h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70">
+                    Focus on build quality, honest specifications, and verified buyer feedback.
+                    Avoid products with vague descriptions or no clear return policy — our
+                    curated picks above already filter for these.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-cream/10 bg-coal p-6">
+                  <h3 className="font-display text-lg font-medium text-cream">
+                    Are these {category.name.toLowerCase()} products good value?
+                  </h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70">
+                    We prioritize value over hype — every product here is chosen because it
+                    delivers real quality at its price point. Check the live price via our
+                    merchant links, as prices update frequently.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-cream/10 bg-coal p-6">
+                  <h3 className="font-display text-lg font-medium text-cream">
+                    How often is this {category.name.toLowerCase()} collection updated?
+                  </h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70">
+                    Our editors review this collection regularly — adding new finds, removing
+                    discontinued items, and updating prices. Look for the "curated" count above
+                    for the current selection.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-cream/10 bg-coal p-6">
+                  <h3 className="font-display text-lg font-medium text-cream">
+                    Do you earn commission on these products?
+                  </h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-cream/70">
+                    Yes — when you buy through our links we may earn a commission at no extra
+                    cost to you. This never affects which products we recommend.{" "}
+                    <Link href="/affiliate-disclosure" className="text-gold underline-offset-4 hover:underline">
+                      Full disclosure
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

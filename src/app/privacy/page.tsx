@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | VÉLORA",
+  title: "Privacy Policy",
   description:
     "VÉLORA's privacy policy: what data we collect, how we use it, and the choices you have.",
   alternates: { canonical: canonical("/privacy") },

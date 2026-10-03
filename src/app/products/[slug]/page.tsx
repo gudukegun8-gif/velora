@@ -86,13 +86,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   if (!product || product.status !== "PUBLISHED") {
     return { title: "Product not found — VÉLORA" };
   }
-  const description =
-    product.seoDescription ||
+  const fallbackDescription =
     product.shortDescription ||
-    (product.description ? truncate(product.description, 160) : undefined);
-  // Avoid duplicate brand suffix if seoTitle already ends with it (M3)
-  const rawTitle = product.seoTitle || product.title;
-  const title = /\|\s*VÉLORA\s*$/i.test(rawTitle) ? rawTitle : `${rawTitle} | VÉLORA`;
+    (product.description ? truncate(product.description, 150) : null) ||
+    `${truncate(product.title, 80)} — editor-curated fitness pick. Check live price and details on Temu via VÉLORA.`;
+  const description = product.seoDescription || fallbackDescription;
+  // Layout template adds "| VÉLORA" — never hardcode it here (SEO fix 2026-10-03)
+  const title = product.seoTitle || product.title;
   return {
     title,
     description,

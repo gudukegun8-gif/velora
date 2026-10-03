@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | VÉLORA",
+  title: "Terms of Service",
   description:
     "VÉLORA's terms of service: how you may use the site, and the limits of what we provide as a product discovery publication.",
   alternates: { canonical: canonical("/terms") },

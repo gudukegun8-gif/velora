@@ -12,10 +12,11 @@ import { Badge } from "@/components/ui/Badge";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Buying Guides & Fitness Editorial | VÉLORA",
+  title: "Buying Guides & Fitness Editorial",
   description:
     "VÉLORA buying guides, reviews, and comparisons — what to look for, what to skip, and which fitness products earn our recommendation.",
   alternates: { canonical: canonical("/guides") },
+  robots: { index: false, follow: true },
 };
 
 const TYPE_FILTERS = [

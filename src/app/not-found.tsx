@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Page Not Found | VÉLORA",
+  title: "Page Not Found",
   description: "The page you're looking for doesn't exist — but the good stuff is one click away.",
 };
 

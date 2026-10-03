@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 export const metadata: Metadata = {
-  title: "Affiliate Disclosure | VÉLORA",
+  title: "Affiliate Disclosure",
   description:
     "VÉLORA's affiliate disclosure: how we earn commissions through merchant links, and how that supports our independent curation.",
   alternates: { canonical: canonical("/affiliate-disclosure") },

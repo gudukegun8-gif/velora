@@ -14,9 +14,10 @@ import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Search | VÉLORA",
+  title: "Search",
   description: "Search VÉLORA's curated fitness products, buying guides, and comparisons.",
   alternates: { canonical: canonical("/search") },
+  robots: { index: false, follow: true },
 };
 
 interface SearchPageProps {

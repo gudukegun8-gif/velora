@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: ComparePageProps): Promise<Me
     return { title: "Comparison not found — VÉLORA" };
   }
   return {
-    title: comparison.seoTitle || `${comparison.title} | VÉLORA`,
+    title: comparison.seoTitle || comparison.title,
     description: comparison.seoDescription || comparison.description || undefined,
     alternates: { canonical: canonical(`/compare/${params.slug}`) },
   };

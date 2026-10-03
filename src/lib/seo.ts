@@ -74,6 +74,7 @@ export function productJsonLd(p: ProductJsonLdInput): Record<string, unknown> {
   if (hasOffers) {
     const offer: Record<string, unknown> = {
       "@type": "Offer",
+      url: absoluteUrl(`/products/${p.slug}`),
       priceCurrency: p.currency || "USD",
       price: Number(p.price),
       availability: "https://schema.org/InStock",

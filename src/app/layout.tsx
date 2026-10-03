@@ -71,6 +71,14 @@ export default function RootLayout({
     description:
       "VÉLORA is a premium fitness and lifestyle product discovery destination — editor-curated training essentials, honest comparisons, and buying guides.",
     sameAs: [
+      "https://www.pinterest.com/velorafitness/",
+      "https://www.instagram.com/vfx_ladka8/",
+      "https://x.com/thakursahb786",
+      "https://www.threads.com/@vfx_ladka8",
+      "https://velorafitness.tumblr.com/",
+      "https://velorafitness.bsky.social/",
+      "https://velorafitness.substack.com/",
+      "https://t.me/velorafitness",
       process.env.NEXT_PUBLIC_Pinterest_URL || process.env.NEXT_PUBLIC_PINTEREST_URL,
       process.env.NEXT_PUBLIC_INSTAGRAM_URL,
     ].filter(Boolean),

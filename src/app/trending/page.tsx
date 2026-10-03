@@ -11,7 +11,7 @@ import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Trending Fitness Products | VÉLORA",
+  title: "Trending Fitness Products",
   description:
     "The fitness products gaining momentum right now — surfaced by real interest and reviewed by VÉLORA editors before they earn a spot.",
   alternates: { canonical: canonical("/trending") },
