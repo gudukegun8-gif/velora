@@ -567,6 +567,41 @@ export default async function HomePage() {
           </section>
         )}
 
+        {/* ── Dumbbell Strength Cinematic Banner ─────────────── */}
+        <section className="relative overflow-hidden bg-ink text-cream" aria-labelledby="dumbbell-banner">
+          <div className="relative h-[70vh] min-h-[480px] w-full overflow-hidden md:h-[85vh]">
+            <Image
+              src="/images/women-dumbbell-press.png"
+              alt="Athletic woman doing dumbbell shoulder press in a dark cinematic gym — VÉLORA strength training"
+              fill
+              sizes="100vw"
+              loading="lazy"
+              className="hero-kenburns object-cover object-center"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
+            <div className="absolute inset-x-0 bottom-0">
+              <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 md:pb-20 lg:px-8">
+                <p className="mb-3 font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
+                  Strength in Motion
+                </p>
+                <h2 id="dumbbell-banner" className="font-display max-w-2xl text-4xl font-medium tracking-tight md:text-5xl">
+                  Power Looks Beautiful on You
+                </h2>
+                <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-cream/75 md:text-base">
+                  Premium dumbbells and strength essentials, curated for women who
+                  train with intention — sculpt, strengthen, and shine.
+                </p>
+                <div className="mt-8">
+                  <Button href="/c/strength-training" size="lg">
+                    Shop Dumbbells &amp; Strength
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Trending ─────────────────────────────────────── */}
         {trending.length > 0 && (
           <section className="border-y border-cream/10 bg-coal/50 py-14 md:py-24" aria-labelledby="trending-heading">
