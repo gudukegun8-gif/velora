@@ -55,7 +55,7 @@ const childOrder = { sortOrder: "asc" as const };
 const FAQS = [
   {
     q: "Is VÉLORA a store? Can I buy directly here?",
-    a: "No — VÉLORA is a product discovery and curation destination, not a retailer. Our editors research and curate the best fitness essentials, and when you decide, you buy directly from trusted merchants like Amazon through our links.",
+    a: "No — VÉLORA is a product discovery and curation destination, not a retailer. Our editors research and curate the best fitness essentials, and when you decide, you buy directly from trusted merchants like Temu through our links.",
   },
   {
     q: "How are products chosen for VÉLORA?",
@@ -363,19 +363,19 @@ export default async function HomePage() {
         select: { id: true, slug: true, name: true, tagline: true, image: true },
       }),
       db.product.findMany({
-        where: { status: "PUBLISHED", trendStatus: "PUBLISHED" },
+        where: { status: "PUBLISHED", trendStatus: "PUBLISHED", images: { some: {} } },
         orderBy: [{ trendScore: "desc" }, { createdAt: "desc" }],
         take: 8,
         select: cardProductSelect,
       }),
       db.product.findMany({
-        where: { status: "PUBLISHED", isFeatured: true },
+        where: { status: "PUBLISHED", isFeatured: true, images: { some: {} } },
         orderBy: { updatedAt: "desc" },
         take: 8,
         select: cardProductSelect,
       }),
       db.product.findMany({
-        where: { status: "PUBLISHED" },
+        where: { status: "PUBLISHED", images: { some: {} } },
         orderBy: { createdAt: "desc" },
         take: 8,
         select: cardProductSelect,
@@ -396,19 +396,19 @@ export default async function HomePage() {
         },
       }),
       db.product.findMany({
-        where: { status: "PUBLISHED", price: { lt: 25 } },
+        where: { status: "PUBLISHED", price: { lt: 25 }, images: { some: {} } },
         orderBy: [{ reviewCount: "desc" }, { createdAt: "desc" }],
         take: 8,
         select: cardProductSelect,
       }),
       db.product.findMany({
-        where: { status: "PUBLISHED", price: { gte: 25, lt: 50 } },
+        where: { status: "PUBLISHED", price: { gte: 25, lt: 50 }, images: { some: {} } },
         orderBy: [{ reviewCount: "desc" }, { createdAt: "desc" }],
         take: 8,
         select: cardProductSelect,
       }),
       db.product.findMany({
-        where: { status: "PUBLISHED", price: { gte: 100 } },
+        where: { status: "PUBLISHED", price: { gte: 100 }, images: { some: {} } },
         orderBy: [{ reviewCount: "desc" }, { createdAt: "desc" }],
         take: 4,
         select: cardProductSelect,
@@ -426,7 +426,7 @@ export default async function HomePage() {
   let equipmentProducts: CardProduct[] = [];
   if ((equipmentCat?.children?.length ?? 0) === 0 && equipmentCat) {
     const rows = await db.product.findMany({
-      where: { status: "PUBLISHED", categoryId: equipmentCat.id },
+      where: { status: "PUBLISHED", categoryId: equipmentCat.id, images: { some: {} } },
       orderBy: [{ rating: "desc" }, { createdAt: "desc" }],
       take: 4,
       select: cardProductSelect,

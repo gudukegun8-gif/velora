@@ -89,8 +89,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     product.seoDescription ||
     product.shortDescription ||
     (product.description ? truncate(product.description, 160) : undefined);
+  // Avoid duplicate brand suffix if seoTitle already ends with it (M3)
+  const rawTitle = product.seoTitle || product.title;
+  const title = /\|\s*VÉLORA\s*$/i.test(rawTitle) ? rawTitle : `${rawTitle} | VÉLORA`;
   return {
-    title: product.seoTitle || `${product.title} | VÉLORA`,
+    title,
     description,
     alternates: { canonical: canonical(`/products/${params.slug}`) },
   };

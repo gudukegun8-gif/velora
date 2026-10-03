@@ -127,7 +127,7 @@ function LinkColumn({
 /**
  * Site footer on ink: brand wordmark, nav columns, social row, affiliate
  * disclosure snippet (from the affiliate_disclosure_short site setting with a
- * fallback), and the Amazon Associates attribution line.
+ * fallback), and the Temu affiliate attribution line.
  */
 export async function Footer() {
   const disclosure = await getDisclosure();
@@ -194,7 +194,7 @@ export async function Footer() {
           <div className="mt-6 flex flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
             <p className="font-sans text-xs text-cream/40">© {year} VÉLORA. All rights reserved.</p>
             <p className="font-sans text-xs text-cream/40">
-              As an Amazon Associate and affiliate partner, we earn from qualifying purchases.
+              As a Temu affiliate partner, we earn from qualifying purchases.
             </p>
           </div>
         </div>

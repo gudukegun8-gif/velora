@@ -50,6 +50,8 @@ function buildWhere(
   const where: Prisma.ProductWhereInput = {
     status: "PUBLISHED",
     categoryId: { in: categoryIds },
+    // Hide products without a verified image — broken cards kill premium perception (H4)
+    images: { some: {} },
   };
 
   if (gender) {

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default async function TrendingPage() {
   const rows = await db.product.findMany({
-    where: { status: "PUBLISHED", trendStatus: "PUBLISHED" },
+    where: { status: "PUBLISHED", trendStatus: "PUBLISHED", images: { some: {} } },
     orderBy: [{ trendScore: "desc" }, { createdAt: "desc" }],
     take: 48,
     select: cardProductSelect,
