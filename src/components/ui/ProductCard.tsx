@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type SyntheticEvent } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
@@ -144,7 +145,20 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </Link>
         </div>
       </div>
-      {modalOpen && <ProductModal product={modalProduct} onClose={() => setModalOpen(false)} />}
+      {/* Quick-view modal rendered via portal to document.body.
+                This is critical: the card uses .lift-on-hover which applies
+                transform: translateY(-6px) on hover. Per CSS spec, a transformed
+                element becomes the containing block for fixed-position descendants,
+                which would trap the modal's `fixed inset-0` inside the ~300px card
+                instead of the viewport (huge overlapping text bug). The portal
+                keeps the dialog outside the transformed ancestor. */}
+      {modalOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <ProductModal product={modalProduct} onClose={() => setModalOpen(false)} />,document.body)}
+          document.body
+          document.body
+          document.body
     </article>
   );
 }
