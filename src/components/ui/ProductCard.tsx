@@ -146,19 +146,18 @@ export function ProductCard({ product, className }: ProductCardProps) {
         </div>
       </div>
       {/* Quick-view modal rendered via portal to document.body.
-                This is critical: the card uses .lift-on-hover which applies
-                transform: translateY(-6px) on hover. Per CSS spec, a transformed
-                element becomes the containing block for fixed-position descendants,
-                which would trap the modal's `fixed inset-0` inside the ~300px card
-                instead of the viewport (huge overlapping text bug). The portal
-                keeps the dialog outside the transformed ancestor. */}
+          This is critical: the card uses .lift-on-hover which applies
+          transform: translateY(-6px) on hover. Per CSS spec, a transformed
+          element becomes the containing block for fixed-position descendants,
+          which would trap the modal's `fixed inset-0` inside the ~300px card
+          instead of the viewport (huge overlapping text bug). The portal
+          keeps the dialog outside the transformed ancestor. */}
       {modalOpen &&
         typeof document !== "undefined" &&
         createPortal(
-          <ProductModal product={modalProduct} onClose={() => setModalOpen(false)} />,document.body)}
+          <ProductModal product={modalProduct} onClose={() => setModalOpen(false)} />,
           document.body
-          document.body
-          document.body
+        )}
     </article>
   );
 }
