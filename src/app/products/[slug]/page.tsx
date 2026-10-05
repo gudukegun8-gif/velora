@@ -81,6 +81,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       seoTitle: true,
       seoDescription: true,
       status: true,
+      images: { select: { url: true, alt: true }, orderBy: { sortOrder: "asc" }, take: 1 },
     },
   });
   if (!product || product.status !== "PUBLISHED") {
@@ -93,10 +94,24 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const description = product.seoDescription || fallbackDescription;
   // Layout template adds "| VÉLORA" — never hardcode it here (SEO fix 2026-10-03)
   const title = product.seoTitle || product.title;
+  // Use the REAL product photo for social link previews (og:image/twitter:image),
+  // so X/Threads/Bluesky/etc. show the product — never the generic logo.
+  const productImage = product.images[0]?.url || "/images/og-image.webp";
   return {
     title,
     description,
     alternates: { canonical: canonical(`/products/${params.slug}`) },
+    openGraph: {
+      title,
+      description,
+      images: [{ url: productImage, alt: product.images[0]?.alt || title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [productImage],
+    },
   };
 }
 
