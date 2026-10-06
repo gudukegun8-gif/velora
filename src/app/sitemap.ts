@@ -13,6 +13,7 @@ const STATIC_ROUTES = [
   "/terms",
   "/contact",
   "/editorial-policy",
+  "/guides",
 ];
 
 function fallbackSitemap(): MetadataRoute.Sitemap {
@@ -40,6 +41,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         select: { slug: true, updatedAt: true },
       }),
       db.category.findMany({
+        // Only collections that actually render products: a category page
+        // shows its own products plus its children's, so mirror that here.
+        // Empty collections (no curated picks yet) stay out of the sitemap.
+        where: {
+          OR: [
+            { products: { some: { status: "PUBLISHED" } } },
+            { children: { some: { products: { some: { status: "PUBLISHED" } } } } },
+          ],
+        },
         select: { slug: true, updatedAt: true },
       }),
     ]);
