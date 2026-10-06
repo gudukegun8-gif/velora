@@ -146,6 +146,27 @@ export function articleJsonLd(a: ArticleJsonLdInput): Record<string, unknown> {
   return result;
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+/**
+ * FAQPage structured data. Pass only Q&As that are actually rendered
+ * on the page — never invent questions or answers.
+ */
+export function faqJsonLd(faqs: FaqItem[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+}
+
 export interface BreadcrumbJsonLdItem {
   name: string;
   path: string;

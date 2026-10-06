@@ -11,6 +11,8 @@ import { Footer } from "@/components/site/Footer";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
+import { JsonLd } from "@/components/site/JsonLd";
+import { faqJsonLd } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -319,9 +321,37 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     : null;
   const spotlight = spotlightConfig && spotlightTarget ? spotlightConfig : null;
 
+  // FAQPage structured data — mirrors the visible FAQ section below exactly
+  // (plain-text answers; the visible answers add inline links). Honest: no
+  // invented questions or answers.
+  const nameLower2 = category.name.toLowerCase();
+  const faqs = [
+    {
+      question: `What should I look for when buying ${nameLower2}?`,
+      answer:
+        "Focus on build quality, honest specifications, and verified buyer feedback. Avoid products with vague descriptions or no clear return policy — our curated picks above already filter for these.",
+    },
+    {
+      question: `Are these ${nameLower2} products good value?`,
+      answer:
+        "We prioritize value over hype — every product here is chosen because it delivers real quality at its price point. Check the live price via our merchant links, as prices update frequently.",
+    },
+    {
+      question: `How often is this ${nameLower2} collection updated?`,
+      answer:
+        "Our editors review this collection regularly — adding new finds, removing discontinued items, and updating prices.",
+    },
+    {
+      question: "Do you earn commission on these products?",
+      answer:
+        "Yes — when you buy through our links we may earn a commission at no extra cost to you. This never affects which products we recommend. See our affiliate disclosure for details.",
+    },
+  ];
+
   return (
     <>
       <Header />
+      <JsonLd data={faqJsonLd(faqs)} />
       <main className="bg-ink">
         {/* Breadcrumbs */}
         <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
