@@ -43,7 +43,26 @@ export function ProductCard({ product, className }: ProductCardProps) {
   const openModal = () => setModalOpen(true);
   const stop = (e: SyntheticEvent) => e.stopPropagation();
 
+  // The quick-view modal is rendered as a SIBLING of the card (via a portal to
+  // document.body), never as a child of the <article>. This is critical: the
+  // card uses .lift-on-hover which applies transform: translateY(-6px) on
+  // hover. Per CSS spec, a transformed element becomes the containing block
+  // for fixed-position descendants, which would trap the modal's
+  // `fixed inset-0` inside the ~300px card instead of the viewport (huge
+  // overlapping text bug). The portal keeps the dialog outside the
+  // transformed ancestor. Keeping it outside the article also guarantees no
+  // stray text nodes can ever leak into the card markup (a previous deploy
+  // rendered literal "document.body" text inside cards from a dirty tree).
+  const modal =
+    modalOpen && typeof document !== "undefined"
+      ? createPortal(
+          <ProductModal product={modalProduct} onClose={() => setModalOpen(false)} />,
+          document.body
+        )
+      : null;
+
   return (
+    <>
     <article
       className={cx(
         "lift-on-hover group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl",
@@ -145,19 +164,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </Link>
         </div>
       </div>
-      {/* Quick-view modal rendered via portal to document.body.
-          This is critical: the card uses .lift-on-hover which applies
-          transform: translateY(-6px) on hover. Per CSS spec, a transformed
-          element becomes the containing block for fixed-position descendants,
-          which would trap the modal's `fixed inset-0` inside the ~300px card
-          instead of the viewport (huge overlapping text bug). The portal
-          keeps the dialog outside the transformed ancestor. */}
-      {modalOpen &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <ProductModal product={modalProduct} onClose={() => setModalOpen(false)} />,
-          document.body
-        )}
     </article>
+    {modal}
+    </>
   );
 }
