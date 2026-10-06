@@ -137,6 +137,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       trendStatus: true,
       status: true,
       specifications: true,
+      updatedAt: true,
       categoryId: true,
       category: {
         select: {
@@ -322,6 +323,29 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {product.title}
               </h1>
 
+              {/* Editorial byline + last-updated (E-E-A-T). Products are curated by the
+                  editorial team as a whole — see /about — rather than a single author. */}
+              <p className="mt-3 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-cream/50">
+                By{" "}
+                <Link
+                  href="/about"
+                  className="text-cream/75 underline-offset-4 hover:text-gold hover:underline"
+                >
+                  VÉLORA Editors
+                </Link>
+                <span aria-hidden="true" className="mx-2 text-cream/30">
+                  ·
+                </span>
+                Last updated{" "}
+                <time dateTime={product.updatedAt.toISOString()}>
+                  {product.updatedAt.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+              </p>
+
               {product.rating !== null && (
                 <p className="mt-4 font-sans text-sm text-cream/70" aria-label={`Rated ${product.rating} out of 5`}>
                   <span aria-hidden="true" className="text-lg text-gold">
@@ -420,12 +444,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
 
-          {/* Specifications */}
-          <section className="mt-14 md:mt-20" aria-labelledby="specs-heading">
-            <h2 id="specs-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
-              Specifications
-            </h2>
-            {specs.length > 0 ? (
+          {/* Specifications — rendered only when real spec data exists.
+              No placeholder section (cleanup directive: no empty sections). */}
+          {specs.length > 0 && (
+            <section className="mt-14 md:mt-20" aria-labelledby="specs-heading">
+              <h2 id="specs-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
+                Specifications
+              </h2>
               <div className="overflow-hidden rounded-2xl border border-cream/10">
                 <table className="w-full bg-coal font-sans text-sm">
                   <tbody>
@@ -443,13 +468,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   </tbody>
                 </table>
               </div>
-            ) : (
-              <p className="font-sans text-sm italic text-cream/55">
-                Detailed specifications haven&apos;t been provided for this product yet — check the
-                merchant page for the latest details.
-              </p>
-            )}
-          </section>
+            </section>
+          )}
 
           {/* Editorial notes */}
           {product.description && (
