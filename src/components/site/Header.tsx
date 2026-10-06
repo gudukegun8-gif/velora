@@ -10,8 +10,6 @@ import { cx } from "@/lib/utils";
 const NAV = [
   { label: "Women", href: "/c/women" },
   { label: "Men", href: "/c/men" },
-  { label: "Equipment", href: "/c/equipment" },
-  { label: "Workouts", href: "/c/workouts" },
   { label: "Recovery", href: "/c/recovery" },
   { label: "Trending", href: "/trending" },
   { label: "Guides", href: "/guides" },
