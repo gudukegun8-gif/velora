@@ -620,12 +620,17 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </div>
                 ))}
               </div>
-            ) : (
+            ) : activeFilters.length > 0 ? (
               <EmptyState
                 title="No products match these filters"
                 message="Try widening your price range or clearing a filter — new curated products are added regularly."
                 actionHref={`/c/${category.slug}`}
                 actionLabel="Clear filters"
+              />
+            ) : (
+              <EmptyState
+                title="Nothing curated here yet"
+                message="Our editors haven't curated picks for this collection yet — check back soon."
               />
             )}
 
