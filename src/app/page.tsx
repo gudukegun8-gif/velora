@@ -22,20 +22,20 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "VÉLORA — Curated Fitness Essentials for Women & Men",
+  title: "VÉLORA — Home Gym & Fitness Essentials for Women",
   description:
-    "VÉLORA is premium fitness and lifestyle product discovery. Editor-curated training essentials, smart equipment, honest comparisons and buying guides — no paid placements, ever.",
+    "Discover curated home gym & fitness essentials for women — dumbbells, yoga mats, resistance bands, buying guides & honest picks. Zero paid placements.",
   alternates: { canonical: canonical("/") },
   openGraph: {
-    title: "VÉLORA — Curated Fitness Essentials for Women & Men",
+    title: "VÉLORA — Home Gym & Fitness Essentials for Women",
     description:
-      "Premium fitness product discovery. Editor-curated training essentials, honest comparisons and buying guides.",
+      "Curated home gym & fitness essentials for women: dumbbells, yoga mats, resistance bands, buying guides & honest picks. Zero paid placements.",
     images: [
       {
         url: "/images/og-image.webp",
         width: 1200,
         height: 630,
-        alt: "VÉLORA — Curated Fitness Essentials for Women & Men",
+        alt: "VÉLORA — Home Gym & Fitness Essentials for Women",
       },
     ],
   },
@@ -144,7 +144,7 @@ function CategoryCard({ category }: { category: CategoryLite }) {
         {category.image ? (
           <Image
             src={category.image}
-            alt={`${category.name} — curated fitness collection`}
+            alt={`${category.name} — ${category.tagline ?? "curated fitness collection"}`}
             fill
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
             loading="lazy"
@@ -387,9 +387,9 @@ export default async function HomePage() {
         select: { slug: true, title: true, description: true, productIds: true },
       }),
       db.article.findMany({
-        where: { status: "PUBLISHED", type: "BUYING_GUIDE" },
+        where: { status: "PUBLISHED" },
         orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-        take: 3,
+        take: 9,
         select: {
           slug: true, title: true, excerpt: true, featuredImage: true, type: true,
           publishedAt: true, author: { select: { name: true } },
@@ -480,8 +480,8 @@ export default async function HomePage() {
                 Curated for Women &amp; Men
               </p>
               <h1 className="hero-reveal hero-reveal-2 zoom-on-hover font-display text-6xl font-medium leading-[1.05] md:text-7xl lg:text-8xl">
-                Discover Fitness
-                <span className="italic text-gold"> You&rsquo;ll Love.</span>
+                Discover Curated Fitness
+                <span className="italic text-gold"> Essentials You&rsquo;ll Love.</span>
               </h1>
               <p className="hero-reveal hero-reveal-3 mt-6 max-w-lg font-sans text-base leading-relaxed text-cream/85 md:text-lg">
                 Handpicked fitness essentials — beautiful gear, honest reviews,
@@ -586,7 +586,7 @@ export default async function HomePage() {
                   Strength in Motion
                 </p>
                 <h2 id="dumbbell-banner" className="font-display max-w-2xl text-4xl font-medium tracking-tight md:text-5xl">
-                  Power Looks Beautiful on You
+                  Strength Training Essentials for Her
                 </h2>
                 <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-cream/75 md:text-base">
                   Premium dumbbells and strength essentials, curated for women who
@@ -777,7 +777,7 @@ export default async function HomePage() {
             <div id="equipment-heading">
               <SectionHeading
                 eyebrow="The Gear Behind the Results"
-                title="Popular Equipment"
+                title="Popular Home Gym Equipment"
                 description="Smart, space-conscious, and built to last — the equipment our editors rate highest."
                 href="/c/equipment"
                 linkLabel="All equipment"

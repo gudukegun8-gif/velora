@@ -19,9 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
   });
   const indexable = publishedCount > 0;
   return {
-    title: "Buying Guides & Fitness Editorial",
+    title: "Fitness Buying Guides for Home Gyms",
     description:
-      "VÉLORA buying guides, reviews, and comparisons — what to look for, what to skip, and which fitness products earn our recommendation.",
+      "Fitness buying guides: best dumbbells, kettlebells, yoga mats & resistance bands for women, plus honest comparisons. Curated picks, zero paid placements.",
     alternates: { canonical: canonical("/guides") },
     robots: { index: indexable, follow: true },
   };
@@ -45,6 +45,59 @@ const TYPE_LABELS: Record<string, string> = {
   ROUNDUP: "Roundup",
   TREND: "Trend",
 };
+
+/**
+ * Curated guide order + editor-written hub descriptions (2–3 sentences each).
+ * The hub renders published guides in this order; guides not yet published
+ * (the four 2026 Q4 additions) appear automatically once they go live.
+ */
+const GUIDE_ORDER: Array<{ slug: string; description: string }> = [
+  {
+    slug: "best-dumbbells-for-women",
+    description:
+      "Dumbbells are the foundation of women's strength training — but the wrong pair gathers dust. We compare fixed vs adjustable dumbbells for women, covering which weights to start with, grip and coating differences, and space-saving picks for home gyms, with honest pros and cons for every recommendation.",
+  },
+  {
+    slug: "best-adjustable-dumbbells-small-spaces",
+    description:
+      "One pair, five minutes of floor space. These are the best adjustable dumbbells for small spaces — compact, quick-change pairs that replace a whole rack, evaluated on footprint, adjustment speed, durability, and value for apartment home gyms.",
+  },
+  {
+    slug: "are-adjustable-dumbbells-worth-it",
+    description:
+      "Adjustable dumbbells cost more up front — are they actually worth it? We run the cost math against fixed dumbbells, weigh the real pros and cons around space, durability, and convenience, and give an honest verdict for home gym owners.",
+  },
+  {
+    slug: "best-kettlebells-for-women",
+    description:
+      "Kettlebells build full-body strength and cardio in one tool — but starting weight matters more than brand. Our guide to the best kettlebells for women beginners covers what weight to start with, which shapes and coatings are worth paying for, and beginner-friendly picks that grow with you.",
+  },
+  {
+    slug: "best-resistance-bands-for-women",
+    description:
+      "Loop vs tube vs fabric: resistance bands aren't one-size-fits-all. We break down the best resistance bands for women for glutes, full-body strength, Pilates, and travel workouts, with honest notes on durability, resistance levels, and which type suits your routine.",
+  },
+  {
+    slug: "resistance-bands-vs-dumbbells",
+    description:
+      "Bands or dumbbells — which deserves your money first? We compare resistance bands vs dumbbells head-to-head on muscle-building, versatility, cost, space, and joint-friendliness, then give a clear verdict for different goals, plus top picks for both sides.",
+  },
+  {
+    slug: "best-yoga-mat-for-bad-knees",
+    description:
+      "Knees aching on your mat? The problem is often thickness, not technique. These are the best yoga mats for bad knees — thick, high-density, joint-friendly picks that cushion without wobbling — plus exactly what thickness to buy for your floor and practice.",
+  },
+  {
+    slug: "best-home-gym-equipment-under-100",
+    description:
+      "You don't need a fortune to train at home. This guide rounds up the best home gym equipment under $100 — resistance bands, ab rollers, jump ropes and more — showing which budget picks actually hold up and which ones to skip.",
+  },
+  {
+    slug: "quiet-home-gym-equipment-apartment",
+    description:
+      "Thin walls shouldn't kill your workouts. This roundup of quiet home gym equipment for apartments covers noise-free cardio, silent strength tools, and floor-friendly picks — so you can train hard without a single complaint from downstairs.",
+  },
+];
 
 interface GuidesPageProps {
   searchParams: Record<string, string | string[] | undefined>;
@@ -74,6 +127,22 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
     },
   });
 
+  // Curated display order: published guides are shown in GUIDE_ORDER
+  // (each with its editor-written hub description); unpublished guides
+  // are skipped so the hub never links to a 404.
+  const bySlug = new Map(articles.map((a) => [a.slug, a]));
+  const orderedGuides = GUIDE_ORDER.flatMap(({ slug, description }) => {
+    const a = bySlug.get(slug);
+    return a ? [{ ...a, hubDescription: description }] : [];
+  });
+  // Any published article not in the curated list (future guides) is
+  // appended after, using its own excerpt.
+  for (const a of articles) {
+    if (!GUIDE_ORDER.some((g) => g.slug === a.slug)) {
+      orderedGuides.push({ ...a, hubDescription: a.excerpt ?? a.title });
+    }
+  }
+
   return (
     <>
       <Header />
@@ -97,12 +166,28 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
             Expert Advice
           </p>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-cream md:text-6xl">
-            Buying Guides & Editorial
+            Fitness Buying Guides
           </h1>
-          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
-            What to look for, what to skip, and which picks earn our recommendation — written by
-            people who train, free of paid placements.
-          </p>
+          <div className="mt-4 max-w-3xl space-y-4 font-sans text-sm leading-relaxed text-cream/70 md:text-base">
+            <p>
+              Choosing fitness equipment shouldn't feel like guesswork — yet walk into the
+              dumbbell aisle (or scroll through it online) and you're hit with a wall of
+              options, conflicting specs, and sponsored "best" lists that all point at
+              whoever paid the most. The VÉLORA fitness buying guides exist to cut through
+              exactly that: editor-researched, hands-on-informed recommendations for the
+              home gym essentials women and men actually buy, written by people who train.
+            </p>
+            <p>
+              Every guide below answers one real buying question — which dumbbells for
+              women, whether adjustable dumbbells are worth it, how to train quietly in an
+              apartment, which yoga mat won't wreck your knees — with clear "best for"
+              picks, honest pros and cons, and live links to check current prices. No paid
+              placements, no invented test scores: a product earns its spot here or it
+              doesn't appear at all. Start with your question, compare our picks against
+              the curated collections they link to, and buy with confidence from the
+              retailer when you're ready.
+            </p>
+          </div>
 
           <nav aria-label="Filter by article type" className="mt-8 flex flex-wrap gap-3">
             {TYPE_FILTERS.map((f) => {
@@ -126,14 +211,14 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
           </nav>
 
           <div className="mt-10">
-            {articles.length > 0 ? (
+            {orderedGuides.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {articles.map((a) => (
+                {orderedGuides.map((a) => (
                   <ArticleCard
                     key={a.slug}
                     slug={a.slug}
                     title={a.title}
-                    excerpt={a.excerpt}
+                    excerpt={a.hubDescription ?? a.excerpt}
                     image={a.featuredImage}
                     typeLabel={TYPE_LABELS[a.type] ?? "Article"}
                     date={a.publishedAt}
