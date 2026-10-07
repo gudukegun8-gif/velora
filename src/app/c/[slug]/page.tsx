@@ -434,7 +434,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     width={1000}
                     height={600}
                     sizes="(max-width: 1024px) 100vw, 55vw"
-                    className="aspect-[16/9] w-full object-cover"
+                    className="aspect-[16/9] w-full object-cover hero-kenburns-alt"
                     priority
                   />
                   <div
