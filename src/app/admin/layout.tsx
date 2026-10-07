@@ -1,13 +1,16 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import AdminShell from "@/components/admin/AdminShell";
+import AdminLayoutClient from "./AdminLayoutClient";
+
+// Admin area must never be indexed: belt-and-braces alongside robots.txt
+// Disallow. Set here so every /admin/* route inherits it, including /admin/login.
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  if (pathname === "/admin/login") {
-    return <>{children}</>;
-  }
-  return <AdminShell>{children}</AdminShell>;
+  return <AdminLayoutClient>{children}</AdminLayoutClient>;
 }

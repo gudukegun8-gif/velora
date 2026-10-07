@@ -141,9 +141,16 @@ const CATEGORY_SPOTLIGHTS: CategorySpotlight[] = [
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const category = await db.category.findUnique({
     where: { slug: params.slug },
-    select: { name: true, tagline: true, description: true, seoTitle: true, seoDescription: true },
+    select: { id: true, name: true, tagline: true, description: true, seoTitle: true, seoDescription: true, children: { select: { id: true } } },
   });
   if (!category) return { title: "Collection not found" };
+  // SEO: empty collections (no published products in self or children) are
+  // thin pages — keep them out of the index until curated picks exist.
+  // Mirrors the sitemap.ts exclusion logic so the two never disagree.
+  const categoryIds = [category.id, ...category.children.map((ch) => ch.id)];
+  const hasProducts = (await db.product.count({
+    where: { status: "PUBLISHED", categoryId: { in: categoryIds } },
+  })) > 0;
   // SEO: keyword-rich fallback descriptions (fix 2026-10-03)
   const fallbackDescription =
     category.seoDescription ||
@@ -155,6 +162,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     title: category.seoTitle || `${category.name} — Curated Fitness Essentials`,
     description: fallbackDescription,
     alternates: { canonical: canonical(`/c/${params.slug}`) },
+    ...(hasProducts ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
