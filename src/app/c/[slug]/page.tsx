@@ -178,6 +178,16 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   if (!category) notFound();
 
+  // SEO: disambiguate sibling categories under the Women/Men hubs so every
+  // category page gets a unique, keyword-targeted H1 (e.g. "Women's Activewear"
+  // vs "Men's Activewear"). Non-hub children already have unique names.
+  const isGenderHubChild =
+    category.parent?.slug === "women" || category.parent?.slug === "men";
+  const h1Name =
+    isGenderHubChild && category.parent
+      ? `${category.parent.name}'s ${category.name}`
+      : category.name;
+
   // Gender-aware accent palette: women's pages wear rose jewelry,
   // men's pages wear steel jewelry — same dark cinematic foundation.
   // Every string below is a complete literal class name so Tailwind
@@ -386,12 +396,16 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 Collection
               </p>
               <h1 className={cx("font-display text-4xl font-medium tracking-tight md:text-6xl", tone.h1)}>
-                {category.name}
+                {h1Name}
               </h1>
               {(category.description || category.tagline) && (
-                <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-cream/70 md:text-base">
-                  {category.description || category.tagline}
-                </p>
+                <div className="mt-4 max-w-xl space-y-4 font-sans text-sm leading-relaxed text-cream/70 md:text-base">
+                  {(category.description || category.tagline)!
+                    .split(/\n\n+/)
+                    .map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                </div>
               )}
               <p className="mt-4 font-sans text-xs uppercase tracking-[0.18em] text-cream/50">
                 {totalCount} {totalCount === 1 ? "product" : "products"} curated
