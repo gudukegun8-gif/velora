@@ -170,22 +170,22 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
           </h1>
           <div className="mt-4 max-w-3xl space-y-4 font-sans text-sm leading-relaxed text-cream/70 md:text-base">
             <p>
-              Choosing fitness equipment shouldn't feel like guesswork — yet walk into the
-              dumbbell aisle (or scroll through it online) and you're hit with a wall of
-              options, conflicting specs, and sponsored "best" lists that all point at
-              whoever paid the most. The VÉLORA fitness buying guides exist to cut through
+              Choosing fitness equipment shouldn&rsquo;t feel like guesswork &mdash; yet walk into the
+              dumbbell aisle (or scroll through it online) and you&rsquo;re hit with a wall of
+              options, conflicting specs, and sponsored &ldquo;best&rdquo; lists that all point at
+              whoever paid the most. The V&Eacute;LORA fitness buying guides exist to cut through
               exactly that: editor-researched, hands-on-informed recommendations for the
               home gym essentials women and men actually buy, written by people who train.
             </p>
             <p>
-              Every guide below answers one real buying question — which dumbbells for
+              Every guide below answers one real buying question &mdash; which dumbbells for
               women, whether adjustable dumbbells are worth it, how to train quietly in an
-              apartment, which yoga mat won't wreck your knees — with clear "best for"
+              apartment, which yoga mat won&rsquo;t wreck your knees &mdash; with clear &ldquo;best for&rdquo;
               picks, honest pros and cons, and live links to check current prices. No paid
               placements, no invented test scores: a product earns its spot here or it
-              doesn't appear at all. Start with your question, compare our picks against
+              doesn&rsquo;t appear at all. Start with your question, compare our picks against
               the curated collections they link to, and buy with confidence from the
-              retailer when you're ready.
+              retailer when you&rsquo;re ready.
             </p>
           </div>
 
