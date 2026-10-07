@@ -48,6 +48,30 @@ export interface ProductJsonLdInput {
   merchantName?: string | null;
 }
 
+// Honest brand derivation: only from the product title itself, never invented.
+// Matches an all-caps lead token (MERACH, VEVOR, CAP…) or a known brand name.
+const KNOWN_BRANDS = [
+  "nike", "bowflex", "rogue", "manduka", "therabody", "ritfit", "merach",
+  "vevor", "cap", "marcy", "yes4all", "trideer", "gaiam", "lululemon",
+  "under armour", "adidas", "reebok", "nordictrack", "proform", "schwinn",
+];
+
+export function deriveBrand(title: string): string | null {
+  const first = title.trim().split(/\s+/)[0];
+  if (!first) return null;
+  // All-caps lead token, e.g. "MERACH Soft Kettlebell" -> "MERACH"
+  if (/^[A-Z0-9]{2,}$/.test(first)) return first;
+  const lower = title.toLowerCase();
+  for (const b of KNOWN_BRANDS) {
+    if (lower.startsWith(b + " ") || lower === b) {
+      // Return canonical casing from the title's own token(s)
+      const words = title.trim().split(/\s+/).slice(0, b.split(" ").length);
+      return words.join(" ");
+    }
+  }
+  return null;
+}
+
 export function productJsonLd(p: ProductJsonLdInput): Record<string, unknown> {
   const hasOffers = p.price != null && !Number.isNaN(Number(p.price));
   const hasRating =
@@ -69,6 +93,11 @@ export function productJsonLd(p: ProductJsonLdInput): Record<string, unknown> {
 
   if (p.images.length > 0) {
     result.image = p.images.map((img) => img.url);
+  }
+
+  const brand = deriveBrand(p.title);
+  if (brand) {
+    result.brand = { "@type": "Brand", name: brand };
   }
 
   if (hasOffers) {
