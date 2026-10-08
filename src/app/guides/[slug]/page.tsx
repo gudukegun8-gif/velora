@@ -158,15 +158,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           )}
 
           <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-cream/10 py-4 font-sans text-xs uppercase tracking-[0.14em] text-cream/55">
-            <span className="font-semibold text-cream/75">{article.author?.name ?? "VÉLORA Editorial"}</span>
+            <span className="font-medium normal-case tracking-normal text-cream/80">
+              By {article.author?.name ?? "VÉLORA Fitness Editors"}
+            </span>
             <span aria-hidden="true">·</span>
-            <time dateTime={publishedAt.toISOString()}>
-              {publishedAt.toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </time>
+            <span>
+              Last updated{" "}
+              <time dateTime={publishedAt.toISOString()}>
+                {publishedAt.toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+            </span>
             {article.author?.bio && <span className="w-full normal-case tracking-normal text-cream/55">{article.author.bio}</span>}
           </div>
 

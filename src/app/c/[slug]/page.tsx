@@ -122,6 +122,27 @@ interface CategorySpotlight {
   ctaLabel: string;
 }
 
+/** Hub categories ("equipment", "workouts") are grouping pages with no direct
+ *  products — aggregate these subcategories so the page isn't a dead end.
+ *  Used in generateMetadata (SEO product count) and CategoryPage (grid,
+ *  filters, counts) so both always agree. */
+const HUB_AGGREGATION: Record<string, string[]> = {
+  equipment: ["strength-training","home-gym","cardio","fitness-accessories","men-strength-training","men-home-gym","men-workout-equipment","men-fitness-accessories"],
+  workouts: ["home-workouts","yoga","pilates","mobility","glute-training","cardio"],
+};
+
+/** Resolve the hub-aggregated category ids for a slug. Slugs that don't exist
+ *  in the database are skipped silently — never throws. */
+async function hubCategoryIds(slug: string): Promise<string[]> {
+  const list = HUB_AGGREGATION[slug];
+  if (!list) return [];
+  const categories = await db.category.findMany({
+    where: { slug: { in: list } },
+    select: { id: true },
+  });
+  return categories.map((c) => c.id);
+}
+
 /** Supporting editorial imagery for key category pages. */
 const CATEGORY_SPOTLIGHTS: CategorySpotlight[] = [
   {
@@ -147,7 +168,12 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   // SEO: empty collections (no published products in self or children) are
   // thin pages — keep them out of the index until curated picks exist.
   // Mirrors the sitemap.ts exclusion logic so the two never disagree.
-  const categoryIds = [category.id, ...category.children.map((ch) => ch.id)];
+  // Hub aggregation: /c/equipment and /c/workouts pull in their listed
+  // subcategories' products so the page, counts, and this SEO check match.
+  const hubIds = await hubCategoryIds(params.slug);
+  const categoryIds = Array.from(
+    new Set([category.id, ...category.children.map((ch) => ch.id), ...hubIds])
+  );
   const hasProducts = (await db.product.count({
     where: { status: "PUBLISHED", categoryId: { in: categoryIds } },
   })) > 0;
@@ -298,7 +324,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           band: "border-t border-cream/10 bg-coal/60",
         };
 
-  const categoryIds = [category.id, ...category.children.map((c) => c.id)];
+  // Hub aggregation: /c/equipment and /c/workouts pull in their listed
+  // subcategories' products so the product grid, counts, and SEO all match.
+  const hubIds = await hubCategoryIds(category.slug);
+  const categoryIds = Array.from(
+    new Set([category.id, ...category.children.map((c) => c.id), ...hubIds])
+  );
   const where = buildWhere(categoryIds, searchParams);
   const sort = param(searchParams.sort) ?? "newest";
 

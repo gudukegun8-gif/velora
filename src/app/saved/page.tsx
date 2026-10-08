@@ -60,7 +60,8 @@ export default function SavedPage() {
                 title="Nothing saved yet"
                 message="Tap the bookmark icon on any product to keep it here for later. Your list is stored only in this browser."
                 actionHref="/trending"
-                actionLabel="Discover Products"
+                actionLabel="Discover products to save"
+                actionSolid
               />
             ) : (
               <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

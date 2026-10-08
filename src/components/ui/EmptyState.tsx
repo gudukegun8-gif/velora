@@ -6,6 +6,8 @@ interface EmptyStateProps {
   message: string;
   actionHref?: string;
   actionLabel?: string;
+  /** Render the action as a prominent gold CTA instead of the outline style. */
+  actionSolid?: boolean;
   className?: string;
 }
 
@@ -18,6 +20,7 @@ export function EmptyState({
   message,
   actionHref,
   actionLabel,
+  actionSolid,
   className,
 }: EmptyStateProps) {
   return (
@@ -40,7 +43,11 @@ export function EmptyState({
       {actionHref && actionLabel && (
         <Link
           href={actionHref}
-          className="mt-8 inline-flex items-center justify-center rounded-full border border-cream/30 px-6 py-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:border-gold hover:text-gold"
+          className={
+            actionSolid
+              ? "mt-8 inline-flex items-center justify-center rounded-full bg-gold px-8 py-3.5 font-sans text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-golddeep hover:text-cream"
+              : "mt-8 inline-flex items-center justify-center rounded-full border border-cream/30 px-6 py-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:border-gold hover:text-gold"
+          }
         >
           {actionLabel}
         </Link>

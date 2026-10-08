@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { canonical } from "@/lib/site";
 import { Header } from "@/components/site/Header";
@@ -25,6 +26,19 @@ export default function AboutPage() {
           </h1>
 
           <div className="article-body mt-8">
+            <figure className="mb-10 overflow-hidden rounded-3xl ring-1 ring-cream/10">
+              <Image
+                src="/images/about-story.webp"
+                alt="Women training together in a dark premium gym — the VÉLORA story"
+                width={1200}
+                height={675}
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="aspect-[16/9] w-full object-cover"
+              />
+              <figcaption className="border-t border-cream/10 bg-coal px-6 py-4 font-sans text-xs uppercase tracking-[0.18em] text-cream/50">
+                The VÉLORA story — real training, honest curation
+              </figcaption>
+            </figure>
             <p>
               VÉLORA began with a simple frustration: finding fitness products worth buying had
               become a chore. Endless listings, sponsored rankings disguised as reviews, and specs
