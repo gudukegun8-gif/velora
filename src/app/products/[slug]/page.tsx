@@ -92,8 +92,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     (product.description ? truncate(product.description, 150) : null) ||
     `${truncate(product.title, 80)} — editor-curated fitness pick. Check live price and details on Temu via VÉLORA.`;
   const description = product.seoDescription || fallbackDescription;
-  // Layout template adds "| VÉLORA" — never hardcode it here (SEO fix 2026-10-03)
-  const title = product.seoTitle || product.title;
+  // Layout template adds "| VÉLORA" — never hardcode it here (SEO fix 2026-10-03).
+    // Some older DB rows already carry a baked-in "| VÉLORA" suffix — strip it so
+    // the template never renders "X | VÉLORA | VÉLORA" (audit fix 2026-10-12).
+    const rawTitle = product.seoTitle || product.title;
+  const title = rawTitle.replace(/\s*[|–—-]\s*VÉLORA\s*$/i, "").trim() || rawTitle;
   // Use the REAL product photo for social link previews (og:image/twitter:image),
   // so X/Threads/Bluesky/etc. show the product — never the generic logo.
   const productImage = product.images[0]?.url || "/images/og-image.webp";
