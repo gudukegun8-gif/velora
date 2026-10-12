@@ -22,11 +22,17 @@ function isSafeRedirect(url: string): boolean {
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   const product = await db.product.findUnique({
     where: { id: params.id },
-    select: { id: true, slug: true, affiliateUrl: true, merchantId: true },
+    select: { id: true, slug: true, status: true, affiliateUrl: true, merchantId: true },
   });
 
   if (!product) {
     notFound();
+  }
+
+  // Archived (discontinued) products never redirect to the merchant:
+  // send stale /go/ links to the product page, which shows the notice.
+  if (product.status !== "PUBLISHED") {
+    return NextResponse.redirect(new URL(`/products/${product.slug}`, req.url), 302);
   }
 
   if (!product.affiliateUrl || !isSafeRedirect(product.affiliateUrl)) {

@@ -9,6 +9,16 @@ export function cx(...classes: Array<string | false | null | undefined>): string
  * Format a price using Intl.NumberFormat (en-US).
  */
 export function formatPrice(amount: number, currency = "USD"): string {
+  // PKR has no fractional paisa in practice — "Rs 1,299" reads right,
+  // "PKR 1,299.00" does not. Other currencies keep standard formatting.
+  if (currency === "PKR") {
+    return new Intl.NumberFormat("en-PK", {
+      style: "currency",
+      currency: "PKR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  }
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,

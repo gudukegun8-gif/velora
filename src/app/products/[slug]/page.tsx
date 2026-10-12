@@ -84,7 +84,21 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       images: { select: { url: true, alt: true }, orderBy: { sortOrder: "asc" }, take: 1 },
     },
   });
-  if (!product || product.status !== "PUBLISHED") {
+  if (!product) {
+    return { title: "Product not found — VÉLORA" };
+  }
+  if (product.status === "ARCHIVED") {
+    // Discontinued product: keep the page reachable for old pins/links,
+    // but out of search indexes (noindex, follow so link equity flows on).
+    const rawTitle = product.seoTitle || product.title;
+    const title = rawTitle.replace(/\s*[|–—-]\s*VÉLORA\s*$/i, "").trim() || rawTitle;
+    return {
+      title: `${title} — no longer available`,
+      description: `${truncate(title, 110)} is no longer available through our partners. Browse similar curated fitness picks on VÉLORA.`,
+      robots: { index: false, follow: true },
+    };
+  }
+  if (product.status !== "PUBLISHED") {
     return { title: "Product not found — VÉLORA" };
   }
   const fallbackDescription =
@@ -93,9 +107,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     `${truncate(product.title, 80)} — editor-curated fitness pick. Check live price and details on Temu via VÉLORA.`;
   const description = product.seoDescription || fallbackDescription;
   // Layout template adds "| VÉLORA" — never hardcode it here (SEO fix 2026-10-03).
-    // Some older DB rows already carry a baked-in "| VÉLORA" suffix — strip it so
-    // the template never renders "X | VÉLORA | VÉLORA" (audit fix 2026-10-12).
-    const rawTitle = product.seoTitle || product.title;
+  // Some older DB rows already carry a baked-in "| VÉLORA" suffix — strip it so
+  // the template never renders "X | VÉLORA | VÉLORA" (audit fix 2026-10-12).
+  const rawTitle = product.seoTitle || product.title;
   const title = rawTitle.replace(/\s*[|–—-]\s*VÉLORA\s*$/i, "").trim() || rawTitle;
   // Use the REAL product photo for social link previews (og:image/twitter:image),
   // so X/Threads/Bluesky/etc. show the product — never the generic logo.
@@ -155,9 +169,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
     },
   });
 
-  if (!product || product.status !== "PUBLISHED") {
+  if (!product) {
     notFound();
   }
+  // Archived (discontinued) products render the dedicated notice view below —
+  // they stay off every published surface and get no buy CTA. DRAFT/PENDING still 404.
+  if (product.status !== "PUBLISHED" && product.status !== "ARCHIVED") {
+    notFound();
+  }
+  const isArchived = product.status === "ARCHIVED";
 
   const price = product.price !== null ? Number(product.price) : null;
   const originalPrice = product.originalPrice !== null ? Number(product.originalPrice) : null;
@@ -176,7 +196,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             id: { not: product.id },
           },
           orderBy: [{ rating: "desc" }, { createdAt: "desc" }],
-          take: 4,
+          take: isArchived ? 8 : 4,
           select: cardProductSelect,
         })
       : Promise.resolve([]),
@@ -190,6 +210,137 @@ export default async function ProductPage({ params }: ProductPageProps) {
       : Promise.resolve([]),
   ]);
   const related = relatedRaw.map(toCardProduct);
+
+  // ─── Archived / discontinued view ──────────────────────────────────────
+  // No price, no buy CTA, no product JSON-LD — nothing is for sale here.
+  // `related` is PUBLISHED-only by construction (the query above), so every
+  // alternative shown is a live, available product. No stock info is invented.
+  if (isArchived) {
+    const categoryCrumb = product.category
+      ? { name: product.category.name, path: `/c/${product.category.slug}` }
+      : null;
+    return (
+      <>
+        <Header />
+        <main className="bg-ink">
+          <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+            {/* Breadcrumbs */}
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
+                <li>
+                  <Link href="/" className="hover:text-gold">
+                    Home
+                  </Link>
+                </li>
+                {categoryCrumb && (
+                  <>
+                    <li aria-hidden="true">/</li>
+                    <li>
+                      <Link href={categoryCrumb.path} className="hover:text-gold">
+                        {categoryCrumb.name}
+                      </Link>
+                    </li>
+                  </>
+                )}
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="max-w-[40ch] truncate text-cream">
+                  {product.title}
+                </li>
+              </ol>
+            </nav>
+
+            {/* No-longer-available notice */}
+            <div className="overflow-hidden rounded-3xl border border-cream/10 bg-coal">
+              <div className="grid gap-8 p-6 sm:p-10 md:grid-cols-[280px_1fr] md:gap-10">
+                <div>
+                  {product.images.length > 0 ? (
+                    <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
+                      <Image
+                        src={product.images[0].url}
+                        alt={product.images[0].alt || product.title}
+                        fill
+                        sizes="280px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className="flex aspect-square w-full items-center justify-center rounded-2xl bg-gradient-to-br from-coal via-ink to-coal"
+                    >
+                      <span className="font-display text-8xl font-medium text-gold">{initial}</span>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <Badge tone="ink">No longer available</Badge>
+                  <h1 className="mt-4 font-display text-2xl font-medium tracking-tight text-cream md:text-3xl">
+                    {product.title}
+                  </h1>
+                  <p className="mt-4 max-w-2xl font-sans text-base leading-relaxed text-cream/75">
+                    This product has been discontinued by the merchant, so it&apos;s no longer
+                    available to buy through our partners. We&apos;ve removed it from our
+                    listings — the curated alternatives below are live and available right now.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-4">
+                    <Link
+                      href={categoryCrumb ? categoryCrumb.path : "/"}
+                      className="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 font-sans text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-golddeep hover:text-cream"
+                    >
+                      Browse {categoryCrumb ? categoryCrumb.name : "Products"}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Available alternatives (all PUBLISHED) */}
+            {related.length > 0 && (
+              <section className="mt-14 md:mt-20" aria-labelledby="archived-related-heading">
+                <h2 id="archived-related-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
+                  Available Alternatives
+                </h2>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {related.map((p) => (
+                    <ProductCard key={p.id} product={p} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Related guides */}
+            {relatedGuides.length > 0 && (
+              <section className="mt-14 md:mt-20" aria-labelledby="archived-guides-heading">
+                <h2 id="archived-guides-heading" className="mb-6 font-display text-2xl font-medium text-cream md:text-3xl">
+                  Related Guides
+                </h2>
+                <div className="grid gap-6 md:grid-cols-3">
+                  {relatedGuides.map((g) => (
+                    <Link
+                      key={g.slug}
+                      href={`/guides/${g.slug}`}
+                      className="group rounded-2xl border border-cream/10 bg-coal p-6 transition-shadow hover:shadow-[0_18px_50px_-18px_rgba(11,10,8,0.3)]"
+                    >
+                      <h3 className="font-display text-xl font-medium text-cream group-hover:text-gold">
+                        {g.title}
+                      </h3>
+                      {g.excerpt && (
+                        <p className="mt-2 line-clamp-2 font-sans text-sm text-cream/65">{g.excerpt}</p>
+                      )}
+                      <span className="mt-4 block font-sans text-xs font-medium uppercase tracking-[0.16em] text-gold">
+                        Read guide &rarr;
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
 
   const whoFor = [
     genderLabel(product.gender),
