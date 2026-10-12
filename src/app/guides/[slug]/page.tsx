@@ -48,8 +48,13 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
   const description =
     article.seoDescription || article.excerpt || truncate(article.content, 160);
+  
+  // Strip any baked-in "| VÉLORA" suffix so the layout template never renders
+    // "X | VÉLORA | VÉLORA" (audit fix 2026-10-12).
+    const rawTitle = article.seoTitle || article.title;
+    const cleanTitle = rawTitle.replace(/\s*[|–—-]\s*VÉLORA\s*$/i, "").trim() || rawTitle;
   const meta: Metadata = {
-    title: article.seoTitle || article.title,
+    title: cleanTitle,
     description,
     alternates: { canonical: article.canonicalUrl || canonical(`/guides/${params.slug}`) },
   };
