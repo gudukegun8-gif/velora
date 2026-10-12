@@ -106,7 +106,10 @@ export function productJsonLd(p: ProductJsonLdInput): Record<string, unknown> {
       url: absoluteUrl(`/products/${p.slug}`),
       priceCurrency: p.currency || "USD",
       price: Number(p.price),
-      availability: "https://schema.org/InStock",
+      // Availability is intentionally OMITTED: VÉLORA cannot verify live
+            // merchant stock at render time, and claiming InStock without
+            // verification would be misleading (fix 2026-10-12).
+      
     };
     if (p.originalPrice != null && Number(p.originalPrice) > Number(p.price)) {
       offer.priceSpecification = {
