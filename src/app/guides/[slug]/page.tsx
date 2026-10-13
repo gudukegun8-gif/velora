@@ -57,6 +57,11 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     title: cleanTitle,
     description,
     alternates: { canonical: article.canonicalUrl || canonical(`/guides/${params.slug}`) },
+    openGraph: {
+      title: cleanTitle,
+      description,
+      url: article.canonicalUrl || canonical(`/guides/${params.slug}`),
+    },
   };
   return meta;
 }

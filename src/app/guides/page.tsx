@@ -23,6 +23,12 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Fitness buying guides: best dumbbells, kettlebells, yoga mats & resistance bands for women, plus honest comparisons. Curated picks, zero paid placements.",
     alternates: { canonical: canonical("/guides") },
+    openGraph: {
+      title: "Fitness Buying Guides for Home Gyms",
+      description:
+        "Fitness buying guides: best dumbbells, kettlebells, yoga mats & resistance bands for women, plus honest comparisons. Curated picks, zero paid placements.",
+      url: canonical("/guides"),
+    },
     robots: { index: indexable, follow: true },
   };
 }

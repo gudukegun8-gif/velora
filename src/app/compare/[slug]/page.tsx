@@ -54,6 +54,7 @@ export async function generateMetadata({ params }: ComparePageProps): Promise<Me
     openGraph: {
       title,
       description,
+      url: canonical(`/compare/${params.slug}`),
       images: [{ url: ogImage, alt: title }],
     },
     twitter: {

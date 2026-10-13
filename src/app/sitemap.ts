@@ -41,15 +41,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         select: { slug: true, updatedAt: true },
       }),
       db.category.findMany({
-        // Only collections that actually render products: a category page
-        // shows its own products plus its children's, so mirror that here.
-        // Empty collections (no curated picks yet) stay out of the sitemap.
-        where: {
-          OR: [
-            { products: { some: { status: "PUBLISHED" } } },
-            { children: { some: { products: { some: { status: "PUBLISHED" } } } } },
-          ],
-        },
+        // Include ALL live category pages in the sitemap (fix 2026-10-13:
+        // /c/glute-training was missing because it has no published products
+        // yet, but the page returns 200 and should be discoverable).
+        // Note: the category page itself sets noindex until products exist,
+        // so empty categories won't be indexed despite being listed here.
         select: { slug: true, updatedAt: true },
       }),
     ]);

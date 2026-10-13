@@ -188,6 +188,11 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     title: category.seoTitle || `${category.name} — Curated Fitness Essentials`,
     description: fallbackDescription,
     alternates: { canonical: canonical(`/c/${params.slug}`) },
+    openGraph: {
+      title: category.seoTitle || `${category.name} — Curated Fitness Essentials`,
+      description: fallbackDescription,
+      url: canonical(`/c/${params.slug}`),
+    },
     ...(hasProducts ? {} : { robots: { index: false, follow: true } }),
   };
 }

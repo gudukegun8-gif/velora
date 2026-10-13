@@ -121,6 +121,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     openGraph: {
       title,
       description,
+      url: canonical(`/products/${params.slug}`),
       images: [{ url: productImage, alt: product.images[0]?.alt || title }],
     },
     twitter: {

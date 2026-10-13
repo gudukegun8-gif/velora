@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     title: "VÉLORA — Home Gym & Fitness Essentials for Women",
     description:
       "Curated home gym & fitness essentials for women: dumbbells, yoga mats, resistance bands, buying guides & honest picks. Zero paid placements.",
+    url: canonical("/"),
     images: [
       {
         url: "/images/og-image.webp",

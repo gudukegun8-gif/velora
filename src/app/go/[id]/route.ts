@@ -39,6 +39,16 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.redirect(new URL(`/products/${product.slug}`, req.url), 302);
   }
 
+  // Sanitize Temu tracking IDs at redirect time (fix 2026-10-13): some
+  // stored affiliate URLs carry a literal "kol_affiliate" suffix appended
+  // to the numeric _x_cid (e.g. _x_cid=6013029639kol_affiliate), which
+  // breaks commission tracking since Temu expects a numeric campaign ID.
+  // Strip it here as defense-in-depth; the DB rows are also being cleaned.
+  let targetUrl = product.affiliateUrl;
+  if (targetUrl.includes("kol_affiliate")) {
+    targetUrl = targetUrl.replace(/6013029639kol_affiliate/g, "6013029639");
+  }
+
   const referer = req.headers.get("referer");
   let page: string | undefined;
   if (referer) {
@@ -60,5 +70,5 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     },
   });
 
-  return NextResponse.redirect(product.affiliateUrl, 302);
+  return NextResponse.redirect(targetUrl, 302);
 }
