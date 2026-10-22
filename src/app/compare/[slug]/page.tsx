@@ -12,7 +12,7 @@ import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 import { JsonLd } from "@/components/site/JsonLd";
 import { comparisonJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 interface ComparePageProps {
   params: { slug: string };

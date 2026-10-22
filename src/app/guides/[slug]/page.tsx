@@ -15,7 +15,7 @@ import { articleJsonLd } from "@/lib/seo";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 interface ArticlePageProps {
   params: { slug: string };

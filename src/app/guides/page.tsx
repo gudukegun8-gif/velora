@@ -9,7 +9,7 @@ import { Footer } from "@/components/site/Footer";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Badge } from "@/components/ui/Badge";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 // The hub stays noindex until it is actually populated: index,follow only
 // when at least one PUBLISHED article exists, otherwise noindex,follow.

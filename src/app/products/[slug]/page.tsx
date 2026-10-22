@@ -16,7 +16,7 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import ProductZoomImage from "@/components/site/ProductZoomImage";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 interface ProductPageProps {
   params: { slug: string };

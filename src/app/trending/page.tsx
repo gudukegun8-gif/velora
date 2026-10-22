@@ -8,7 +8,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Trending Fitness Products",
