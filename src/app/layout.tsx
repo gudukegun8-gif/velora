@@ -50,6 +50,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "CEXa-vli2vXcqyZJ5w0vWS_XUZZsUeA2tdt8_b7Ss9g",
+    other: {
+      "p:domain_verify": "e1d3440c3650a16cae5050be707005b1",
+    },
   },
   alternates: {
     canonical: "/",
