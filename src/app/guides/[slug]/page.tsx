@@ -8,7 +8,7 @@ import { markdownToHtml } from "@/lib/markdown";
 import { truncate } from "@/lib/utils";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { AdNativeBanner, AdLeaderboard, AdSkyscraperRail } from "@/components/site/Adsterra";
+import { AdNativeBanner, AdLeaderboard, AdSkyscraperRail, AdRectangle } from "@/components/site/Adsterra";
 import { TrackView } from "@/components/site/TrackView";
 import { Badge } from "@/components/ui/Badge";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -93,6 +93,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const html = markdownToHtml(article.content);
+
+  // Mid-article ad (user order 2026-10-23: ads INSIDE the articles).
+  // Split the rendered HTML after ~1/3 of its paragraphs and place one
+  // 300x250 rectangle there. Short articles (<8 paragraphs) stay ad-free
+  // inside the body.
+  const htmlParas = html.split("</p>");
+  let htmlTop = html;
+  let htmlBottom: string | null = null;
+  if (htmlParas.length >= 8) {
+    const cut = Math.max(3, Math.floor(htmlParas.length / 3));
+    htmlTop = htmlParas.slice(0, cut).join("</p>") + "</p>";
+    htmlBottom = htmlParas.slice(cut).join("</p>");
+  }
+
   const publishedAt = article.publishedAt ?? article.updatedAt;
   const typeLabel = TYPE_LABELS[article.type] ?? "Article";
 
@@ -205,8 +219,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           <div
             className="article-body mt-10"
-            dangerouslySetInnerHTML={{ __html: html }}
+            dangerouslySetInnerHTML={{ __html: htmlTop }}
           />
+
+          {htmlBottom && (
+            <>
+              {/* Adsterra 300x250 — inside the article, after the first third */}
+              <div className="my-10">
+                <AdRectangle />
+              </div>
+              <div
+                className="article-body"
+                dangerouslySetInnerHTML={{ __html: htmlBottom }}
+              />
+            </>
+          )}
 
           {/* Adsterra native banner — end of article, before editorial footer */}
           <AdNativeBanner />

@@ -12,7 +12,11 @@
 export const ADSTERRA = {
   nativeSrc: "https://bauval.org/21/ee3e3acc93c0d46948af5174a46b9d8c",
   nativeKey: "ee3e3acc93c0d46948af5174a46b9d8c",
-  socialBarSrc: "https://bauval.org/14/5b661444c3853a042dc90756bc878651",
+  // Social Bar REMOVED 2026-10-23 on the user's order: it hijacked the
+  // browser tab title with a fake "(1) New Message!" notification, which
+  // annoys visitors and damages trust. Do NOT re-enable.
+  // (original script: https://bauval.org/14/5b661444c3853a042dc90756bc878651)
+  socialBarSrc: "",
   smartLinkUrl: "https://araplhn.org/4/0957a1be1cb0d254876946dae6f7ae50",
   banners: {
     leaderboard728x90: {
