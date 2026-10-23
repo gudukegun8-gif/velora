@@ -8,6 +8,7 @@ import { discountPercent, formatPrice, truncate } from "@/lib/utils";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TrackView } from "@/components/site/TrackView";
+import { AdNativeBanner, AdLeaderboard, AdSkyscraperRail } from "@/components/site/Adsterra";
 import { Badge } from "@/components/ui/Badge";
 import { SaveButton } from "@/components/site/SaveButton";
 import { ProductCard } from "@/components/ui/ProductCard";
@@ -642,6 +643,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </section>
           )}
 
+          {/* Adsterra native banner — restrained single unit before related picks */}
+          <AdNativeBanner />
+
           {/* Related products */}
           {related.length > 0 && (
             <section className="mt-14 md:mt-20" aria-labelledby="related-heading">
@@ -683,8 +687,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             </section>
           )}
+
+          {/* Adsterra responsive banner — bottom of product page (exit traffic) */}
+          <AdLeaderboard />
         </div>
       </main>
+      <AdSkyscraperRail />
       <Footer />
     </>
   );

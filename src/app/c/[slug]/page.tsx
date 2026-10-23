@@ -8,6 +8,7 @@ import { canonical } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { AdLeaderboard, AdRectangle } from "@/components/site/Adsterra";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
@@ -669,10 +670,23 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </div>
             </form>
 
+            {/* Adsterra responsive banner — above the product grid */}
+            <AdLeaderboard />
+
             {/* Products */}
             {products.length > 0 ? (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {products.map((p) => (
+                {products.slice(0, 8).map((p) => (
+                  <div key={p.id} className={cx("rounded-3xl", tone.cardWrap)}>
+                    <ProductCard product={p} />
+                  </div>
+                ))}
+                {products.length > 8 && (
+                  <div className="flex items-center justify-center">
+                    <AdRectangle />
+                  </div>
+                )}
+                {products.slice(8).map((p) => (
                   <div key={p.id} className={cx("rounded-3xl", tone.cardWrap)}>
                     <ProductCard product={p} />
                   </div>

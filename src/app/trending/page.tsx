@@ -6,6 +6,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { AdLeaderboard } from "@/components/site/Adsterra";
+import { ADSTERRA } from "@/lib/ads";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 
 export const revalidate = 3600;
@@ -55,6 +57,26 @@ export default async function TrendingPage() {
             The finds gaining momentum right now — surfaced by real interest, reviewed by our
             editors before they earn a spot. Nothing here is paid placement.
           </p>
+
+          {/* Sponsored deals button (Adsterra Smart Link) — clearly labeled */}
+          {ADSTERRA.smartLinkUrl && (
+            <div className="mt-6">
+              <a
+                href={ADSTERRA.smartLinkUrl}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="inline-block rounded-full border border-gold/60 px-5 py-2 font-sans text-xs font-medium uppercase tracking-[0.14em] text-gold transition-colors hover:bg-gold hover:text-ink"
+              >
+                Today&apos;s Deals
+              </a>
+              <span className="ml-3 font-sans text-[10px] uppercase tracking-[0.2em] text-cream/40">
+                Sponsored
+              </span>
+            </div>
+          )}
+
+          {/* Adsterra responsive banner — under the intro (one size per device) */}
+          <AdLeaderboard />
 
           <div className="mt-10">
             {products.length > 0 ? (

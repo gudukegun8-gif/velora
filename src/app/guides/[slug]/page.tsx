@@ -8,6 +8,7 @@ import { markdownToHtml } from "@/lib/markdown";
 import { truncate } from "@/lib/utils";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { AdNativeBanner, AdLeaderboard, AdSkyscraperRail } from "@/components/site/Adsterra";
 import { TrackView } from "@/components/site/TrackView";
 import { Badge } from "@/components/ui/Badge";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -199,10 +200,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </figure>
           )}
 
+          {/* Adsterra responsive banner — top of article (one size per device) */}
+          <AdLeaderboard />
+
           <div
             className="article-body mt-10"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+
+          {/* Adsterra native banner — end of article, before editorial footer */}
+          <AdNativeBanner />
 
           <footer className="mt-12 rounded-2xl border border-cream/10 bg-coal p-6">
             <p className="font-sans text-xs leading-relaxed text-cream/60">
@@ -234,6 +241,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </section>
         )}
       </main>
+      <AdSkyscraperRail />
       <Footer />
     </>
   );

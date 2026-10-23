@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
 import { JsonLd } from "@/components/site/JsonLd";
+import { AdSocialBar } from "@/components/site/Adsterra";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -107,6 +108,7 @@ export default function RootLayout({
         />
         <JsonLd data={[orgJsonLd, websiteJsonLd]} />
         {children}
+        <AdSocialBar />
       </body>
     </html>
   );

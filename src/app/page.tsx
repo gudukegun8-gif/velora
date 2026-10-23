@@ -7,6 +7,7 @@ import { cx } from "@/lib/utils";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Newsletter } from "@/components/site/Newsletter";
+import { AdNativeBanner, AdLeaderboard } from "@/components/site/Adsterra";
 import { JsonLd } from "@/components/site/JsonLd";
 import "./hero.css";
 import { Button } from "@/components/ui/Button";
@@ -603,6 +604,9 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Adsterra responsive banner — one size per device, under the hero sections */}
+        <AdLeaderboard />
+
         {/* ── Trending ─────────────────────────────────────── */}
         {trending.length > 0 && (
           <section className="border-y border-cream/10 bg-coal/50 py-14 md:py-24" aria-labelledby="trending-heading">
@@ -620,6 +624,9 @@ export default async function HomePage() {
             </div>
           </section>
         )}
+
+        {/* Adsterra native banner — single unit between Trending and Shop by Goal */}
+        <AdNativeBanner />
 
         {/* ── Shop by Goal ─────────────────────────────────── */}
         <section className="bg-ink py-14 md:py-24" aria-labelledby="goals-heading">

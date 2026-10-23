@@ -7,6 +7,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { AdLeaderboard, AdRectangle } from "@/components/site/Adsterra";
 import { cardProductSelect, toCardProduct } from "@/lib/card-product";
 
 export const revalidate = 3600;
@@ -121,6 +122,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             by collection from the menu above.
           </p>
 
+          {/* Adsterra responsive banner — under the intro (one size per device) */}
+          <AdLeaderboard />
+
           {/* Sort chips */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <span className="font-sans text-xs uppercase tracking-[0.14em] text-cream/50">
@@ -144,7 +148,15 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           <div className="mt-10">
             {products.length > 0 ? (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {products.map((p) => (
+                {products.slice(0, 8).map((p) => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+                {products.length > 8 && (
+                  <div className="flex items-center justify-center">
+                    <AdRectangle />
+                  </div>
+                )}
+                {products.slice(8).map((p) => (
                   <ProductCard key={p.id} product={p} />
                 ))}
               </div>
