@@ -24,10 +24,15 @@ export default function TermsPage() {
             Terms of Service
           </h1>
           <p className="mt-4 font-sans text-sm text-cream/55">
-            Last updated: October 2026
+            Last updated: October 23, 2026
           </p>
 
           <div className="article-body mt-8">
+            <p>
+              By accessing or using VÉLORA at https://velora-nu-peach.vercel.app (the
+              &ldquo;Site&rdquo;), you agree to these Terms of Service. If you do not agree
+              to them, please do not use the Site.
+            </p>
             <h2>1. What VÉLORA is</h2>
             <p>
               VÉLORA is a product discovery publication. We curate and describe fitness and
@@ -64,11 +69,22 @@ export default function TermsPage() {
               you buy through them at no extra cost to you. See our{" "}
               <Link href="/affiliate-disclosure">affiliate disclosure</Link> for details.
             </p>
-            <h2>6. No professional advice</h2>
+            <h2>6. Health and fitness disclaimer</h2>
             <p>
-              Our guides and editorial content are for general information only — not medical,
-              fitness-professional, or financial advice. Consult a qualified professional
-              before starting a new training program or if you have health concerns.
+              All workout guides, exercise instructions, routines, and other fitness content
+              on VÉLORA are provided for general information and education only. They are{" "}
+              <strong>not medical advice</strong> and are not a substitute for the advice,
+              diagnosis, or treatment of a qualified physician or other healthcare
+              professional.
+            </p>
+            <p>
+              Consult a qualified physician before starting any exercise program —
+              particularly if you are pregnant or postpartum, recovering from an injury, or
+              have any medical condition or health concern. Stop exercising and seek medical
+              care if you feel pain, dizziness, shortness of breath, or any other warning
+              sign. You take part in any exercise described on this Site entirely at your own
+              risk, and VÉLORA is not responsible for any injury or health problem that may
+              result.
             </p>
             <h2>7. Limitation of liability</h2>
             <p>
@@ -79,7 +95,12 @@ export default function TermsPage() {
             <h2>8. Changes</h2>
             <p>
               We may update these terms from time to time; continued use of the site after
-              changes means you accept them. Questions? <Link href="/contact">Contact us</Link>.
+              changes means you accept them.
+            </p>
+            <h2>9. Contact</h2>
+            <p>
+              Questions about these terms? Email us at gudukegun8@gmail.com or use our{" "}
+              <Link href="/contact">contact page</Link>.
             </p>
           </div>
         </div>
